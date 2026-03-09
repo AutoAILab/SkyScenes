@@ -1,0 +1,10 @@
+2026-03-09 19:25:31,173 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-09 19:25:31,173 - INFO - Root Directory: /tmp/datasets
+2026-03-09 19:25:31,173 - INFO - Generating Baseline: Town01, H=35, P=-45
+2026-03-09 19:25:31,173 - INFO - Generating Variation: ClearSunset for baseline Town01 H=35 P=-45
+2026-03-09 19:25:31,173 - INFO - Pipeline Execution Complete
+2026-03-09 19:25:31,175 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-09 19:25:31,175 - INFO - Root Directory: /tmp/datasets
+2026-03-09 19:25:31,175 - INFO - Generating Baseline: Town01, H=35, P=-45
+2026-03-09 19:25:31,175 - INFO - Generating Variation: ClearSunset for baseline Town01 H=35 P=-45
+2026-03-09 19:25:31,175 - INFO - Pipeline Execution Complete

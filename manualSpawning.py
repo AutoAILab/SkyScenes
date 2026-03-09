@@ -529,11 +529,12 @@ class genImages(object):
                 ####### SEMANTIC SEGMENTATION
                 ########################################################################################################################
                 ##### AERIAL VIEW
-                image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/CarlaSegment/{image.frame:06}_semsegCarla.png"))
-                image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.LogarithmicDepth)
-                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.Depth)
-                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"))
-                image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance/{image.frame:06}_instance.png"))
+                if self.args.save_seg:
+                    image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/CarlaSegment/{image.frame:06}_semsegCarla.png"))
+                    image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.LogarithmicDepth)
+                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.Depth)
+                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"))
+                    image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance/{image.frame:06}_instance.png"))
                 ########################################################################################################################
                 data = {}
                 data["image_path"] = IMG_PATH
@@ -616,15 +617,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--weather', type=str, default="ClearNoon", help="ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight")
     parser.add_argument('--town', type=str, default="Town01", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
-    parser.add_argument('--ROOT_DIR', type=str, default="temp", help="Dir to save")
+    parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets", help="Dir to save")
     parser.add_argument('--height', type=int, default=35, help="height")
     parser.add_argument('--pitch', type=int, default=-45, help="pitch")
     parser.add_argument('--num', type=int, default=10, help="number of images to generate")
+    parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
     args = parser.parse_args()
     ########################################################################################################################
     ### MANUAL ARGUMENTS
     ########################################################################################################################
-    args.ROOT_DIR = f"INIT_DATA"
+    args.ROOT_DIR = "/home/df/data/datasets"
     args.town = "Town01"       # Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD
     args.weather = "ClearNoon" # ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight
     args.height = 35

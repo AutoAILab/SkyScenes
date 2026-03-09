@@ -1,7 +1,7 @@
 import os
 import time
 
-ROOT_DIR = "DATA"
+ROOT_DIR = "/home/df/data/datasets"
 
 """
 All the Seg/Instance/Depth Labels will be generated only in the ClearNoon variation. 

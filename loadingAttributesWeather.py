@@ -47,7 +47,7 @@ class GenImage:
         print("__"*20)
         ### Internal arguments
         self.save_bbox = False
-        self.save_seg = False # False default, True for ClearNoon
+        self.save_seg = args.save_seg # False default, True for ClearNoon
         self.save_metadata = True
         self.h_and_p = False
         self.noon_json = args.noon_json
@@ -71,7 +71,7 @@ class GenImage:
         self.metaDataDir = metaDataDir
         self.index = int(args.index) 
         self.weather_str = args.weather
-        if args.weather == "ClearNoon":
+        if args.weather == "ClearNoon" and args.save_seg:
             self.weather = carla.WeatherParameters.ClearNoon
             self.save_seg = True # False default, True for ClearNoon
         elif args.weather == "CloudyNoon":
@@ -247,21 +247,30 @@ class GenImage:
             self.camera_depth = self.world.spawn_actor(camera_depth, camera_transform, attach_to=self.vehicle)
             self.image_queue_depth = queue.Queue()
             self.camera_depth.listen(self.image_queue_depth.put)
-            self.actor_list.append(self.camera_depth)
 
-            ########################################################################################################################
-            ####### INSTANCE 
-            ########################################################################################################################
-            ##### AERIAL VIEW
-            camera_instance = self.blueprint_library.find('sensor.camera.instance_segmentation')
-            camera_instance.set_attribute('fov', f'{str(self.FOV)}')
-            camera_instance.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
-            camera_instance.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
-            camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), 
-                                                carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-            self.camera_instance = self.world.spawn_actor(camera_instance, camera_transform, attach_to=self.vehicle)
+            # Instance Segmentation Camera
+            self.camera_instance_bp = self.blueprint_library.find('sensor.camera.instance_segmentation')
+            self.camera_instance_bp.set_attribute('fov', f'{str(self.FOV)}')
+            self.camera_instance_bp.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
+            self.camera_instance_bp.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
             self.image_queue_instance = queue.Queue()
-            self.camera_instance.listen(self.image_queue_instance.put)
+
+    def setSensors(self):
+        self.camera = self.world.spawn_actor(self.camera_bp, self.camera_transform, attach_to=self.vehicle)
+        self.camera.listen(lambda image: self.image_queue.put(image))
+        self.actor_list.append(self.camera)
+
+        if self.save_seg:
+            self.camera_seg = self.world.spawn_actor(self.camera_seg_bp, self.camera_transform, attach_to=self.vehicle)
+            self.camera_seg.listen(lambda image: self.image_queue_seg.put(image))
+            self.actor_list.append(self.camera_seg)
+            
+            self.camera_depth = self.world.spawn_actor(self.camera_depth_bp, self.camera_transform, attach_to=self.vehicle)
+            self.camera_depth.listen(lambda image: self.image_queue_depth.put(image))
+            self.actor_list.append(self.camera_depth)
+            
+            self.camera_instance = self.world.spawn_actor(self.camera_instance_bp, self.camera_transform, attach_to=self.vehicle)
+            self.camera_instance.listen(lambda image: self.image_queue_instance.put(image))
             self.actor_list.append(self.camera_instance)
         
     def spawnPeople(self, idNum, ID, location, rotation, transform):
@@ -510,10 +519,11 @@ if __name__ == "__main__":
     parser.add_argument('--height', type=int, default=35, help="height")
     parser.add_argument('--pitch', type=int, default=-45, help="pitch")
     parser.add_argument('--metaDataDir', type=str, help="metaDataDir")
-    parser.add_argument('--ROOT_DIR', type=str, help="ROOT_DIR")
+    parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets", help="ROOT_DIR")
     parser.add_argument('--index', type=int, default=0, help="index of the last image generated, incase generation stops midway")
     parser.add_argument('--load_old', type=str, default=None, help="loading old json file for missing vehicle/walker")
     parser.add_argument('--noon_json', type=bool, default=False, help="Fixing missing")
+    parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
 
     args = parser.parse_args()
     args.index = 0
