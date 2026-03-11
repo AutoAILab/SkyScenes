@@ -1,5 +1,5 @@
 # Default generation configuration for SkyScenes pipeline
-ROOT_DIR: "/home/df/data/datasets"
+ROOT_DIR: "/home/df/data/datasets/SkyScenes"
 save_seg: false
 
 # Baseline generation settings (manualSpawning.py)

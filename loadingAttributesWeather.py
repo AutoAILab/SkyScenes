@@ -71,9 +71,8 @@ class GenImage:
         self.metaDataDir = metaDataDir
         self.index = int(args.index) 
         self.weather_str = args.weather
-        if args.weather == "ClearNoon" and args.save_seg:
+        if args.weather == "ClearNoon":
             self.weather = carla.WeatherParameters.ClearNoon
-            self.save_seg = True # False default, True for ClearNoon
         elif args.weather == "CloudyNoon":
             self.weather = carla.WeatherParameters.CloudyNoon
         elif args.weather == "MidRainyNoon":
@@ -126,6 +125,13 @@ class GenImage:
         self.vehicleDict = {}
         self.walkerDict = {}
         
+        ### Traffic Manager
+        self.tm = self.client.get_trafficmanager(args.tm_port)
+        ## Set up the TM in synchronous mode
+        self.tm.set_synchronous_mode(True)
+        ## Set a seed so behaviour can be repeated if necessary
+        self.tm.set_random_device_seed(0)
+
         ### Ego vehicle to attach sensors
         self.blueprint_library = self.world.get_blueprint_library()
         bp = self.blueprint_library.filter('crossbike')[0] # crossbike because no shadow when it is floating in the air
@@ -135,17 +141,25 @@ class GenImage:
                                              carla.Rotation(pitch=0, yaw=transform.rotation.yaw, roll=0)) # Yaw is the only thing that matters for orientation
         self.vehicle.set_transform(vehicle_transform)
         self.actor_list.append(self.vehicle)
-        self.vehicle.set_autopilot(True)
+        self.vehicle.set_autopilot(True, self.tm.get_port())
         self.vehicle.set_enable_gravity(False) # disables gravity
         self.m = self.world.get_map()
         self.waypoint = self.m.get_waypoint(transform.location)
         self.recursion_counter = 0
         self.addSensors()
         self.startTime = time.time()
-        self.tickClock()
-        self.destroyActors()
-        print(f'Total Time taken to generate images: {self.endTime - self.startTime}')
-        print(f'Time per image: {(self.endTime - self.startTime) / self.totalImages}')
+        try:
+            self.tickClock()
+        except Exception as e:
+            print(f"Exception during generation: {e}")
+            import traceback
+            traceback.print_exc()
+        finally:
+            self.destroyActors()
+        
+        if hasattr(self, 'endTime') and hasattr(self, 'startTime'):
+            print(f'Total Time taken to generate images: {self.endTime - self.startTime}')
+            print(f'Time per image: {(self.endTime - self.startTime) / self.totalImages}')
         
     def spawnVehicles(self, idNum, ID, position):
         '''
@@ -177,7 +191,7 @@ class GenImage:
         
         if self.args.load_old is not None: 
             if other_vehicle is not None:
-                other_vehicle.set_autopilot(False)
+                pass # replaced autopilot call
                 self.spawned_vehicle.append(other_vehicle)
                 self.spawned_people_idnum.append(idNum)
                 self.vehicleDict[idNum] = position
@@ -188,7 +202,7 @@ class GenImage:
                 self.spawnVehicles(idNum, ID, transform)
         else:
             if other_vehicle is not None:
-                other_vehicle.set_autopilot(False)
+                pass # replaced autopilot call
                 self.spawned_vehicle.append(other_vehicle)
                 self.spawned_people_idnum.append(idNum)
                 self.vehicleDict[idNum] = position
@@ -430,16 +444,22 @@ class GenImage:
             ####### IMAGES
             ########################################################################################################################
             ##### AERIAL VIEW
-            image = self.image_queue.get()
-            ########################################################################################################################
-            ####### SEMANTIC SEGMENTATION
-            ########################################################################################################################
-            ##### AERIAL VIEW
-            if self.save_seg:
-                image_segCarla  = self.image_queue_seg.get()
-                image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
-                image_depth = self.image_queue_depth.get()
-                image_instance = self.image_queue_instance.get()
+            try:
+                image = self.image_queue.get(timeout=20.0)
+                ########################################################################################################################
+                ####### SEMANTIC SEGMENTATION
+                ########################################################################################################################
+                ##### AERIAL VIEW
+                if self.save_seg:
+                    image_segCarla  = self.image_queue_seg.get(timeout=20.0)
+                    image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
+                    image_depth = self.image_queue_depth.get(timeout=20.0)
+                    image_instance = self.image_queue_instance.get(timeout=20.0)
+            except queue.Empty:
+                print("Error: Sensor queue timeout. Simulator might be lagging or sensor failed.")
+                continue
+
+            print(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
             ########################################################################################################################
             imgName = str(self.files[self.counter]).split(".")[0]
             IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Images/{imgName}.png")
@@ -502,12 +522,19 @@ class GenImage:
         self.walkerDict = {}
     
     def destroyActors(self):
-        self.camera.destroy()
-        if self.save_seg:
-            self.camera_seg.destroy()
-            self.camera_depth.destroy()
-            self.camera_instance.destroy()
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.actor_list])
+        print("Destroying actors and sensors...")
+        if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
+        if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
+        if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
+        if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
+
+        if hasattr(self, 'client'):
+            if hasattr(self, 'actor_list'):
+                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.actor_list])
+            if hasattr(self, 'spawned_vehicle'):
+                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.spawned_vehicle])
+            if hasattr(self, 'spawned_people'):
+                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.spawned_people])
         self.endTime = time.time()
         
 
@@ -524,14 +551,14 @@ if __name__ == "__main__":
     parser.add_argument('--load_old', type=str, default=None, help="loading old json file for missing vehicle/walker")
     parser.add_argument('--noon_json', type=bool, default=False, help="Fixing missing")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
+    parser.add_argument('--tm_port', type=int, default=8000, help="Traffic Manager port")
 
     args = parser.parse_args()
     args.index = 0
     ###
-    args.load_old = "first_gen"
-    args.noon_json = True
-    meta_dir = "./meta_data/second_regen_new/H_35_P_45/ClearNoon/Town01/metaData"
-    args.metaDataDir = meta_dir.replace("Town01", args.town)
+    if args.metaDataDir is None:
+        meta_dir = "./meta_data/second_regen_new/H_35_P_45/ClearNoon/Town01/metaData"
+        args.metaDataDir = meta_dir.replace("Town01", args.town)
     ###
     print("__"*20)
     print(f"The arguments for generation are as follows: ")

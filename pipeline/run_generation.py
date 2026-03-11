@@ -4,6 +4,7 @@ import yaml
 import subprocess
 import argparse
 import logging
+import time
 from datetime import datetime
 
 # Set up logging
@@ -35,6 +36,10 @@ def run_command(cmd, cwd=None):
         process.wait()
         if process.returncode != 0:
             logger.error(f"Command failed with exit code {process.returncode}")
+        
+        # Give CARLA simulator time to clean up resources between runs
+        logger.info("Waiting 5 seconds for simulator to stabilize...")
+        time.sleep(5)
         return process.returncode
     except Exception as e:
         logger.error(f"Error executing command: {e}")
@@ -45,6 +50,7 @@ def main():
     parser.add_argument("--config", default="config/default_generation.yaml", help="Path to config file")
     parser.add_argument("--root_dir", help="Override ROOT_DIR from config")
     parser.add_argument("--save_seg", action='store_true', default=None, help="Override save_seg from config")
+    parser.add_argument("--python", default="3.13", help="Python version to use for uv run")
     args = parser.parse_args()
 
     with open(args.config, 'r') as f:
@@ -52,12 +58,25 @@ def main():
 
     root_dir = args.root_dir or config.get("ROOT_DIR", "/home/df/data/datasets")
     save_seg = args.save_seg if args.save_seg is not None else config.get("save_seg", False)
+    python_ver = args.python
     baseline_conf = config.get("baseline", {})
     variation_conf = config.get("variations", {})
     exec_conf = config.get("execution", {})
 
     logger.info("Starting SkyScenes Data Generation Pipeline")
     logger.info(f"Root Directory: {root_dir}")
+
+    tm_port_base = 8000
+    tm_port_offset = 0
+
+    def get_next_tm_port():
+        nonlocal tm_port_offset
+        port = tm_port_base + tm_port_offset
+        if port == 8000: # Skip 8000 as it might be busy
+            tm_port_offset += 1
+            port = tm_port_base + tm_port_offset
+        tm_port_offset = (tm_port_offset + 1) % 100
+        return port
 
     # Baseline Generation Loop
     for town in baseline_conf.get("towns", []):
@@ -73,13 +92,14 @@ def main():
                 else:
                     logger.info(f"Generating Baseline: {town}, H={height}, P={pitch}")
                     cmd = [
-                        "uv", "run", "python", "manualSpawning.py",
+                        "uv", "run", "--python", python_ver, "python", "manualSpawning.py",
                         "--town", town,
                         "--weather", weather,
                         "--height", str(height),
                         "--pitch", str(pitch),
                         "--num", str(num),
-                        "--ROOT_DIR", root_dir
+                        "--ROOT_DIR", root_dir,
+                        "--tm_port", str(get_next_tm_port())
                     ]
                     if save_seg:
                         cmd.append("--save_seg")
@@ -101,13 +121,14 @@ def main():
                          continue
 
                     cmd_var = [
-                        "uv", "run", "python", "loadingAttributesWeather.py",
+                        "uv", "run", "--python", python_ver, "python", "loadingAttributesWeather.py",
                         "--town", town,
                         "--weather", v_weather,
                         "--height", str(height),
                         "--pitch", str(pitch),
                         "--metaDataDir", baseline_meta_dir,
-                        "--ROOT_DIR", root_dir
+                        "--ROOT_DIR", root_dir,
+                        "--tm_port", str(get_next_tm_port())
                     ]
                     if save_seg:
                         cmd_var.append("--save_seg")
@@ -125,13 +146,14 @@ def main():
                              continue
 
                         cmd_hp = [
-                            "uv", "run", "python", "loadingAttributesWeather.py",
+                            "uv", "run", "--python", python_ver, "python", "loadingAttributesWeather.py",
                             "--town", town,
                             "--weather", weather, # Reuse baseline weather but change params
                             "--height", str(v_height),
                             "--pitch", str(v_pitch),
                             "--metaDataDir", baseline_meta_dir,
-                            "--ROOT_DIR", root_dir
+                            "--ROOT_DIR", root_dir,
+                            "--tm_port", str(get_next_tm_port())
                         ]
                         if save_seg:
                             cmd_hp.append("--save_seg")

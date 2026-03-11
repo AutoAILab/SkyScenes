@@ -44,6 +44,7 @@ carla_colordict_14 = {
 
 class genImages(object):
     def __init__(self, args):
+        self.args = args
         self.ROOT_DIR = args.ROOT_DIR
         print(f"Saving DIR:     {os.path.join(self.ROOT_DIR, f'H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{args.town}')}")
         print("__"*20)
@@ -94,13 +95,13 @@ class genImages(object):
         ### Creating Directories
         ## Save Data
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}"))
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}/Images"))
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}/CarlaSegment"))
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}/Images"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}/CarlaSegment"), exist_ok=True)
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
         ## Save metaData for everything
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{self.weather_str}/{self.town}/metaData"))
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
         
         ### Loading the world
         self.client = carla.Client('localhost', self.port)
@@ -116,6 +117,13 @@ class genImages(object):
         self.world.set_weather(self.weather)
         self.actor_list = []
 
+        ### Traffic Manager
+        self.tm = self.client.get_trafficmanager(args.tm_port)
+        ## Set up the TM in synchronous mode
+        self.tm.set_synchronous_mode(True)
+        ## Set a seed so behaviour can be repeated if necessary
+        self.tm.set_random_device_seed(0)
+
         ### Vehicle to attach all the sensors to
         self.blueprint_library = self.world.get_blueprint_library()
         bp = self.blueprint_library.filter('crossbike')[0] # crossbike is used because it does not cast a shadow
@@ -129,24 +137,26 @@ class genImages(object):
                                              carla.Rotation(pitch=0, yaw=self.waypoint.transform.rotation.yaw, roll=0))
         self.vehicle.set_transform(vehicle_transform)
         self.actor_list.append(self.vehicle)
-        self.vehicle.set_autopilot(True)
+        self.vehicle.set_autopilot(True, self.tm.get_port())
         self.vehicle.set_enable_gravity(False) # disables gravity
-        
-        ### Traffic Manager
-        self.tm = self.client.get_trafficmanager()
-        ## Set up the TM in synchronous mode
-        self.tm.set_synchronous_mode(True)
-        ## Set a seed so behaviour can be repeated if necessary
-        self.tm.set_random_device_seed(0)
         
         self.startTime = time.time()
         self.spawnVehicles()
         self.humansSidewalk()
         self.world.tick()
         print("__"*20)
-        self.tickClock()
-        print(f'\nTotal Time taken to generate images:  {self.endTime - self.startTime}')
-        print(f'Time taken per image:                 {(self.endTime - self.startTime)/self.totalImages}')
+        try:
+            self.tickClock()
+        except Exception as e:
+            print(f"Exception during generation: {e}")
+            import traceback
+            traceback.print_exc()
+        finally:
+            self.destroyActors()
+            
+        if hasattr(self, 'endTime') and hasattr(self, 'startTime'):
+            print(f'\nTotal Time taken to generate images:  {self.endTime - self.startTime}')
+            print(f'Time taken per image:                 {(self.endTime - self.startTime)/self.totalImages}')
     
     def humanManual(self):
         '''
@@ -173,7 +183,7 @@ class genImages(object):
         
         for point in prev_wavs + all_wavs:
             '''Spawn humans at the given location manually'''
-            if np.random.normal(0,1) > 0.01:
+            if np.random.normal(0,1) > 1.0:
                 
                 bp_vehicle = random.choice(self.blueprint_library.filter('walker.*'))
                 
@@ -250,7 +260,7 @@ class genImages(object):
                             break
                                                                 
                     for point in all_wavs:
-                        if np.random.normal(0,1) > 0.01:   
+                        if np.random.normal(0,1) > 1.0:   
                             bp_vehicle = random.choice(self.blueprint_library.filter('walker.*'))
                             player  = self.world.try_spawn_actor(bp_vehicle, point.transform)
                             if player is not None:
@@ -290,7 +300,7 @@ class genImages(object):
                 if rightLane is not None:
                     lanes.append(rightLane)
                 
-                if np.random.normal(0,1) > 0.01:
+                if np.random.normal(0,1) > 1.0:
                     bp_vehicle = random.choice(self.blueprint_library.filter('walker.*'))
                     
                     player  = self.world.try_spawn_actor(bp_vehicle, point.transform)
@@ -327,7 +337,7 @@ class genImages(object):
                             all_wavs = lane.next_until_lane_end(2)
                             
                             for point in [all_wavs]:
-                                if np.random.normal(0,1) > 0.01:
+                                if np.random.normal(0,1) > 1.0:
                                     bp_vehicle = random.choice(self.blueprint_library.filter('walker.*'))
                                     player  = self.world.try_spawn_actor(bp_vehicle, point.transform)
                                     if player is not None:
@@ -366,7 +376,7 @@ class genImages(object):
         humans_start_time = time.time()
         self.peopleSpawnedSidewalk = 0
         self.peopleSidewalk = []
-        for _ in range(0, 500):
+        for _ in range(0, 200):
             transform = carla.Transform()
             transform.location = self.world.get_random_location_from_navigation()
             if transform.location is not None:
@@ -395,7 +405,7 @@ class genImages(object):
         vehicle_start_time = time.time()
         self.vehicles = []
         tm_port = self.tm.get_port()
-        for _ in range(0, 500):
+        for _ in range(0, 200):
             transform = random.choice(self.m.get_spawn_points())
             bp_vehicle = random.choice(self.blueprint_library.filter('vehicle'))
             other_vehicle = self.world.try_spawn_actor(bp_vehicle, transform)
@@ -507,17 +517,20 @@ class genImages(object):
             ####### IMAGES
             ########################################################################################################################
             ##### AERIAL VIEW
-            image = self.image_queue.get()
-            ########################################################################################################################
-            ####### SEMANTIC SEGMENTATION
-            ########################################################################################################################
-            ##### AERIAL VIEW
-            image_segCarla  = self.image_queue_seg.get()
-            image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
-            image_depth = self.image_queue_depth.get()
-            image_instance = self.image_queue_instance.get()
+            try:
+                ##### AERIAL VIEW
+                image = self.image_queue.get(timeout=20.0)
+                image_segCarla  = self.image_queue_seg.get(timeout=20.0)
+                image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
+                image_depth = self.image_queue_depth.get(timeout=20.0)
+                image_instance = self.image_queue_instance.get(timeout=20.0)
+            except queue.Empty:
+                print("Error: Sensor queue timeout. Simulator might be lagging or sensor failed.")
+                continue
+
             ########################################################################################################################
             if i%10 == 0:
+                print(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
                 ## Save the image, carla Dict segmented map, depth image, ground scene and carla dict segmented map for ground map
                 ########################################################################################################################
                 ####### IMAGES
@@ -589,16 +602,22 @@ class genImages(object):
             self.roadId = self.waypoint.road_id
         pbar.close()
         self.destroypeople()
-        self.destroyActors()
           
     def destroyActors(self):
-        self.camera.destroy()
-        self.camera_seg.destroy()
-        self.camera_depth.destroy()
-        self.camera_instance.destroy()
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.actor_list])
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehicles])
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.peopleSidewalk])
+        print("Destroying actors and sensors...")
+        if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
+        if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
+        if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
+        if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
+
+        if hasattr(self, 'client'):
+            if hasattr(self, 'actor_list'):
+                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.actor_list])
+            if hasattr(self, 'vehicles'):
+                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehicles])
+            if hasattr(self, 'peopleSidewalk'):
+                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.peopleSidewalk])
+        
         self.endTime = time.time()   
 
     def destroypeople(self):
@@ -622,16 +641,9 @@ if __name__ == "__main__":
     parser.add_argument('--pitch', type=int, default=-45, help="pitch")
     parser.add_argument('--num', type=int, default=10, help="number of images to generate")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
+    parser.add_argument('--tm_port', type=int, default=8000, help="Traffic Manager port")
     args = parser.parse_args()
-    ########################################################################################################################
-    ### MANUAL ARGUMENTS
-    ########################################################################################################################
-    args.ROOT_DIR = "/home/df/data/datasets"
-    args.town = "Town01"       # Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD
-    args.weather = "ClearNoon" # ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight
-    args.height = 35
-    args.pitch = -45
-    args.num = 5
+    # Respect command line arguments
 
     print("__"*20)
     print(f"The arguments for generation are as follows: ")
