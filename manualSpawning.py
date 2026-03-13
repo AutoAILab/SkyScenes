@@ -46,7 +46,7 @@ class genImages(object):
     def __init__(self, args):
         self.args = args
         self.ROOT_DIR = args.ROOT_DIR
-        print(f"Saving DIR:     {os.path.join(self.ROOT_DIR, f'H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{args.town}')}")
+        print(f"Saving DIR:     {os.path.join(self.ROOT_DIR, f'H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{args.town}')}")
         print("__"*20)
         ### Internal arguments
         self.IMG_WIDTH = 2160
@@ -63,9 +63,9 @@ class genImages(object):
         ### External arguments
         self.town = args.town
         self.height = args.height
-        self.heightCamera = np.random.normal(int(self.height), self.SIGMA_H)
+        self.heightCamera = np.random.normal(self.height, self.SIGMA_H)
         self.pitch = args.pitch
-        self.pitchCamera = np.random.normal(int(self.pitch), self.SIGMA_P)
+        self.pitchCamera = np.random.normal(self.pitch, self.SIGMA_P)
         self.totalImages = int(args.num)
         self.weather_str = args.weather
         if args.weather == "ClearNoon":
@@ -94,18 +94,18 @@ class genImages(object):
 
         ### Creating Directories
         ## Save Data
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}/Images"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{self.town}/CarlaSegment"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/Images"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/CarlaSegment"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
         ## Save metaData for everything
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(args.height)}_P_{abs(int(args.pitch))}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
         
         ### Loading the world
         self.client = carla.Client('localhost', self.port)
-        self.client.set_timeout(11.0)
+        self.client.set_timeout(60.0)
         
         ### Town information
         self.world = self.client.load_world(args.town)
@@ -536,18 +536,18 @@ class genImages(object):
                 ####### IMAGES
                 ########################################################################################################################
                 ##### AERIAL VIEW
-                IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Images/{image.frame:06}.png")
+                IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Images/{image.frame:06}.png")
                 image.save_to_disk(IMG_PATH)
                 ########################################################################################################################
                 ####### SEMANTIC SEGMENTATION
                 ########################################################################################################################
                 ##### AERIAL VIEW
                 if self.args.save_seg:
-                    image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/CarlaSegment/{image.frame:06}_semsegCarla.png"))
-                    image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.LogarithmicDepth)
-                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.Depth)
-                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"))
-                    image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance/{image.frame:06}_instance.png"))
+                    image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/CarlaSegment/{image.frame:06}_semsegCarla.png"))
+                    image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.LogarithmicDepth)
+                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.Depth)
+                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"))
+                    image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance/{image.frame:06}_instance.png"))
                 ########################################################################################################################
                 data = {}
                 data["image_path"] = IMG_PATH
@@ -578,7 +578,7 @@ class genImages(object):
                 data["vehicles"] = [str(item) + "\n" + str(item.get_transform()) + "\n" for item in self.vehicles]
                 data["walkers"] = data["walkers_spawned_sidewalk"] + data["walkers_spawned"]
                 
-                JSON_PATH = os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/metaData/{image.frame:06}.json")
+                JSON_PATH = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/metaData/{image.frame:06}.json")
                 with open(JSON_PATH, "w") as json_file:
                     json.dump(data, json_file)
 
@@ -587,12 +587,12 @@ class genImages(object):
                 self.destroypeople() # manual humans destroyed, that are randomly added to scenes
 
             self.waypoint = random.choice(self.waypoint.next(1.5))
-            self.heightCamera = np.random.normal(int(self.height), self.SIGMA_H)
+            self.heightCamera = np.random.normal(self.height, self.SIGMA_H)
             vehicle_transform = carla.Transform(carla.Location(x=self.waypoint.transform.location.x, y=self.waypoint.transform.location.y, z=self.heightCamera),
                                              carla.Rotation(pitch=0, yaw=self.waypoint.transform.rotation.yaw, roll=0))
             self.vehicle.set_transform(vehicle_transform)
             
-            self.pitchCamera = np.random.normal(int(self.pitch), self.SIGMA_P)
+            self.pitchCamera = np.random.normal(self.pitch, self.SIGMA_P)
             cam_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), # Vehicle is in air, so just x is mentioned 
                                            carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
             self.camera.set_transform(cam_transform)
@@ -635,9 +635,9 @@ if __name__ == "__main__":
     ########################################################################################################################
     parser = argparse.ArgumentParser()
     parser.add_argument('--weather', type=str, default="ClearNoon", help="ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight")
-    parser.add_argument('--town', type=str, default="Town01", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
-    parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets", help="Dir to save")
-    parser.add_argument('--height', type=int, default=35, help="height")
+    parser.add_argument('--town', type=str, default="Town10HD", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
+    parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets/SkyScenes/proof_of_concept", help="Dir to save")
+    parser.add_argument('--height', type=float, default=35, help="height")
     parser.add_argument('--pitch', type=int, default=-45, help="pitch")
     parser.add_argument('--num', type=int, default=10, help="number of images to generate")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")

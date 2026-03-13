@@ -43,7 +43,7 @@ class GenImage:
     def __init__(self, args, metaDataDir, index):
         self.args = args
         self.ROOT_DIR = args.ROOT_DIR
-        print(f"Saving DIR: {os.path.join(self.ROOT_DIR, f'H_{int(args.height)}_P_{abs(int(args.pitch))}/{args.weather}/{args.town}')}")
+        print(f"Saving DIR: {os.path.join(self.ROOT_DIR, f'H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{args.town}')}")
         print("__"*20)
         ### Internal arguments
         self.save_bbox = False
@@ -65,9 +65,9 @@ class GenImage:
         ### External arguments
         self.town = args.town
         self.height = args.height
-        self.heightCamera = int(self.height)
+        self.heightCamera = self.height
         self.pitch = args.pitch
-        self.pitchCamera = int(self.pitch)
+        self.pitchCamera = self.pitch
         self.metaDataDir = metaDataDir
         self.index = int(args.index) 
         self.weather_str = args.weather
@@ -97,20 +97,20 @@ class GenImage:
 
         ### Creating Directories
         ## Save Data
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Images"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}"), exist_ok=True)
+        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Images"), exist_ok=True)
         if self.save_seg:
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/CarlaSegment"), exist_ok=True)
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
+            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/CarlaSegment"), exist_ok=True)
+            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
+            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
         ## Save metaData for everything
         if self.save_metadata:
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
+            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
 
         ### Loading the world
         self.client = carla.Client('localhost', self.port)
-        self.client.set_timeout(11.0)
+        self.client.set_timeout(60.0)
         self.world = self.client.load_world(self.town)
         self.settings = self.world.get_settings()
         self.settings.fixed_delta_seconds = 0.05
@@ -261,13 +261,17 @@ class GenImage:
             self.camera_depth = self.world.spawn_actor(camera_depth, camera_transform, attach_to=self.vehicle)
             self.image_queue_depth = queue.Queue()
             self.camera_depth.listen(self.image_queue_depth.put)
+            self.actor_list.append(self.camera_depth)
 
             # Instance Segmentation Camera
-            self.camera_instance_bp = self.blueprint_library.find('sensor.camera.instance_segmentation')
-            self.camera_instance_bp.set_attribute('fov', f'{str(self.FOV)}')
-            self.camera_instance_bp.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
-            self.camera_instance_bp.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
+            camera_instance_bp = self.blueprint_library.find('sensor.camera.instance_segmentation')
+            camera_instance_bp.set_attribute('fov', f'{str(self.FOV)}')
+            camera_instance_bp.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
+            camera_instance_bp.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
+            self.camera_instance = self.world.spawn_actor(camera_instance_bp, camera_transform, attach_to=self.vehicle)
             self.image_queue_instance = queue.Queue()
+            self.camera_instance.listen(self.image_queue_instance.put)
+            self.actor_list.append(self.camera_instance)
 
     def setSensors(self):
         self.camera = self.world.spawn_actor(self.camera_bp, self.camera_transform, attach_to=self.vehicle)
@@ -422,8 +426,8 @@ class GenImage:
                 self.pitchCamera = noon_data["actual_pitch"]
             else:
                 if self.h_and_p:
-                    self.heightCamera = np.random.normal(int(self.height), self.SIGMA_H)
-                    self.pitchCamera = np.random.normal(int(self.pitch), self.SIGMA_P)
+                    self.heightCamera = np.random.normal(self.height, self.SIGMA_H)
+                    self.pitchCamera = np.random.normal(self.pitch, self.SIGMA_P)
                 else:
                     self.heightCamera = self.data["actual_height"]
                     self.pitchCamera = self.data["actual_pitch"]
@@ -462,14 +466,14 @@ class GenImage:
             print(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
             ########################################################################################################################
             imgName = str(self.files[self.counter]).split(".")[0]
-            IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Images/{imgName}.png")
+            IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Images/{imgName}.png")
             image.save_to_disk(IMG_PATH)
             if self.save_seg:
-                image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/CarlaSegment/{imgName}_semsegCarla.png"))
-                image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.LogarithmicDepth)
-                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.Depth)
-                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"))
-                image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/Instance/{imgName}_instance.png"))
+                image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/CarlaSegment/{imgName}_semsegCarla.png"))
+                image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.LogarithmicDepth)
+                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.Depth)
+                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"))
+                image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance/{imgName}_instance.png"))
             ########################################################################################################################
             if self.save_metadata:
                 data = {}
@@ -500,7 +504,7 @@ class GenImage:
                 data["walkers"] = [str(item) + "\n" + str(item.get_transform()) + "\n" for item in self.spawned_people]
                 data["veh_dict"] = [str(item) + "\n" + str(self.vehicleDict[item]) + "\n" for item in self.vehicleDict.keys()]
                 data["walker_dict"] = [str(item) + "\n" + str(self.walkerDict[item]) + "\n" for item in self.walkerDict.keys()]
-                JSON_PATH = os.path.join(self.ROOT_DIR, f"H_{int(self.height)}_P_{abs(int(self.pitch))}/{self.weather_str}/{self.town}/metaData/{imgName}.json")
+                JSON_PATH = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/metaData/{imgName}.json")
                 with open(JSON_PATH, "w") as json_file:
                     json.dump(data, json_file)
             
@@ -541,12 +545,12 @@ class GenImage:
 if __name__ == "__main__":
     ###########################################################################################################################################################################################
     parser = argparse.ArgumentParser()
-    parser.add_argument('--town', type=str, default="Town01", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
+    parser.add_argument('--town', type=str, default="Town10HD", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
     parser.add_argument('--weather', type=str, default="ClearNoon", help="ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight")
-    parser.add_argument('--height', type=int, default=35, help="height")
+    parser.add_argument('--height', type=float, default=35, help="height")
     parser.add_argument('--pitch', type=int, default=-45, help="pitch")
     parser.add_argument('--metaDataDir', type=str, help="metaDataDir")
-    parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets", help="ROOT_DIR")
+    parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets/SkyScenes/proof_of_concept", help="ROOT_DIR")
     parser.add_argument('--index', type=int, default=0, help="index of the last image generated, incase generation stops midway")
     parser.add_argument('--load_old', type=str, default=None, help="loading old json file for missing vehicle/walker")
     parser.add_argument('--noon_json', type=bool, default=False, help="Fixing missing")

@@ -1,21 +1,21 @@
 # Default generation configuration for SkyScenes pipeline
-ROOT_DIR: "/home/df/data/datasets/SkyScenes"
-save_seg: false
+ROOT_DIR: "/home/df/data/datasets/SkyScenes/proof_of_concept"
+save_seg: true  # Enabling GT as per ticket checklist
 
 # Baseline generation settings (manualSpawning.py)
 baseline:
-  towns: ["Town01"]
+  towns: ["Town10HD"]
   weather: "ClearNoon"
-  heights: [35]
-  pitches: [-45]
-  num_images: 5
+  heights: [2.5]  # Starting with ground view as baseline
+  pitches: [0]
+  num_images: 10
 
 # Variation generation settings (loadingAttributesWeather.py)
 # These will be generated for every baseline sequence produced above
 variations:
-  weather: ["ClearSunset", "ClearNight", "CloudyNoon", "MidRainyNoon"]
-  heights: [15, 60]
-  pitches: [0, -60, -90]
+  weather: []  # Already set to ClearNoon exclusively
+  heights: [15, 35, 60]
+  pitches: [-45, -60, -90]
 
 # Execution settings
 execution:

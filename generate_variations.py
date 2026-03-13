@@ -1,7 +1,7 @@
 import os
 import time
 
-ROOT_DIR = "/home/df/data/datasets"
+ROOT_DIR = "/home/df/data/datasets/SkyScenes/proof_of_concept"
 
 """
 All the Seg/Instance/Depth Labels will be generated only in the ClearNoon variation. 
@@ -17,8 +17,8 @@ For testing, keep ClearNoon variation in the list to generate the labels.
 ## Supplementary combinations:
 h_list = [15, 35,]
 p_list = [0, -45,]
-weather_list = ["ClearNoon", "ClearNight",]
-town_list = ["Town01", "Town02",]
+weather_list = ["ClearNoon",]
+town_list = ["Town10HD",]
 
 for h in h_list:
     for p in p_list:

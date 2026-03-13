@@ -50,7 +50,7 @@ def main():
     parser.add_argument("--config", default="config/default_generation.yaml", help="Path to config file")
     parser.add_argument("--root_dir", help="Override ROOT_DIR from config")
     parser.add_argument("--save_seg", action='store_true', default=None, help="Override save_seg from config")
-    parser.add_argument("--python", default="3.13", help="Python version to use for uv run")
+    parser.add_argument("--python", default="3.8", help="Python version to use for uv run")
     args = parser.parse_args()
 
     with open(args.config, 'r') as f:
@@ -108,6 +108,11 @@ def main():
                     if ret != 0 and exec_conf.get("stop_on_error", False):
                         logger.error("Stop on error enabled. Aborting.")
                         return
+                
+                # Safety check: skip variations if baseline failed to produce metadata
+                if not os.path.exists(baseline_meta_dir) or len(os.listdir(baseline_meta_dir)) == 0:
+                    logger.error(f"Baseline metadata not found at {baseline_meta_dir}. Skipping variations.")
+                    continue
 
                 # Variation Generation Loop
                 for v_weather in variation_conf.get("weather", []):
