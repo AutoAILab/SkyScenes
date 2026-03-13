@@ -32,7 +32,12 @@ SkyScenes has been accepted at [ECCV 2024](https://www.ecva.net/papers/eccv_2024
     ```bash
     sudo systemctl start docker
     sudo docker pull carlasim/carla:0.9.14
-    sudo docker run --privileged --gpus all --net=host -v /tmp/.X11-unix:/tmp/.X11-unix:rw carlasim/carla:0.9.14 /bin/bash ./CarlaUE4.sh -RenderOffScreen
+    
+    # Start CARLA in headless mode (default)
+    ./scripts/start_carla.sh
+    
+    # Or to start with a visible window (non-headless):
+    # ./scripts/start_carla.sh --gui
     ```
 
 - Step 2: Open a new terminal 

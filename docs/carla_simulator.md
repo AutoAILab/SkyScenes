@@ -54,7 +54,7 @@ The most comprehensive way to examine, modify, and explore the towns is by openi
 
 ### 2. Spectator Camera (Pre-compiled / Docker version)
 If you are running the pre-compiled version of CARLA or the Docker image, you do not have access to the Unreal Editor interface, but you can still use the spectator view while the simulator is running.
-- **How to view:** When you launch the CARLA server (e.g., `./CarlaUE4.sh` without the `-RenderOffScreen` flag), a window will open displaying the 3D environment.
+- **How to view:** When you launch the CARLA server using the provided start script with the GUI flag (`./scripts/start_carla.sh --gui`), a window will open displaying the 3D environment. By default (`./scripts/start_carla.sh`), it runs in headless mode.
 - **Navigation:** You can use `W`, `A`, `S`, `D` to move the spectator camera around the town, `Q` and `E` to move up and down, and the mouse to look around.
 - **Loading a specific town:** If the server is open but on the wrong town, you can change the map via the python API using `scripts/config.py -m <TownName>` (provided with standard CARLA PythonAPI), or by temporarily modifying your pipeline script to connect and call `client.load_world('<TownName>')`.
 
