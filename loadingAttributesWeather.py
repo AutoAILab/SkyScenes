@@ -48,6 +48,7 @@ class GenImage:
         ### Internal arguments
         self.save_bbox = False
         self.save_seg = args.save_seg # False default, True for ClearNoon
+        self.extract_gbuffer = args.extract_gbuffer
         self.save_metadata = True
         self.h_and_p = False
         self.noon_json = args.noon_json
@@ -104,6 +105,8 @@ class GenImage:
             os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/CarlaSegment"), exist_ok=True)
             os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
             os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
+        if self.extract_gbuffer:
+            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/GBuffer"), exist_ok=True)
         ## Save metaData for everything
         if self.save_metadata:
             os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
@@ -136,9 +139,12 @@ class GenImage:
         self.blueprint_library = self.world.get_blueprint_library()
         bp = self.blueprint_library.filter('crossbike')[0] # crossbike because no shadow when it is floating in the air
         transform = random.choice(self.world.get_map().get_spawn_points()) 
+        self.m = self.world.get_map()
+        self.waypoint = self.m.get_waypoint(transform.location)
         self.vehicle = self.world.spawn_actor(bp, transform) 
-        vehicle_transform = carla.Transform(carla.Location(x=transform.location.x, y=transform.location.y, z=self.heightCamera), # Spawning in the air
-                                             carla.Rotation(pitch=0, yaw=transform.rotation.yaw, roll=0)) # Yaw is the only thing that matters for orientation
+        # Spawning relative to road
+        vehicle_transform = carla.Transform(carla.Location(x=transform.location.x, y=transform.location.y, z=self.waypoint.transform.location.z + self.heightCamera),
+                                             carla.Rotation(pitch=0, yaw=transform.rotation.yaw, roll=0)) 
         self.vehicle.set_transform(vehicle_transform)
         self.actor_list.append(self.vehicle)
         self.vehicle.set_autopilot(True, self.tm.get_port())
@@ -232,6 +238,11 @@ class GenImage:
         self.camera = self.world.spawn_actor(camera_bp, camera_transform, attach_to=self.vehicle)
         self.image_queue = queue.Queue()
         self.camera.listen(self.image_queue.put)
+        if self.extract_gbuffer:
+            self.gbuffer_queues = {}
+            for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
+                self.gbuffer_queues[gb] = queue.Queue()
+                self.camera.listen_to_gbuffer(getattr(carla.GBufferTextureID, gb), self.gbuffer_queues[gb].put)
         self.actor_list.append(self.camera)
         ########################################################################################################################
         ####### SEMANTIC SEGMENTATION
@@ -369,9 +380,7 @@ class GenImage:
                 self.h_and_p = True
         vehiclePos = self.data["ego_vehicle"]
         self.vehiclePos, _, _ = self.generateTransform(vehiclePos)
-        new_trans = carla.Transform(carla.Location(x=self.vehiclePos.location.x, y=self.vehiclePos.location.y, z=self.heightCamera), 
-                                    carla.Rotation(pitch=0, yaw=self.vehiclePos.rotation.yaw, roll=0))
-        self.vehiclePos = new_trans
+        # Note: heightCamera and pitchCamera will be set per-frame in tickClock
         self.vehiclesNum = self.data["total_num_vehicles"]
         self.walkersNum = self.data["total_num_walkers"]
 
@@ -426,13 +435,21 @@ class GenImage:
                 self.pitchCamera = noon_data["actual_pitch"]
             else:
                 if self.h_and_p:
-                    self.heightCamera = np.random.normal(self.height, self.SIGMA_H)
-                    self.pitchCamera = np.random.normal(self.pitch, self.SIGMA_P)
+                    if self.height <= 5.0:
+                        actual_sigma_h = 0.1
+                        actual_sigma_p = 0.5
+                    else:
+                        actual_sigma_h = self.SIGMA_H
+                        actual_sigma_p = self.SIGMA_P
+                    self.heightCamera = np.random.normal(self.height, actual_sigma_h)
+                    self.pitchCamera = np.random.normal(self.pitch, actual_sigma_p)
                 else:
                     self.heightCamera = self.data["actual_height"]
                     self.pitchCamera = self.data["actual_pitch"]
 
-            veh_transform = carla.Transform(carla.Location(x=self.vehiclePos.location.x, y=self.vehiclePos.location.y, z=self.heightCamera), 
+            # Ensure we are relative to road
+            waypoint = self.m.get_waypoint(self.vehiclePos.location)
+            veh_transform = carla.Transform(carla.Location(x=self.vehiclePos.location.x, y=self.vehiclePos.location.y, z=waypoint.transform.location.z + self.heightCamera), 
                                             carla.Rotation(pitch=0, yaw=self.vehiclePos.rotation.yaw, roll=0))
             self.vehicle.set_transform(veh_transform)
             cam_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), 
@@ -456,6 +473,13 @@ class GenImage:
             ##### AERIAL VIEW
             try:
                 image = self.image_queue.get(timeout=20.0)
+                if self.extract_gbuffer:
+                    self.current_gbuffers = {}
+                    for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
+                        gb_img = self.gbuffer_queues[gb].get(timeout=20.0)
+                        gb_array = np.frombuffer(gb_img.raw_data, dtype=np.dtype("uint8"))
+                        gb_array = np.reshape(gb_array, (gb_img.height, gb_img.width, 4))[:, :, :3][:, :, ::-1]
+                        self.current_gbuffers[gb] = gb_array
                 ########################################################################################################################
                 ####### SEMANTIC SEGMENTATION
                 ########################################################################################################################
@@ -480,6 +504,9 @@ class GenImage:
                 # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.Depth)
                 # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"))
                 image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance/{imgName}_instance.png"))
+            if self.extract_gbuffer:
+                npz_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/GBuffer/{imgName}_gbuffer.npz")
+                np.savez_compressed(npz_path, **self.current_gbuffers)
             ########################################################################################################################
             if self.save_metadata:
                 data = {}
@@ -573,6 +600,7 @@ if __name__ == "__main__":
     parser.add_argument('--load_old', type=str, default=None, help="loading old json file for missing vehicle/walker")
     parser.add_argument('--noon_json', type=bool, default=False, help="Fixing missing")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
+    parser.add_argument('--extract_gbuffer', action='store_true', default=False, help="Extract G-Buffer layers and save as NPZ")
     parser.add_argument('--tm_port', type=int, default=8000, help="Traffic Manager port")
 
     args = parser.parse_args()

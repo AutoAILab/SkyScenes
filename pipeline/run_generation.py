@@ -4,6 +4,7 @@ import yaml
 import subprocess
 import argparse
 import logging
+import shutil
 import time
 from datetime import datetime
 
@@ -50,6 +51,8 @@ def main():
     parser.add_argument("--config", default="config/default_generation.yaml", help="Path to config file")
     parser.add_argument("--root_dir", help="Override ROOT_DIR from config")
     parser.add_argument("--save_seg", action='store_true', default=None, help="Override save_seg from config")
+    parser.add_argument("--extract_gbuffer", action='store_true', default=None, help="Override extract_gbuffer from config")
+    parser.add_argument("--force", action='store_true', help="Force regeneration by cleaning up existing data")
     parser.add_argument("--python", default="3.8", help="Python version to use for uv run")
     args = parser.parse_args()
 
@@ -58,6 +61,7 @@ def main():
 
     root_dir = args.root_dir or config.get("ROOT_DIR", "/home/df/data/datasets")
     save_seg = args.save_seg if args.save_seg is not None else config.get("save_seg", False)
+    extract_gbuffer = args.extract_gbuffer if args.extract_gbuffer is not None else config.get("extract_gbuffer", False)
     python_ver = args.python
     baseline_conf = config.get("baseline", {})
     variation_conf = config.get("variations", {})
@@ -86,7 +90,13 @@ def main():
                 num = baseline_conf.get("num_images", 10)
 
                 # Check if baseline exists
-                baseline_meta_dir = os.path.join(root_dir, f"H_{height}_P_{abs(pitch)}", weather, town, "metaData")
+                baseline_dir = os.path.join(root_dir, f"H_{height}_P_{abs(pitch)}", weather, town)
+                baseline_meta_dir = os.path.join(baseline_dir, "metaData")
+                
+                if args.force and os.path.exists(baseline_dir):
+                    logger.info(f"Force enabled. Cleaning up baseline directory: {baseline_dir}")
+                    shutil.rmtree(baseline_dir)
+
                 if os.path.exists(baseline_meta_dir) and len(os.listdir(baseline_meta_dir)) >= num:
                     logger.info(f"Baseline for {town} H={height} P={pitch} already exists. Skipping.")
                 else:
@@ -103,6 +113,8 @@ def main():
                     ]
                     if save_seg:
                         cmd.append("--save_seg")
+                    if extract_gbuffer:
+                        cmd.append("--extract_gbuffer")
                     # Note: Using sudo if required by the system environment, but assuming user-level uv setup
                     ret = run_command(cmd)
                     if ret != 0 and exec_conf.get("stop_on_error", False):
@@ -119,7 +131,13 @@ def main():
                     # Height & Pitch variations can be handled similarly if needed
                     logger.info(f"Generating Variation: {v_weather} for baseline {town} H={height} P={pitch}")
                     
-                    var_meta_dir = os.path.join(root_dir, f"H_{height}_P_{abs(pitch)}", v_weather, town, "metaData")
+                    var_dir = os.path.join(root_dir, f"H_{height}_P_{abs(pitch)}", v_weather, town)
+                    var_meta_dir = os.path.join(var_dir, "metaData")
+                    
+                    if args.force and os.path.exists(var_dir):
+                        logger.info(f"Force enabled. Cleaning up variation directory: {var_dir}")
+                        shutil.rmtree(var_dir)
+
                     # loadingAttributesWeather.py uses the baseline metaDataDir as input
                     if os.path.exists(var_meta_dir) and len(os.listdir(var_meta_dir)) >= num:
                          logger.info(f"Variation {v_weather} already exists. Skipping.")
@@ -137,6 +155,8 @@ def main():
                     ]
                     if save_seg:
                         cmd_var.append("--save_seg")
+                    if extract_gbuffer:
+                        cmd_var.append("--extract_gbuffer")
                     run_command(cmd_var)
 
                 # Cross-variations for height/pitch
@@ -145,7 +165,13 @@ def main():
                         if v_height == height and v_pitch == pitch: continue
                         
                         logger.info(f"Generating H/P Variation: H={v_height} P={v_pitch} for baseline {town}")
-                        var_meta_hp_dir = os.path.join(root_dir, f"H_{v_height}_P_{abs(v_pitch)}", weather, town, "metaData")
+                        var_hp_dir = os.path.join(root_dir, f"H_{v_height}_P_{abs(v_pitch)}", weather, town)
+                        var_meta_hp_dir = os.path.join(var_hp_dir, "metaData")
+
+                        if args.force and os.path.exists(var_hp_dir):
+                            logger.info(f"Force enabled. Cleaning up H/P Variation directory: {var_hp_dir}")
+                            shutil.rmtree(var_hp_dir)
+
                         if os.path.exists(var_meta_hp_dir) and len(os.listdir(var_meta_hp_dir)) >= num:
                              logger.info(f"H/P Variation H={v_height} P={v_pitch} already exists. Skipping.")
                              continue
@@ -162,6 +188,8 @@ def main():
                         ]
                         if save_seg:
                             cmd_hp.append("--save_seg")
+                        if extract_gbuffer:
+                            cmd_hp.append("--extract_gbuffer")
                         run_command(cmd_hp)
 
     logger.info("Pipeline Execution Complete")

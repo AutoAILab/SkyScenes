@@ -1,6 +1,7 @@
 # Default generation configuration for SkyScenes pipeline
 ROOT_DIR: "/home/df/data/datasets/SkyScenes/proof_of_concept"
 save_seg: true  # Enabling GT as per ticket checklist
+extract_gbuffer: true  # Extract G-Buffers for CARLA2Real
 
 # Baseline generation settings (manualSpawning.py)
 baseline:

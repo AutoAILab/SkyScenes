@@ -1260,3 +1260,1852 @@
 2026-03-13 16:37:21,004 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
 2026-03-13 16:37:21,004 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
 2026-03-13 16:37:21,004 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg
+2026-03-13 17:38:01,421 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-13 17:38:01,421 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-13 17:38:01,422 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
+2026-03-13 17:38:01,422 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-13 17:38:01,422 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg
+2026-03-13 17:38:16,805 - INFO -   [OP]: ________________________________________
+2026-03-13 17:38:16,806 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:38:16,806 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:38:16,806 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:38:16,806 - INFO -   [OP]: Height:        15.0
+2026-03-13 17:38:16,806 - INFO -   [OP]: Pitch:         -45
+2026-03-13 17:38:16,806 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:38:16,806 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_45/ClearNoon/Town10HD
+2026-03-13 17:38:16,806 - INFO -   [OP]: ________________________________________
+2026-03-13 17:38:16,806 - INFO -   [OP]: 
+2026-03-13 17:38:25,557 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:38:34,014 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:18,  8.75s/it]
+2026-03-13 17:38:42,571 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:08,  8.58s/it]
+2026-03-13 17:38:51,023 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.57s/it]
+2026-03-13 17:38:59,597 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:51,  8.52s/it]
+2026-03-13 17:39:08,103 - INFO -   [OP]: 50%|█████     | 5/10 [00:42<00:42,  8.54s/it]
+2026-03-13 17:39:16,626 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.53s/it]
+2026-03-13 17:39:25,170 - INFO -   [OP]: 70%|███████   | 7/10 [00:59<00:25,  8.53s/it]
+2026-03-13 17:39:33,569 - INFO -   [OP]: 80%|████████  | 8/10 [01:08<00:17,  8.53s/it]
+2026-03-13 17:39:41,962 - INFO -   [OP]: 90%|█████████ | 9/10 [01:16<00:08,  8.49s/it]
+2026-03-13 17:39:41,962 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.46s/it]
+2026-03-13 17:39:41,963 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.52s/it]
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 1/10 (Frame 1688)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 2/10 (Frame 1689)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 3/10 (Frame 1690)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 4/10 (Frame 1691)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 5/10 (Frame 1692)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 6/10 (Frame 1693)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 7/10 (Frame 1694)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 8/10 (Frame 1695)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 9/10 (Frame 1696)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Saving sample 10/10 (Frame 1697)
+2026-03-13 17:39:41,963 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:39:41,963 - INFO -   [OP]: Total Time taken to generate images: 85.17031645774841
+2026-03-13 17:39:41,963 - INFO -   [OP]: Time per image: 8.517031645774841
+2026-03-13 17:39:41,976 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:39:42,070 - ERROR - Command failed with exit code 134
+2026-03-13 17:39:42,070 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:39:47,075 - INFO - Generating H/P Variation: H=15 P=-60 for baseline Town10HD
+2026-03-13 17:39:47,076 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8002 --save_seg
+2026-03-13 17:39:57,122 - INFO -   [OP]: ________________________________________
+2026-03-13 17:39:57,122 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:39:57,122 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:39:57,123 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:39:57,123 - INFO -   [OP]: Height:        15.0
+2026-03-13 17:39:57,123 - INFO -   [OP]: Pitch:         -60
+2026-03-13 17:39:57,123 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:39:57,123 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_60/ClearNoon/Town10HD
+2026-03-13 17:39:57,123 - INFO -   [OP]: ________________________________________
+2026-03-13 17:39:57,123 - INFO -   [OP]: 
+2026-03-13 17:40:05,478 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:40:13,771 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:15,  8.36s/it]
+2026-03-13 17:40:22,117 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.32s/it]
+2026-03-13 17:40:30,539 - INFO -   [OP]: 30%|███       | 3/10 [00:24<00:58,  8.33s/it]
+2026-03-13 17:40:38,950 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.37s/it]
+2026-03-13 17:40:47,489 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.38s/it]
+2026-03-13 17:40:55,987 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.44s/it]
+2026-03-13 17:41:04,376 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.46s/it]
+2026-03-13 17:41:12,795 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.44s/it]
+2026-03-13 17:41:21,170 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.43s/it]
+2026-03-13 17:41:21,170 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.41s/it]
+2026-03-13 17:41:21,171 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.40s/it]
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 1/10 (Frame 1705)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 2/10 (Frame 1706)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 3/10 (Frame 1707)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 4/10 (Frame 1708)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 5/10 (Frame 1709)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 6/10 (Frame 1710)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 7/10 (Frame 1711)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 8/10 (Frame 1712)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 9/10 (Frame 1713)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Saving sample 10/10 (Frame 1714)
+2026-03-13 17:41:21,171 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:41:21,171 - INFO -   [OP]: Total Time taken to generate images: 84.06288456916809
+2026-03-13 17:41:21,171 - INFO -   [OP]: Time per image: 8.406288456916808
+2026-03-13 17:41:21,183 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:41:21,282 - ERROR - Command failed with exit code 134
+2026-03-13 17:41:21,283 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:41:26,288 - INFO - Generating H/P Variation: H=15 P=-90 for baseline Town10HD
+2026-03-13 17:41:26,288 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8003 --save_seg
+2026-03-13 17:41:36,256 - INFO -   [OP]: ________________________________________
+2026-03-13 17:41:36,256 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:41:36,256 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:41:36,256 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:41:36,256 - INFO -   [OP]: Height:        15.0
+2026-03-13 17:41:36,256 - INFO -   [OP]: Pitch:         -90
+2026-03-13 17:41:36,256 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:41:36,256 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_90/ClearNoon/Town10HD
+2026-03-13 17:41:36,256 - INFO -   [OP]: ________________________________________
+2026-03-13 17:41:36,256 - INFO -   [OP]: 
+2026-03-13 17:41:44,588 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:41:52,909 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:14,  8.33s/it]
+2026-03-13 17:42:01,286 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.33s/it]
+2026-03-13 17:42:09,712 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.35s/it]
+2026-03-13 17:42:18,157 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.38s/it]
+2026-03-13 17:42:26,615 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:42,  8.40s/it]
+2026-03-13 17:42:35,007 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.42s/it]
+2026-03-13 17:42:43,482 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.41s/it]
+2026-03-13 17:42:51,957 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.43s/it]
+2026-03-13 17:43:00,330 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.45s/it]
+2026-03-13 17:43:00,331 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.42s/it]
+2026-03-13 17:43:00,331 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.41s/it]
+2026-03-13 17:43:00,331 - INFO -   [OP]: Saving sample 1/10 (Frame 1722)
+2026-03-13 17:43:00,331 - INFO -   [OP]: Saving sample 2/10 (Frame 1723)
+2026-03-13 17:43:00,331 - INFO -   [OP]: Saving sample 3/10 (Frame 1724)
+2026-03-13 17:43:00,331 - INFO -   [OP]: Saving sample 4/10 (Frame 1725)
+2026-03-13 17:43:00,331 - INFO -   [OP]: Saving sample 5/10 (Frame 1726)
+2026-03-13 17:43:00,331 - INFO -   [OP]: Saving sample 6/10 (Frame 1727)
+2026-03-13 17:43:00,332 - INFO -   [OP]: Saving sample 7/10 (Frame 1728)
+2026-03-13 17:43:00,332 - INFO -   [OP]: Saving sample 8/10 (Frame 1729)
+2026-03-13 17:43:00,332 - INFO -   [OP]: Saving sample 9/10 (Frame 1730)
+2026-03-13 17:43:00,332 - INFO -   [OP]: Saving sample 10/10 (Frame 1731)
+2026-03-13 17:43:00,332 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:43:00,332 - INFO -   [OP]: Total Time taken to generate images: 84.08733224868774
+2026-03-13 17:43:00,332 - INFO -   [OP]: Time per image: 8.408733224868774
+2026-03-13 17:43:00,343 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:43:00,427 - ERROR - Command failed with exit code 134
+2026-03-13 17:43:00,427 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:43:05,432 - INFO - Generating H/P Variation: H=35 P=-45 for baseline Town10HD
+2026-03-13 17:43:05,432 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8004 --save_seg
+2026-03-13 17:43:15,392 - INFO -   [OP]: ________________________________________
+2026-03-13 17:43:15,392 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:43:15,392 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:43:15,392 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:43:15,392 - INFO -   [OP]: Height:        35.0
+2026-03-13 17:43:15,392 - INFO -   [OP]: Pitch:         -45
+2026-03-13 17:43:15,392 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:43:15,393 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_45/ClearNoon/Town10HD
+2026-03-13 17:43:15,393 - INFO -   [OP]: ________________________________________
+2026-03-13 17:43:15,393 - INFO -   [OP]: 
+2026-03-13 17:43:23,687 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:43:31,955 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:14,  8.30s/it]
+2026-03-13 17:43:40,272 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.28s/it]
+2026-03-13 17:43:48,664 - INFO -   [OP]: 30%|███       | 3/10 [00:24<00:58,  8.30s/it]
+2026-03-13 17:43:57,016 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.33s/it]
+2026-03-13 17:44:05,367 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.34s/it]
+2026-03-13 17:44:13,772 - INFO -   [OP]: 60%|██████    | 6/10 [00:49<00:33,  8.34s/it]
+2026-03-13 17:44:22,304 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.36s/it]
+2026-03-13 17:44:30,645 - INFO -   [OP]: 80%|████████  | 8/10 [01:06<00:16,  8.42s/it]
+2026-03-13 17:44:39,051 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.39s/it]
+2026-03-13 17:44:39,052 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.40s/it]
+2026-03-13 17:44:39,052 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.37s/it]
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 1/10 (Frame 1739)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 2/10 (Frame 1740)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 3/10 (Frame 1741)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 4/10 (Frame 1742)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 5/10 (Frame 1743)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 6/10 (Frame 1744)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 7/10 (Frame 1745)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 8/10 (Frame 1746)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 9/10 (Frame 1747)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Saving sample 10/10 (Frame 1748)
+2026-03-13 17:44:39,052 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:44:39,053 - INFO -   [OP]: Total Time taken to generate images: 83.67219114303589
+2026-03-13 17:44:39,053 - INFO -   [OP]: Time per image: 8.36721911430359
+2026-03-13 17:44:39,063 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:44:39,155 - ERROR - Command failed with exit code 134
+2026-03-13 17:44:39,155 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:44:44,156 - INFO - Generating H/P Variation: H=35 P=-60 for baseline Town10HD
+2026-03-13 17:44:44,156 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8005 --save_seg
+2026-03-13 17:44:54,038 - INFO -   [OP]: ________________________________________
+2026-03-13 17:44:54,038 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:44:54,038 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:44:54,038 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:44:54,038 - INFO -   [OP]: Height:        35.0
+2026-03-13 17:44:54,038 - INFO -   [OP]: Pitch:         -60
+2026-03-13 17:44:54,038 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:44:54,038 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_60/ClearNoon/Town10HD
+2026-03-13 17:44:54,039 - INFO -   [OP]: ________________________________________
+2026-03-13 17:44:54,039 - INFO -   [OP]: 
+2026-03-13 17:45:02,346 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:45:10,673 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:14,  8.31s/it]
+2026-03-13 17:45:19,045 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.32s/it]
+2026-03-13 17:45:27,447 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.34s/it]
+2026-03-13 17:45:35,746 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.37s/it]
+2026-03-13 17:45:43,989 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.34s/it]
+2026-03-13 17:45:52,286 - INFO -   [OP]: 60%|██████    | 6/10 [00:49<00:33,  8.31s/it]
+2026-03-13 17:46:00,621 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:24,  8.30s/it]
+2026-03-13 17:46:08,965 - INFO -   [OP]: 80%|████████  | 8/10 [01:06<00:16,  8.31s/it]
+2026-03-13 17:46:17,277 - INFO -   [OP]: 90%|█████████ | 9/10 [01:14<00:08,  8.32s/it]
+2026-03-13 17:46:17,278 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.32s/it]
+2026-03-13 17:46:17,278 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.32s/it]
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 1/10 (Frame 1756)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 2/10 (Frame 1757)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 3/10 (Frame 1758)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 4/10 (Frame 1759)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 5/10 (Frame 1760)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 6/10 (Frame 1761)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 7/10 (Frame 1762)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 8/10 (Frame 1763)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 9/10 (Frame 1764)
+2026-03-13 17:46:17,278 - INFO -   [OP]: Saving sample 10/10 (Frame 1765)
+2026-03-13 17:46:17,279 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:46:17,279 - INFO -   [OP]: Total Time taken to generate images: 83.25200772285461
+2026-03-13 17:46:17,279 - INFO -   [OP]: Time per image: 8.325200772285461
+2026-03-13 17:46:17,290 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:46:17,395 - ERROR - Command failed with exit code 134
+2026-03-13 17:46:17,395 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:46:22,400 - INFO - Generating H/P Variation: H=35 P=-90 for baseline Town10HD
+2026-03-13 17:46:22,400 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8006 --save_seg
+2026-03-13 17:46:32,184 - INFO -   [OP]: ________________________________________
+2026-03-13 17:46:32,185 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:46:32,185 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:46:32,185 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:46:32,185 - INFO -   [OP]: Height:        35.0
+2026-03-13 17:46:32,185 - INFO -   [OP]: Pitch:         -90
+2026-03-13 17:46:32,185 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:46:32,185 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_90/ClearNoon/Town10HD
+2026-03-13 17:46:32,185 - INFO -   [OP]: ________________________________________
+2026-03-13 17:46:32,185 - INFO -   [OP]: 
+2026-03-13 17:46:40,531 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:46:48,809 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:15,  8.35s/it]
+2026-03-13 17:46:57,153 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.31s/it]
+2026-03-13 17:47:05,487 - INFO -   [OP]: 30%|███       | 3/10 [00:24<00:58,  8.32s/it]
+2026-03-13 17:47:13,838 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:49,  8.33s/it]
+2026-03-13 17:47:22,168 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.34s/it]
+2026-03-13 17:47:30,472 - INFO -   [OP]: 60%|██████    | 6/10 [00:49<00:33,  8.33s/it]
+2026-03-13 17:47:38,730 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:24,  8.32s/it]
+2026-03-13 17:47:47,088 - INFO -   [OP]: 80%|████████  | 8/10 [01:06<00:16,  8.30s/it]
+2026-03-13 17:47:55,786 - INFO -   [OP]: 90%|█████████ | 9/10 [01:14<00:08,  8.32s/it]
+2026-03-13 17:47:55,787 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.44s/it]
+2026-03-13 17:47:55,787 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.36s/it]
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 1/10 (Frame 1773)
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 2/10 (Frame 1774)
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 3/10 (Frame 1775)
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 4/10 (Frame 1776)
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 5/10 (Frame 1777)
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 6/10 (Frame 1778)
+2026-03-13 17:47:55,787 - INFO -   [OP]: Saving sample 7/10 (Frame 1779)
+2026-03-13 17:47:55,788 - INFO -   [OP]: Saving sample 8/10 (Frame 1780)
+2026-03-13 17:47:55,788 - INFO -   [OP]: Saving sample 9/10 (Frame 1781)
+2026-03-13 17:47:55,788 - INFO -   [OP]: Saving sample 10/10 (Frame 1782)
+2026-03-13 17:47:55,788 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:47:55,788 - INFO -   [OP]: Total Time taken to generate images: 83.6143012046814
+2026-03-13 17:47:55,788 - INFO -   [OP]: Time per image: 8.361430120468139
+2026-03-13 17:47:55,837 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:48:00,838 - INFO - Generating H/P Variation: H=60 P=-45 for baseline Town10HD
+2026-03-13 17:48:00,838 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8007 --save_seg
+2026-03-13 17:48:10,833 - INFO -   [OP]: ________________________________________
+2026-03-13 17:48:10,833 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:48:10,833 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:48:10,833 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:48:10,833 - INFO -   [OP]: Height:        60.0
+2026-03-13 17:48:10,833 - INFO -   [OP]: Pitch:         -45
+2026-03-13 17:48:10,833 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:48:10,833 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_45/ClearNoon/Town10HD
+2026-03-13 17:48:10,834 - INFO -   [OP]: ________________________________________
+2026-03-13 17:48:10,834 - INFO -   [OP]: 
+2026-03-13 17:48:19,185 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:48:27,583 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:15,  8.35s/it]
+2026-03-13 17:48:35,937 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:07,  8.38s/it]
+2026-03-13 17:48:44,290 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.37s/it]
+2026-03-13 17:48:52,685 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.36s/it]
+2026-03-13 17:49:01,047 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.37s/it]
+2026-03-13 17:49:09,436 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.37s/it]
+2026-03-13 17:49:17,835 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.38s/it]
+2026-03-13 17:49:26,234 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.38s/it]
+2026-03-13 17:49:34,649 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.39s/it]
+2026-03-13 17:49:34,650 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.40s/it]
+2026-03-13 17:49:34,651 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.38s/it]
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 1/10 (Frame 1790)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 2/10 (Frame 1791)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 3/10 (Frame 1792)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 4/10 (Frame 1793)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 5/10 (Frame 1794)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 6/10 (Frame 1795)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 7/10 (Frame 1796)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 8/10 (Frame 1797)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 9/10 (Frame 1798)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Saving sample 10/10 (Frame 1799)
+2026-03-13 17:49:34,651 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:49:34,651 - INFO -   [OP]: Total Time taken to generate images: 83.82961130142212
+2026-03-13 17:49:34,651 - INFO -   [OP]: Time per image: 8.382961130142212
+2026-03-13 17:49:34,662 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:49:34,745 - ERROR - Command failed with exit code 134
+2026-03-13 17:49:34,745 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:49:39,750 - INFO - Generating H/P Variation: H=60 P=-60 for baseline Town10HD
+2026-03-13 17:49:39,750 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8008 --save_seg
+2026-03-13 17:49:49,920 - INFO -   [OP]: ________________________________________
+2026-03-13 17:49:49,920 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:49:49,920 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:49:49,920 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:49:49,920 - INFO -   [OP]: Height:        60.0
+2026-03-13 17:49:49,920 - INFO -   [OP]: Pitch:         -60
+2026-03-13 17:49:49,920 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:49:49,920 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_60/ClearNoon/Town10HD
+2026-03-13 17:49:49,921 - INFO -   [OP]: ________________________________________
+2026-03-13 17:49:49,921 - INFO -   [OP]: 
+2026-03-13 17:49:58,247 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:50:06,693 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:14,  8.33s/it]
+2026-03-13 17:50:15,100 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:07,  8.40s/it]
+2026-03-13 17:50:23,440 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.40s/it]
+2026-03-13 17:50:31,824 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.38s/it]
+2026-03-13 17:50:40,222 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.38s/it]
+2026-03-13 17:50:48,577 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.39s/it]
+2026-03-13 17:50:56,909 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.38s/it]
+2026-03-13 17:51:05,296 - INFO -   [OP]: 80%|████████  | 8/10 [01:06<00:16,  8.36s/it]
+2026-03-13 17:51:13,780 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.37s/it]
+2026-03-13 17:51:13,782 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.41s/it]
+2026-03-13 17:51:13,782 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.39s/it]
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 1/10 (Frame 1807)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 2/10 (Frame 1808)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 3/10 (Frame 1809)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 4/10 (Frame 1810)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 5/10 (Frame 1811)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 6/10 (Frame 1812)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 7/10 (Frame 1813)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 8/10 (Frame 1814)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 9/10 (Frame 1815)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Saving sample 10/10 (Frame 1816)
+2026-03-13 17:51:13,782 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:51:13,782 - INFO -   [OP]: Total Time taken to generate images: 83.87403893470764
+2026-03-13 17:51:13,782 - INFO -   [OP]: Time per image: 8.387403893470765
+2026-03-13 17:51:13,832 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:51:18,837 - INFO - Generating H/P Variation: H=60 P=-90 for baseline Town10HD
+2026-03-13 17:51:18,838 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8009 --save_seg
+2026-03-13 17:51:28,804 - INFO -   [OP]: ________________________________________
+2026-03-13 17:51:28,804 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-13 17:51:28,804 - INFO -   [OP]: Town:          Town10HD
+2026-03-13 17:51:28,804 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-13 17:51:28,804 - INFO -   [OP]: Height:        60.0
+2026-03-13 17:51:28,804 - INFO -   [OP]: Pitch:         -90
+2026-03-13 17:51:28,804 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-13 17:51:28,805 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_90/ClearNoon/Town10HD
+2026-03-13 17:51:28,805 - INFO -   [OP]: ________________________________________
+2026-03-13 17:51:28,805 - INFO -   [OP]: 
+2026-03-13 17:51:37,121 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-13 17:51:45,457 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:14,  8.32s/it]
+2026-03-13 17:51:53,787 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.33s/it]
+2026-03-13 17:52:02,141 - INFO -   [OP]: 30%|███       | 3/10 [00:24<00:58,  8.33s/it]
+2026-03-13 17:52:10,489 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.34s/it]
+2026-03-13 17:52:18,820 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.34s/it]
+2026-03-13 17:52:27,205 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.34s/it]
+2026-03-13 17:52:35,593 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.35s/it]
+2026-03-13 17:52:43,983 - INFO -   [OP]: 80%|████████  | 8/10 [01:06<00:16,  8.36s/it]
+2026-03-13 17:52:52,368 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.37s/it]
+2026-03-13 17:52:52,369 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.38s/it]
+2026-03-13 17:52:52,369 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.36s/it]
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 1/10 (Frame 1824)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 2/10 (Frame 1825)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 3/10 (Frame 1826)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 4/10 (Frame 1827)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 5/10 (Frame 1828)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 6/10 (Frame 1829)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 7/10 (Frame 1830)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 8/10 (Frame 1831)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 9/10 (Frame 1832)
+2026-03-13 17:52:52,369 - INFO -   [OP]: Saving sample 10/10 (Frame 1833)
+2026-03-13 17:52:52,370 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-13 17:52:52,370 - INFO -   [OP]: Total Time taken to generate images: 83.5767011642456
+2026-03-13 17:52:52,370 - INFO -   [OP]: Time per image: 8.357670116424561
+2026-03-13 17:52:52,378 - INFO -   [OP]: terminate called without an active exception
+2026-03-13 17:52:52,462 - ERROR - Command failed with exit code 134
+2026-03-13 17:52:52,462 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-13 17:52:57,468 - INFO - Pipeline Execution Complete
+2026-03-16 07:38:25,173 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-16 07:38:25,174 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-16 07:38:25,174 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
+2026-03-16 07:38:25,174 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-16 07:38:25,174 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg
+2026-03-16 07:38:35,043 - INFO -   [OP]: ________________________________________
+2026-03-16 07:38:35,043 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:38:35,043 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:38:35,043 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:38:35,043 - INFO -   [OP]: Height:        15.0
+2026-03-16 07:38:35,043 - INFO -   [OP]: Pitch:         -45
+2026-03-16 07:38:35,043 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:38:35,044 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_45/ClearNoon/Town10HD
+2026-03-16 07:38:35,044 - INFO -   [OP]: ________________________________________
+2026-03-16 07:38:35,044 - INFO -   [OP]: 
+2026-03-16 07:38:43,399 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:38:51,814 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:15,  8.36s/it]
+2026-03-16 07:39:00,180 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:07,  8.39s/it]
+2026-03-16 07:39:08,754 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.38s/it]
+2026-03-16 07:39:17,121 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.46s/it]
+2026-03-16 07:39:25,471 - INFO -   [OP]: 50%|█████     | 5/10 [00:42<00:42,  8.42s/it]
+2026-03-16 07:39:33,814 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.40s/it]
+2026-03-16 07:39:42,166 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.38s/it]
+2026-03-16 07:39:50,523 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.37s/it]
+2026-03-16 07:39:58,883 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.37s/it]
+2026-03-16 07:39:58,884 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.36s/it]
+2026-03-16 07:39:58,884 - INFO -   [OP]: 100%|██████████| 10/10 [01:23<00:00,  8.38s/it]
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 1/10 (Frame 1841)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 2/10 (Frame 1842)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 3/10 (Frame 1843)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 4/10 (Frame 1844)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 5/10 (Frame 1845)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 6/10 (Frame 1846)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 7/10 (Frame 1847)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 8/10 (Frame 1848)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 9/10 (Frame 1849)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Saving sample 10/10 (Frame 1850)
+2026-03-16 07:39:58,884 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:39:58,884 - INFO -   [OP]: Total Time taken to generate images: 83.85246849060059
+2026-03-16 07:39:58,884 - INFO -   [OP]: Time per image: 8.385246849060058
+2026-03-16 07:39:58,927 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:40:03,932 - INFO - Generating H/P Variation: H=15 P=-60 for baseline Town10HD
+2026-03-16 07:40:03,932 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8002 --save_seg
+2026-03-16 07:40:13,982 - INFO -   [OP]: ________________________________________
+2026-03-16 07:40:13,982 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:40:13,982 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:40:13,982 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:40:13,982 - INFO -   [OP]: Height:        15.0
+2026-03-16 07:40:13,983 - INFO -   [OP]: Pitch:         -60
+2026-03-16 07:40:13,983 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:40:13,983 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_60/ClearNoon/Town10HD
+2026-03-16 07:40:13,983 - INFO -   [OP]: ________________________________________
+2026-03-16 07:40:13,983 - INFO -   [OP]: 
+2026-03-16 07:40:22,255 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:40:30,563 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:14,  8.27s/it]
+2026-03-16 07:40:39,005 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:06,  8.29s/it]
+2026-03-16 07:40:47,502 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.36s/it]
+2026-03-16 07:40:55,869 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.41s/it]
+2026-03-16 07:41:04,343 - INFO -   [OP]: 50%|█████     | 5/10 [00:41<00:41,  8.40s/it]
+2026-03-16 07:41:12,731 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.42s/it]
+2026-03-16 07:41:21,360 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.41s/it]
+2026-03-16 07:41:29,780 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.48s/it]
+2026-03-16 07:41:38,273 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.46s/it]
+2026-03-16 07:41:38,273 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.47s/it]
+2026-03-16 07:41:38,273 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.43s/it]
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 1/10 (Frame 1858)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 2/10 (Frame 1859)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 3/10 (Frame 1860)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 4/10 (Frame 1861)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 5/10 (Frame 1862)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 6/10 (Frame 1863)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 7/10 (Frame 1864)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 8/10 (Frame 1865)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 9/10 (Frame 1866)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Saving sample 10/10 (Frame 1867)
+2026-03-16 07:41:38,274 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:41:38,274 - INFO -   [OP]: Total Time taken to generate images: 84.30329155921936
+2026-03-16 07:41:38,274 - INFO -   [OP]: Time per image: 8.430329155921935
+2026-03-16 07:41:38,285 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:41:38,285 - INFO -   [OP]: terminate called recursively
+2026-03-16 07:41:38,382 - ERROR - Command failed with exit code 134
+2026-03-16 07:41:38,382 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:41:43,388 - INFO - Generating H/P Variation: H=15 P=-90 for baseline Town10HD
+2026-03-16 07:41:43,388 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8003 --save_seg
+2026-03-16 07:41:53,260 - INFO -   [OP]: ________________________________________
+2026-03-16 07:41:53,260 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:41:53,260 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:41:53,260 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:41:53,260 - INFO -   [OP]: Height:        15.0
+2026-03-16 07:41:53,260 - INFO -   [OP]: Pitch:         -90
+2026-03-16 07:41:53,260 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:41:53,260 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_90/ClearNoon/Town10HD
+2026-03-16 07:41:53,260 - INFO -   [OP]: ________________________________________
+2026-03-16 07:41:53,260 - INFO -   [OP]: 
+2026-03-16 07:42:02,135 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:42:10,471 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:19,  8.87s/it]
+2026-03-16 07:42:18,789 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:08,  8.56s/it]
+2026-03-16 07:42:27,332 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.45s/it]
+2026-03-16 07:42:35,709 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:50,  8.49s/it]
+2026-03-16 07:42:44,255 - INFO -   [OP]: 50%|█████     | 5/10 [00:42<00:42,  8.45s/it]
+2026-03-16 07:42:52,575 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.48s/it]
+2026-03-16 07:43:01,042 - INFO -   [OP]: 70%|███████   | 7/10 [00:59<00:25,  8.43s/it]
+2026-03-16 07:43:09,909 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.44s/it]
+2026-03-16 07:43:18,306 - INFO -   [OP]: 90%|█████████ | 9/10 [01:16<00:08,  8.57s/it]
+2026-03-16 07:43:18,307 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.52s/it]
+2026-03-16 07:43:18,307 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.50s/it]
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 1/10 (Frame 1875)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 2/10 (Frame 1876)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 3/10 (Frame 1877)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 4/10 (Frame 1878)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 5/10 (Frame 1879)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 6/10 (Frame 1880)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 7/10 (Frame 1881)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 8/10 (Frame 1882)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 9/10 (Frame 1883)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Saving sample 10/10 (Frame 1884)
+2026-03-16 07:43:18,308 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:43:18,308 - INFO -   [OP]: Total Time taken to generate images: 85.05928230285645
+2026-03-16 07:43:18,309 - INFO -   [OP]: Time per image: 8.505928230285644
+2026-03-16 07:43:18,320 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:43:18,418 - ERROR - Command failed with exit code 134
+2026-03-16 07:43:18,418 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:43:23,423 - INFO - Generating H/P Variation: H=35 P=-45 for baseline Town10HD
+2026-03-16 07:43:23,423 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8004 --save_seg
+2026-03-16 07:43:35,322 - INFO -   [OP]: ________________________________________
+2026-03-16 07:43:35,323 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:43:35,323 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:43:35,323 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:43:35,323 - INFO -   [OP]: Height:        35.0
+2026-03-16 07:43:35,323 - INFO -   [OP]: Pitch:         -45
+2026-03-16 07:43:35,323 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:43:35,323 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_45/ClearNoon/Town10HD
+2026-03-16 07:43:35,323 - INFO -   [OP]: ________________________________________
+2026-03-16 07:43:35,323 - INFO -   [OP]: 
+2026-03-16 07:43:44,046 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:43:52,396 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:18,  8.72s/it]
+2026-03-16 07:44:00,947 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:08,  8.50s/it]
+2026-03-16 07:44:09,710 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.53s/it]
+2026-03-16 07:44:18,371 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:51,  8.62s/it]
+2026-03-16 07:44:26,909 - INFO -   [OP]: 50%|█████     | 5/10 [00:43<00:43,  8.63s/it]
+2026-03-16 07:44:35,368 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.60s/it]
+2026-03-16 07:44:43,732 - INFO -   [OP]: 70%|███████   | 7/10 [01:00<00:25,  8.56s/it]
+2026-03-16 07:44:52,118 - INFO -   [OP]: 80%|████████  | 8/10 [01:08<00:16,  8.49s/it]
+2026-03-16 07:45:00,443 - INFO -   [OP]: 90%|█████████ | 9/10 [01:16<00:08,  8.46s/it]
+2026-03-16 07:45:00,444 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.42s/it]
+2026-03-16 07:45:00,444 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.51s/it]
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 1/10 (Frame 1892)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 2/10 (Frame 1893)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 3/10 (Frame 1894)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 4/10 (Frame 1895)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 5/10 (Frame 1896)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 6/10 (Frame 1897)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 7/10 (Frame 1898)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 8/10 (Frame 1899)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 9/10 (Frame 1900)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Saving sample 10/10 (Frame 1901)
+2026-03-16 07:45:00,444 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:45:00,444 - INFO -   [OP]: Total Time taken to generate images: 85.13346481323242
+2026-03-16 07:45:00,444 - INFO -   [OP]: Time per image: 8.513346481323243
+2026-03-16 07:45:00,488 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:45:05,493 - INFO - Generating H/P Variation: H=35 P=-60 for baseline Town10HD
+2026-03-16 07:45:05,493 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8005 --save_seg
+2026-03-16 07:45:15,745 - INFO -   [OP]: ________________________________________
+2026-03-16 07:45:15,745 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:45:15,745 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:45:15,746 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:45:15,746 - INFO -   [OP]: Height:        35.0
+2026-03-16 07:45:15,746 - INFO -   [OP]: Pitch:         -60
+2026-03-16 07:45:15,746 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:45:15,746 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_60/ClearNoon/Town10HD
+2026-03-16 07:45:15,746 - INFO -   [OP]: ________________________________________
+2026-03-16 07:45:15,746 - INFO -   [OP]: 
+2026-03-16 07:45:24,382 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:45:33,116 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:17,  8.64s/it]
+2026-03-16 07:45:41,925 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:09,  8.69s/it]
+2026-03-16 07:45:50,332 - INFO -   [OP]: 30%|███       | 3/10 [00:26<01:01,  8.75s/it]
+2026-03-16 07:45:58,819 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:51,  8.61s/it]
+2026-03-16 07:46:07,323 - INFO -   [OP]: 50%|█████     | 5/10 [00:43<00:42,  8.57s/it]
+2026-03-16 07:46:16,333 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.55s/it]
+2026-03-16 07:46:24,828 - INFO -   [OP]: 70%|███████   | 7/10 [01:00<00:26,  8.70s/it]
+2026-03-16 07:46:33,540 - INFO -   [OP]: 80%|████████  | 8/10 [01:09<00:17,  8.63s/it]
+2026-03-16 07:46:41,959 - INFO -   [OP]: 90%|█████████ | 9/10 [01:17<00:08,  8.66s/it]
+2026-03-16 07:46:41,960 - INFO -   [OP]: 100%|██████████| 10/10 [01:26<00:00,  8.58s/it]
+2026-03-16 07:46:41,960 - INFO -   [OP]: 100%|██████████| 10/10 [01:26<00:00,  8.62s/it]
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 1/10 (Frame 1909)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 2/10 (Frame 1910)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 3/10 (Frame 1911)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 4/10 (Frame 1912)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 5/10 (Frame 1913)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 6/10 (Frame 1914)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 7/10 (Frame 1915)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 8/10 (Frame 1916)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 9/10 (Frame 1917)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Saving sample 10/10 (Frame 1918)
+2026-03-16 07:46:41,960 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:46:41,960 - INFO -   [OP]: Total Time taken to generate images: 86.22629714012146
+2026-03-16 07:46:41,960 - INFO -   [OP]: Time per image: 8.622629714012145
+2026-03-16 07:46:41,971 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:46:42,054 - ERROR - Command failed with exit code 134
+2026-03-16 07:46:42,054 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:46:47,059 - INFO - Generating H/P Variation: H=35 P=-90 for baseline Town10HD
+2026-03-16 07:46:47,060 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8006 --save_seg
+2026-03-16 07:47:01,931 - INFO -   [OP]: ________________________________________
+2026-03-16 07:47:01,931 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:47:01,931 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:47:01,931 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:47:01,931 - INFO -   [OP]: Height:        35.0
+2026-03-16 07:47:01,932 - INFO -   [OP]: Pitch:         -90
+2026-03-16 07:47:01,932 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:47:01,932 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_90/ClearNoon/Town10HD
+2026-03-16 07:47:01,932 - INFO -   [OP]: ________________________________________
+2026-03-16 07:47:01,932 - INFO -   [OP]: 
+2026-03-16 07:47:10,491 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:47:19,236 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:17,  8.56s/it]
+2026-03-16 07:47:27,630 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:09,  8.67s/it]
+2026-03-16 07:47:36,107 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.54s/it]
+2026-03-16 07:47:44,855 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:51,  8.52s/it]
+2026-03-16 07:47:53,626 - INFO -   [OP]: 50%|█████     | 5/10 [00:42<00:43,  8.60s/it]
+2026-03-16 07:48:02,251 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.66s/it]
+2026-03-16 07:48:10,813 - INFO -   [OP]: 70%|███████   | 7/10 [01:00<00:25,  8.65s/it]
+2026-03-16 07:48:19,281 - INFO -   [OP]: 80%|████████  | 8/10 [01:08<00:17,  8.62s/it]
+2026-03-16 07:48:27,728 - INFO -   [OP]: 90%|█████████ | 9/10 [01:17<00:08,  8.57s/it]
+2026-03-16 07:48:27,730 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.53s/it]
+2026-03-16 07:48:27,730 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.58s/it]
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 1/10 (Frame 1926)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 2/10 (Frame 1927)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 3/10 (Frame 1928)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 4/10 (Frame 1929)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 5/10 (Frame 1930)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 6/10 (Frame 1931)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 7/10 (Frame 1932)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 8/10 (Frame 1933)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 9/10 (Frame 1934)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Saving sample 10/10 (Frame 1935)
+2026-03-16 07:48:27,730 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:48:27,730 - INFO -   [OP]: Total Time taken to generate images: 85.91197752952576
+2026-03-16 07:48:27,730 - INFO -   [OP]: Time per image: 8.591197752952576
+2026-03-16 07:48:27,741 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:48:27,824 - ERROR - Command failed with exit code 134
+2026-03-16 07:48:27,825 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:48:32,830 - INFO - Generating H/P Variation: H=60 P=-45 for baseline Town10HD
+2026-03-16 07:48:32,830 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8007 --save_seg
+2026-03-16 07:48:42,907 - INFO -   [OP]: ________________________________________
+2026-03-16 07:48:42,908 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:48:42,908 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:48:42,908 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:48:42,908 - INFO -   [OP]: Height:        60.0
+2026-03-16 07:48:42,908 - INFO -   [OP]: Pitch:         -45
+2026-03-16 07:48:42,908 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:48:42,908 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_45/ClearNoon/Town10HD
+2026-03-16 07:48:42,908 - INFO -   [OP]: ________________________________________
+2026-03-16 07:48:42,908 - INFO -   [OP]: 
+2026-03-16 07:48:51,760 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:49:00,078 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:19,  8.85s/it]
+2026-03-16 07:49:08,547 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:08,  8.54s/it]
+2026-03-16 07:49:17,686 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.51s/it]
+2026-03-16 07:49:26,202 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:52,  8.76s/it]
+2026-03-16 07:49:34,736 - INFO -   [OP]: 50%|█████     | 5/10 [00:43<00:43,  8.67s/it]
+2026-03-16 07:49:43,356 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.62s/it]
+2026-03-16 07:49:52,516 - INFO -   [OP]: 70%|███████   | 7/10 [01:00<00:25,  8.62s/it]
+2026-03-16 07:50:01,155 - INFO -   [OP]: 80%|████████  | 8/10 [01:09<00:17,  8.79s/it]
+2026-03-16 07:50:09,791 - INFO -   [OP]: 90%|█████████ | 9/10 [01:18<00:08,  8.75s/it]
+2026-03-16 07:50:09,792 - INFO -   [OP]: 100%|██████████| 10/10 [01:26<00:00,  8.71s/it]
+2026-03-16 07:50:09,792 - INFO -   [OP]: 100%|██████████| 10/10 [01:26<00:00,  8.69s/it]
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 1/10 (Frame 1943)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 2/10 (Frame 1944)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 3/10 (Frame 1945)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 4/10 (Frame 1946)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 5/10 (Frame 1947)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 6/10 (Frame 1948)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 7/10 (Frame 1949)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 8/10 (Frame 1950)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 9/10 (Frame 1951)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Saving sample 10/10 (Frame 1952)
+2026-03-16 07:50:09,792 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:50:09,792 - INFO -   [OP]: Total Time taken to generate images: 86.89616537094116
+2026-03-16 07:50:09,792 - INFO -   [OP]: Time per image: 8.689616537094116
+2026-03-16 07:50:09,805 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:50:09,908 - ERROR - Command failed with exit code 134
+2026-03-16 07:50:09,908 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:50:14,913 - INFO - Generating H/P Variation: H=60 P=-60 for baseline Town10HD
+2026-03-16 07:50:14,913 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8008 --save_seg
+2026-03-16 07:50:24,723 - INFO -   [OP]: ________________________________________
+2026-03-16 07:50:24,724 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:50:24,724 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:50:24,724 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:50:24,724 - INFO -   [OP]: Height:        60.0
+2026-03-16 07:50:24,724 - INFO -   [OP]: Pitch:         -60
+2026-03-16 07:50:24,724 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:50:24,724 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_60/ClearNoon/Town10HD
+2026-03-16 07:50:24,724 - INFO -   [OP]: ________________________________________
+2026-03-16 07:50:24,724 - INFO -   [OP]: 
+2026-03-16 07:50:33,101 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:50:41,546 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:15,  8.38s/it]
+2026-03-16 07:50:49,996 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:07,  8.42s/it]
+2026-03-16 07:50:58,669 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.43s/it]
+2026-03-16 07:51:08,257 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:51,  8.53s/it]
+2026-03-16 07:51:16,663 - INFO -   [OP]: 50%|█████     | 5/10 [00:43<00:44,  8.91s/it]
+2026-03-16 07:51:25,088 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.74s/it]
+2026-03-16 07:51:33,539 - INFO -   [OP]: 70%|███████   | 7/10 [01:00<00:25,  8.64s/it]
+2026-03-16 07:51:41,960 - INFO -   [OP]: 80%|████████  | 8/10 [01:08<00:17,  8.58s/it]
+2026-03-16 07:51:50,643 - INFO -   [OP]: 90%|█████████ | 9/10 [01:17<00:08,  8.53s/it]
+2026-03-16 07:51:50,644 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.58s/it]
+2026-03-16 07:51:50,645 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.59s/it]
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 1/10 (Frame 1960)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 2/10 (Frame 1961)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 3/10 (Frame 1962)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 4/10 (Frame 1963)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 5/10 (Frame 1964)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 6/10 (Frame 1965)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 7/10 (Frame 1966)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 8/10 (Frame 1967)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 9/10 (Frame 1968)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Saving sample 10/10 (Frame 1969)
+2026-03-16 07:51:50,645 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:51:50,645 - INFO -   [OP]: Total Time taken to generate images: 85.93292737007141
+2026-03-16 07:51:50,645 - INFO -   [OP]: Time per image: 8.593292737007141
+2026-03-16 07:51:50,656 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:51:50,755 - ERROR - Command failed with exit code 134
+2026-03-16 07:51:50,755 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:51:55,760 - INFO - Generating H/P Variation: H=60 P=-90 for baseline Town10HD
+2026-03-16 07:51:55,760 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8009 --save_seg
+2026-03-16 07:52:05,692 - INFO -   [OP]: ________________________________________
+2026-03-16 07:52:05,692 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 07:52:05,692 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 07:52:05,692 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 07:52:05,692 - INFO -   [OP]: Height:        60.0
+2026-03-16 07:52:05,692 - INFO -   [OP]: Pitch:         -90
+2026-03-16 07:52:05,692 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 07:52:05,692 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_90/ClearNoon/Town10HD
+2026-03-16 07:52:05,692 - INFO -   [OP]: ________________________________________
+2026-03-16 07:52:05,693 - INFO -   [OP]: 
+2026-03-16 07:52:14,692 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 07:52:23,100 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:20,  9.00s/it]
+2026-03-16 07:52:31,436 - INFO -   [OP]: 20%|██        | 2/10 [00:17<01:09,  8.65s/it]
+2026-03-16 07:52:39,871 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:59,  8.51s/it]
+2026-03-16 07:52:48,159 - INFO -   [OP]: 40%|████      | 4/10 [00:34<00:50,  8.48s/it]
+2026-03-16 07:52:56,864 - INFO -   [OP]: 50%|█████     | 5/10 [00:42<00:42,  8.41s/it]
+2026-03-16 07:53:06,197 - INFO -   [OP]: 60%|██████    | 6/10 [00:51<00:34,  8.51s/it]
+2026-03-16 07:53:14,614 - INFO -   [OP]: 70%|███████   | 7/10 [01:00<00:26,  8.78s/it]
+2026-03-16 07:53:23,056 - INFO -   [OP]: 80%|████████  | 8/10 [01:08<00:17,  8.66s/it]
+2026-03-16 07:53:31,461 - INFO -   [OP]: 90%|█████████ | 9/10 [01:17<00:08,  8.59s/it]
+2026-03-16 07:53:31,462 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.54s/it]
+2026-03-16 07:53:31,462 - INFO -   [OP]: 100%|██████████| 10/10 [01:25<00:00,  8.58s/it]
+2026-03-16 07:53:31,462 - INFO -   [OP]: Saving sample 1/10 (Frame 1977)
+2026-03-16 07:53:31,462 - INFO -   [OP]: Saving sample 2/10 (Frame 1978)
+2026-03-16 07:53:31,462 - INFO -   [OP]: Saving sample 3/10 (Frame 1979)
+2026-03-16 07:53:31,462 - INFO -   [OP]: Saving sample 4/10 (Frame 1980)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Saving sample 5/10 (Frame 1981)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Saving sample 6/10 (Frame 1982)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Saving sample 7/10 (Frame 1983)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Saving sample 8/10 (Frame 1984)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Saving sample 9/10 (Frame 1985)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Saving sample 10/10 (Frame 1986)
+2026-03-16 07:53:31,463 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 07:53:31,463 - INFO -   [OP]: Total Time taken to generate images: 85.78205609321594
+2026-03-16 07:53:31,463 - INFO -   [OP]: Time per image: 8.578205609321595
+2026-03-16 07:53:31,474 - INFO -   [OP]: terminate called without an active exception
+2026-03-16 07:53:31,557 - ERROR - Command failed with exit code 134
+2026-03-16 07:53:31,557 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 07:53:36,562 - INFO - Pipeline Execution Complete
+2026-03-16 08:26:45,388 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-16 08:26:45,389 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-16 08:26:45,389 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
+2026-03-16 08:26:45,389 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-16 08:26:45,389 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg
+2026-03-16 08:26:55,543 - INFO -   [OP]: ________________________________________
+2026-03-16 08:26:55,543 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:26:55,543 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:26:55,543 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:26:55,543 - INFO -   [OP]: Height:        15.0
+2026-03-16 08:26:55,543 - INFO -   [OP]: Pitch:         -45
+2026-03-16 08:26:55,543 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:26:55,543 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_45/ClearNoon/Town10HD
+2026-03-16 08:26:55,543 - INFO -   [OP]: ________________________________________
+2026-03-16 08:26:55,543 - INFO -   [OP]: 
+2026-03-16 08:27:03,947 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:27:12,393 - INFO -   [OP]: 10%|█         | 1/10 [00:08<01:15,  8.40s/it]
+2026-03-16 08:27:20,812 - INFO -   [OP]: 20%|██        | 2/10 [00:16<01:07,  8.43s/it]
+2026-03-16 08:27:29,235 - INFO -   [OP]: 30%|███       | 3/10 [00:25<00:58,  8.42s/it]
+2026-03-16 08:27:37,626 - INFO -   [OP]: 40%|████      | 4/10 [00:33<00:50,  8.42s/it]
+2026-03-16 08:27:46,112 - INFO -   [OP]: 50%|█████     | 5/10 [00:42<00:42,  8.41s/it]
+2026-03-16 08:27:54,532 - INFO -   [OP]: 60%|██████    | 6/10 [00:50<00:33,  8.44s/it]
+2026-03-16 08:28:02,928 - INFO -   [OP]: 70%|███████   | 7/10 [00:58<00:25,  8.43s/it]
+2026-03-16 08:28:11,287 - INFO -   [OP]: 80%|████████  | 8/10 [01:07<00:16,  8.42s/it]
+2026-03-16 08:28:19,693 - INFO -   [OP]: 90%|█████████ | 9/10 [01:15<00:08,  8.40s/it]
+2026-03-16 08:28:19,769 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.40s/it]
+2026-03-16 08:28:19,783 - INFO -   [OP]: 100%|██████████| 10/10 [01:24<00:00,  8.42s/it]
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 1/10 (Frame 1994)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 2/10 (Frame 1995)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 3/10 (Frame 1996)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 4/10 (Frame 1997)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 5/10 (Frame 1998)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 6/10 (Frame 1999)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 7/10 (Frame 2000)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 8/10 (Frame 2001)
+2026-03-16 08:28:19,783 - INFO -   [OP]: Saving sample 9/10 (Frame 2002)
+2026-03-16 08:28:19,784 - INFO -   [OP]: Saving sample 10/10 (Frame 2003)
+2026-03-16 08:28:19,784 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:28:19,784 - INFO -   [OP]: Total Time taken to generate images: 84.25162529945374
+2026-03-16 08:28:19,784 - INFO -   [OP]: Time per image: 8.425162529945373
+2026-03-16 08:28:20,496 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:28:25,502 - INFO - Generating H/P Variation: H=15 P=-60 for baseline Town10HD
+2026-03-16 08:28:25,502 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8002 --save_seg
+2026-03-16 08:45:22,981 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-16 08:45:22,981 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-16 08:45:22,981 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
+2026-03-16 08:45:22,981 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-16 08:45:22,981 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg --extract_gbuffer
+2026-03-16 08:45:32,931 - INFO -   [OP]: ________________________________________
+2026-03-16 08:45:32,932 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:45:32,932 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:45:32,932 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:45:32,932 - INFO -   [OP]: Height:        15.0
+2026-03-16 08:45:32,932 - INFO -   [OP]: Pitch:         -45
+2026-03-16 08:45:32,932 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:45:32,932 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_45/ClearNoon/Town10HD
+2026-03-16 08:45:32,932 - INFO -   [OP]: ________________________________________
+2026-03-16 08:45:32,932 - INFO -   [OP]: 
+2026-03-16 08:45:43,484 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:45:54,180 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.55s/it]
+2026-03-16 08:46:04,795 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:25, 10.64s/it]
+2026-03-16 08:46:15,262 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:14, 10.63s/it]
+2026-03-16 08:46:25,761 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.56s/it]
+2026-03-16 08:46:36,021 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.54s/it]
+2026-03-16 08:46:46,269 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:41, 10.44s/it]
+2026-03-16 08:46:56,566 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.38s/it]
+2026-03-16 08:47:06,609 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.35s/it]
+2026-03-16 08:47:16,963 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.26s/it]
+2026-03-16 08:47:17,046 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.29s/it]
+2026-03-16 08:47:17,060 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 1/10 (Frame 2047)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 2/10 (Frame 2048)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 3/10 (Frame 2049)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 4/10 (Frame 2050)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 5/10 (Frame 2051)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 6/10 (Frame 2052)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 7/10 (Frame 2053)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 8/10 (Frame 2054)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 9/10 (Frame 2055)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Saving sample 10/10 (Frame 2056)
+2026-03-16 08:47:17,060 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:47:17,061 - INFO -   [OP]: Total Time taken to generate images: 104.13977766036987
+2026-03-16 08:47:17,061 - INFO -   [OP]: Time per image: 10.413977766036988
+2026-03-16 08:47:17,155 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:47:22,160 - INFO - Generating H/P Variation: H=15 P=-60 for baseline Town10HD
+2026-03-16 08:47:22,161 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8002 --save_seg --extract_gbuffer
+2026-03-16 08:47:32,869 - INFO -   [OP]: ________________________________________
+2026-03-16 08:47:32,869 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:47:32,869 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:47:32,870 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:47:32,870 - INFO -   [OP]: Height:        15.0
+2026-03-16 08:47:32,870 - INFO -   [OP]: Pitch:         -60
+2026-03-16 08:47:32,870 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:47:32,870 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_60/ClearNoon/Town10HD
+2026-03-16 08:47:32,870 - INFO -   [OP]: ________________________________________
+2026-03-16 08:47:32,870 - INFO -   [OP]: 
+2026-03-16 08:47:43,317 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:47:53,940 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.45s/it]
+2026-03-16 08:48:04,454 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.55s/it]
+2026-03-16 08:48:14,922 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.53s/it]
+2026-03-16 08:48:25,297 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.51s/it]
+2026-03-16 08:48:35,556 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.46s/it]
+2026-03-16 08:48:45,938 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.39s/it]
+2026-03-16 08:48:56,149 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.39s/it]
+2026-03-16 08:49:06,246 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.33s/it]
+2026-03-16 08:49:16,523 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.26s/it]
+2026-03-16 08:49:16,600 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.26s/it]
+2026-03-16 08:49:16,614 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.37s/it]
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 1/10 (Frame 2065)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 2/10 (Frame 2066)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 3/10 (Frame 2067)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 4/10 (Frame 2068)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 5/10 (Frame 2069)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 6/10 (Frame 2070)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 7/10 (Frame 2071)
+2026-03-16 08:49:16,614 - INFO -   [OP]: Saving sample 8/10 (Frame 2072)
+2026-03-16 08:49:16,615 - INFO -   [OP]: Saving sample 9/10 (Frame 2073)
+2026-03-16 08:49:16,615 - INFO -   [OP]: Saving sample 10/10 (Frame 2074)
+2026-03-16 08:49:16,615 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:49:16,615 - INFO -   [OP]: Total Time taken to generate images: 103.7563967704773
+2026-03-16 08:49:16,615 - INFO -   [OP]: Time per image: 10.37563967704773
+2026-03-16 08:49:16,694 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:49:21,700 - INFO - Generating H/P Variation: H=15 P=-90 for baseline Town10HD
+2026-03-16 08:49:21,700 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8003 --save_seg --extract_gbuffer
+2026-03-16 08:49:31,858 - INFO -   [OP]: ________________________________________
+2026-03-16 08:49:31,858 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:49:31,858 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:49:31,858 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:49:31,858 - INFO -   [OP]: Height:        15.0
+2026-03-16 08:49:31,858 - INFO -   [OP]: Pitch:         -90
+2026-03-16 08:49:31,858 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:49:31,858 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_90/ClearNoon/Town10HD
+2026-03-16 08:49:31,858 - INFO -   [OP]: ________________________________________
+2026-03-16 08:49:31,858 - INFO -   [OP]: 
+2026-03-16 08:49:42,250 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:49:53,035 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.39s/it]
+2026-03-16 08:50:03,475 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.62s/it]
+2026-03-16 08:50:14,017 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.54s/it]
+2026-03-16 08:50:24,340 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.54s/it]
+2026-03-16 08:50:34,630 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.46s/it]
+2026-03-16 08:50:45,198 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.40s/it]
+2026-03-16 08:50:55,711 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.46s/it]
+2026-03-16 08:51:05,944 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.48s/it]
+2026-03-16 08:51:16,337 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.40s/it]
+2026-03-16 08:51:16,414 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.40s/it]
+2026-03-16 08:51:16,440 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.46s/it]
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 1/10 (Frame 2083)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 2/10 (Frame 2084)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 3/10 (Frame 2085)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 4/10 (Frame 2086)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 5/10 (Frame 2087)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 6/10 (Frame 2088)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 7/10 (Frame 2089)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 8/10 (Frame 2090)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 9/10 (Frame 2091)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Saving sample 10/10 (Frame 2092)
+2026-03-16 08:51:16,440 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:51:16,440 - INFO -   [OP]: Total Time taken to generate images: 104.59335732460022
+2026-03-16 08:51:16,441 - INFO -   [OP]: Time per image: 10.459335732460023
+2026-03-16 08:51:16,500 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:51:21,505 - INFO - Generating H/P Variation: H=35 P=-45 for baseline Town10HD
+2026-03-16 08:51:21,506 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8004 --save_seg --extract_gbuffer
+2026-03-16 08:51:31,318 - INFO -   [OP]: ________________________________________
+2026-03-16 08:51:31,319 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:51:31,319 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:51:31,319 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:51:31,319 - INFO -   [OP]: Height:        35.0
+2026-03-16 08:51:31,319 - INFO -   [OP]: Pitch:         -45
+2026-03-16 08:51:31,319 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:51:31,319 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_45/ClearNoon/Town10HD
+2026-03-16 08:51:31,319 - INFO -   [OP]: ________________________________________
+2026-03-16 08:51:31,319 - INFO -   [OP]: 
+2026-03-16 08:51:41,736 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:51:52,199 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.42s/it]
+2026-03-16 08:52:02,641 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:23, 10.44s/it]
+2026-03-16 08:52:13,095 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.44s/it]
+2026-03-16 08:52:23,425 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.45s/it]
+2026-03-16 08:52:33,703 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.41s/it]
+2026-03-16 08:52:43,909 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.36s/it]
+2026-03-16 08:52:54,253 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:30, 10.31s/it]
+2026-03-16 08:53:04,583 - INFO -   [OP]: 80%|████████  | 8/10 [01:22<00:20, 10.32s/it]
+2026-03-16 08:53:14,808 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.32s/it]
+2026-03-16 08:53:14,890 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.29s/it]
+2026-03-16 08:53:14,903 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.36s/it]
+2026-03-16 08:53:14,903 - INFO -   [OP]: Saving sample 1/10 (Frame 2101)
+2026-03-16 08:53:14,903 - INFO -   [OP]: Saving sample 2/10 (Frame 2102)
+2026-03-16 08:53:14,903 - INFO -   [OP]: Saving sample 3/10 (Frame 2103)
+2026-03-16 08:53:14,903 - INFO -   [OP]: Saving sample 4/10 (Frame 2104)
+2026-03-16 08:53:14,903 - INFO -   [OP]: Saving sample 5/10 (Frame 2105)
+2026-03-16 08:53:14,903 - INFO -   [OP]: Saving sample 6/10 (Frame 2106)
+2026-03-16 08:53:14,904 - INFO -   [OP]: Saving sample 7/10 (Frame 2107)
+2026-03-16 08:53:14,904 - INFO -   [OP]: Saving sample 8/10 (Frame 2108)
+2026-03-16 08:53:14,904 - INFO -   [OP]: Saving sample 9/10 (Frame 2109)
+2026-03-16 08:53:14,904 - INFO -   [OP]: Saving sample 10/10 (Frame 2110)
+2026-03-16 08:53:14,904 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:53:14,904 - INFO -   [OP]: Total Time taken to generate images: 103.59642171859741
+2026-03-16 08:53:14,904 - INFO -   [OP]: Time per image: 10.359642171859742
+2026-03-16 08:53:14,990 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:53:19,995 - INFO - Generating H/P Variation: H=35 P=-60 for baseline Town10HD
+2026-03-16 08:53:19,995 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8005 --save_seg --extract_gbuffer
+2026-03-16 08:53:29,987 - INFO -   [OP]: ________________________________________
+2026-03-16 08:53:29,988 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:53:29,988 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:53:29,988 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:53:29,988 - INFO -   [OP]: Height:        35.0
+2026-03-16 08:53:29,988 - INFO -   [OP]: Pitch:         -60
+2026-03-16 08:53:29,988 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:53:29,988 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_60/ClearNoon/Town10HD
+2026-03-16 08:53:29,988 - INFO -   [OP]: ________________________________________
+2026-03-16 08:53:29,988 - INFO -   [OP]: 
+2026-03-16 08:53:40,405 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:53:50,974 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.42s/it]
+2026-03-16 08:54:01,438 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:24, 10.51s/it]
+2026-03-16 08:54:11,844 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.49s/it]
+2026-03-16 08:54:22,176 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.46s/it]
+2026-03-16 08:54:32,409 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.41s/it]
+2026-03-16 08:54:42,597 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.35s/it]
+2026-03-16 08:54:52,793 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:30, 10.30s/it]
+2026-03-16 08:55:02,905 - INFO -   [OP]: 80%|████████  | 8/10 [01:22<00:20, 10.27s/it]
+2026-03-16 08:55:13,089 - INFO -   [OP]: 90%|█████████ | 9/10 [01:32<00:10, 10.22s/it]
+2026-03-16 08:55:13,173 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.21s/it]
+2026-03-16 08:55:13,186 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.32s/it]
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 1/10 (Frame 2119)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 2/10 (Frame 2120)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 3/10 (Frame 2121)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 4/10 (Frame 2122)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 5/10 (Frame 2123)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 6/10 (Frame 2124)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 7/10 (Frame 2125)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 8/10 (Frame 2126)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 9/10 (Frame 2127)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Saving sample 10/10 (Frame 2128)
+2026-03-16 08:55:13,186 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:55:13,186 - INFO -   [OP]: Total Time taken to generate images: 103.21063995361328
+2026-03-16 08:55:13,187 - INFO -   [OP]: Time per image: 10.321063995361328
+2026-03-16 08:55:13,251 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:55:18,257 - INFO - Generating H/P Variation: H=35 P=-90 for baseline Town10HD
+2026-03-16 08:55:18,257 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8006 --save_seg --extract_gbuffer
+2026-03-16 08:55:28,087 - INFO -   [OP]: ________________________________________
+2026-03-16 08:55:28,087 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:55:28,087 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:55:28,088 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:55:28,088 - INFO -   [OP]: Height:        35.0
+2026-03-16 08:55:28,088 - INFO -   [OP]: Pitch:         -90
+2026-03-16 08:55:28,088 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:55:28,088 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_90/ClearNoon/Town10HD
+2026-03-16 08:55:28,088 - INFO -   [OP]: ________________________________________
+2026-03-16 08:55:28,088 - INFO -   [OP]: 
+2026-03-16 08:55:38,684 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:55:49,450 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:35, 10.60s/it]
+2026-03-16 08:56:00,029 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:25, 10.70s/it]
+2026-03-16 08:56:10,543 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:14, 10.64s/it]
+2026-03-16 08:56:21,029 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.59s/it]
+2026-03-16 08:56:31,454 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.55s/it]
+2026-03-16 08:56:42,132 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:42, 10.51s/it]
+2026-03-16 08:56:52,687 - INFO -   [OP]: 70%|███████   | 7/10 [01:14<00:31, 10.56s/it]
+2026-03-16 08:57:03,182 - INFO -   [OP]: 80%|████████  | 8/10 [01:24<00:21, 10.56s/it]
+2026-03-16 08:57:13,408 - INFO -   [OP]: 90%|█████████ | 9/10 [01:35<00:10, 10.54s/it]
+2026-03-16 08:57:13,484 - INFO -   [OP]: 100%|██████████| 10/10 [01:45<00:00, 10.44s/it]
+2026-03-16 08:57:13,497 - INFO -   [OP]: 100%|██████████| 10/10 [01:45<00:00, 10.54s/it]
+2026-03-16 08:57:13,497 - INFO -   [OP]: Saving sample 1/10 (Frame 2137)
+2026-03-16 08:57:13,497 - INFO -   [OP]: Saving sample 2/10 (Frame 2138)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 3/10 (Frame 2139)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 4/10 (Frame 2140)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 5/10 (Frame 2141)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 6/10 (Frame 2142)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 7/10 (Frame 2143)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 8/10 (Frame 2144)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 9/10 (Frame 2145)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Saving sample 10/10 (Frame 2146)
+2026-03-16 08:57:13,498 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:57:13,498 - INFO -   [OP]: Total Time taken to generate images: 105.42193007469177
+2026-03-16 08:57:13,498 - INFO -   [OP]: Time per image: 10.542193007469177
+2026-03-16 08:57:13,561 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:57:18,566 - INFO - Generating H/P Variation: H=60 P=-45 for baseline Town10HD
+2026-03-16 08:57:18,566 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8007 --save_seg --extract_gbuffer
+2026-03-16 08:57:28,415 - INFO -   [OP]: ________________________________________
+2026-03-16 08:57:28,415 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:57:28,416 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:57:28,416 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:57:28,416 - INFO -   [OP]: Height:        60.0
+2026-03-16 08:57:28,416 - INFO -   [OP]: Pitch:         -45
+2026-03-16 08:57:28,416 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:57:28,416 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_45/ClearNoon/Town10HD
+2026-03-16 08:57:28,416 - INFO -   [OP]: ________________________________________
+2026-03-16 08:57:28,416 - INFO -   [OP]: 
+2026-03-16 08:57:38,681 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:57:49,144 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:32, 10.27s/it]
+2026-03-16 08:57:59,479 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:23, 10.38s/it]
+2026-03-16 08:58:09,791 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:12, 10.36s/it]
+2026-03-16 08:58:20,140 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.34s/it]
+2026-03-16 08:58:30,421 - INFO -   [OP]: 50%|█████     | 5/10 [00:51<00:51, 10.34s/it]
+2026-03-16 08:58:40,507 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.32s/it]
+2026-03-16 08:58:50,956 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:30, 10.25s/it]
+2026-03-16 08:59:01,296 - INFO -   [OP]: 80%|████████  | 8/10 [01:22<00:20, 10.31s/it]
+2026-03-16 08:59:11,547 - INFO -   [OP]: 90%|█████████ | 9/10 [01:32<00:10, 10.32s/it]
+2026-03-16 08:59:11,629 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.30s/it]
+2026-03-16 08:59:11,642 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.32s/it]
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 1/10 (Frame 2155)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 2/10 (Frame 2156)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 3/10 (Frame 2157)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 4/10 (Frame 2158)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 5/10 (Frame 2159)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 6/10 (Frame 2160)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 7/10 (Frame 2161)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 8/10 (Frame 2162)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 9/10 (Frame 2163)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Saving sample 10/10 (Frame 2164)
+2026-03-16 08:59:11,643 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 08:59:11,644 - INFO -   [OP]: Total Time taken to generate images: 103.23880863189697
+2026-03-16 08:59:11,644 - INFO -   [OP]: Time per image: 10.323880863189697
+2026-03-16 08:59:11,700 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 08:59:16,706 - INFO - Generating H/P Variation: H=60 P=-60 for baseline Town10HD
+2026-03-16 08:59:16,706 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8008 --save_seg --extract_gbuffer
+2026-03-16 08:59:26,617 - INFO -   [OP]: ________________________________________
+2026-03-16 08:59:26,617 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 08:59:26,617 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 08:59:26,617 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 08:59:26,618 - INFO -   [OP]: Height:        60.0
+2026-03-16 08:59:26,618 - INFO -   [OP]: Pitch:         -60
+2026-03-16 08:59:26,618 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 08:59:26,618 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_60/ClearNoon/Town10HD
+2026-03-16 08:59:26,618 - INFO -   [OP]: ________________________________________
+2026-03-16 08:59:26,618 - INFO -   [OP]: 
+2026-03-16 08:59:36,890 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 08:59:47,344 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:32, 10.27s/it]
+2026-03-16 08:59:57,660 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:23, 10.38s/it]
+2026-03-16 09:00:08,034 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:12, 10.35s/it]
+2026-03-16 09:00:18,496 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.36s/it]
+2026-03-16 09:00:28,933 - INFO -   [OP]: 50%|█████     | 5/10 [00:51<00:51, 10.40s/it]
+2026-03-16 09:00:39,383 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.41s/it]
+2026-03-16 09:00:49,887 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:31, 10.42s/it]
+2026-03-16 09:01:00,290 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.45s/it]
+2026-03-16 09:01:10,438 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.43s/it]
+2026-03-16 09:01:10,515 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.35s/it]
+2026-03-16 09:01:10,528 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.39s/it]
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 1/10 (Frame 2173)
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 2/10 (Frame 2174)
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 3/10 (Frame 2175)
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 4/10 (Frame 2176)
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 5/10 (Frame 2177)
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 6/10 (Frame 2178)
+2026-03-16 09:01:10,528 - INFO -   [OP]: Saving sample 7/10 (Frame 2179)
+2026-03-16 09:01:10,529 - INFO -   [OP]: Saving sample 8/10 (Frame 2180)
+2026-03-16 09:01:10,529 - INFO -   [OP]: Saving sample 9/10 (Frame 2181)
+2026-03-16 09:01:10,529 - INFO -   [OP]: Saving sample 10/10 (Frame 2182)
+2026-03-16 09:01:10,529 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 09:01:10,529 - INFO -   [OP]: Total Time taken to generate images: 103.92262768745422
+2026-03-16 09:01:10,529 - INFO -   [OP]: Time per image: 10.392262768745422
+2026-03-16 09:01:10,600 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 09:01:15,605 - INFO - Generating H/P Variation: H=60 P=-90 for baseline Town10HD
+2026-03-16 09:01:15,606 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8009 --save_seg --extract_gbuffer
+2026-03-16 09:01:25,439 - INFO -   [OP]: ________________________________________
+2026-03-16 09:01:25,439 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 09:01:25,439 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 09:01:25,439 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 09:01:25,439 - INFO -   [OP]: Height:        60.0
+2026-03-16 09:01:25,439 - INFO -   [OP]: Pitch:         -90
+2026-03-16 09:01:25,439 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 09:01:25,439 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_90/ClearNoon/Town10HD
+2026-03-16 09:01:25,440 - INFO -   [OP]: ________________________________________
+2026-03-16 09:01:25,440 - INFO -   [OP]: 
+2026-03-16 09:01:35,864 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 09:01:46,574 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.43s/it]
+2026-03-16 09:01:57,073 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.59s/it]
+2026-03-16 09:02:07,420 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.55s/it]
+2026-03-16 09:02:17,734 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.47s/it]
+2026-03-16 09:02:28,034 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.41s/it]
+2026-03-16 09:02:38,671 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.38s/it]
+2026-03-16 09:02:49,087 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.46s/it]
+2026-03-16 09:02:59,544 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.45s/it]
+2026-03-16 09:03:09,822 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.45s/it]
+2026-03-16 09:03:09,905 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.40s/it]
+2026-03-16 09:03:09,918 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.45s/it]
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 1/10 (Frame 2191)
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 2/10 (Frame 2192)
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 3/10 (Frame 2193)
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 4/10 (Frame 2194)
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 5/10 (Frame 2195)
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 6/10 (Frame 2196)
+2026-03-16 09:03:09,918 - INFO -   [OP]: Saving sample 7/10 (Frame 2197)
+2026-03-16 09:03:09,919 - INFO -   [OP]: Saving sample 8/10 (Frame 2198)
+2026-03-16 09:03:09,919 - INFO -   [OP]: Saving sample 9/10 (Frame 2199)
+2026-03-16 09:03:09,919 - INFO -   [OP]: Saving sample 10/10 (Frame 2200)
+2026-03-16 09:03:09,919 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 09:03:09,919 - INFO -   [OP]: Total Time taken to generate images: 104.49110174179077
+2026-03-16 09:03:09,919 - INFO -   [OP]: Time per image: 10.449110174179078
+2026-03-16 09:03:09,978 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 09:03:14,983 - INFO - Pipeline Execution Complete
+2026-03-16 11:57:39,572 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-16 11:57:39,676 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-16 11:57:39,676 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
+2026-03-16 11:57:39,676 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-16 11:57:39,676 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg --extract_gbuffer
+2026-03-16 11:57:54,584 - INFO -   [OP]: ________________________________________
+2026-03-16 11:57:54,584 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 11:57:54,584 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 11:57:54,584 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 11:57:54,584 - INFO -   [OP]: Height:        15.0
+2026-03-16 11:57:54,584 - INFO -   [OP]: Pitch:         -45
+2026-03-16 11:57:54,584 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 11:57:54,584 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_45/ClearNoon/Town10HD
+2026-03-16 11:57:54,584 - INFO -   [OP]: ________________________________________
+2026-03-16 11:57:54,584 - INFO -   [OP]: 
+2026-03-16 11:58:05,240 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 11:58:16,003 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:35, 10.66s/it]
+2026-03-16 11:58:26,660 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:25, 10.72s/it]
+2026-03-16 11:58:37,289 - INFO -   [OP]: 30%|███       | 3/10 [00:32<01:14, 10.69s/it]
+2026-03-16 11:58:47,859 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.67s/it]
+2026-03-16 11:58:58,338 - INFO -   [OP]: 50%|█████     | 5/10 [00:53<00:53, 10.63s/it]
+2026-03-16 11:59:08,639 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:42, 10.58s/it]
+2026-03-16 11:59:18,848 - INFO -   [OP]: 70%|███████   | 7/10 [01:14<00:31, 10.49s/it]
+2026-03-16 11:59:28,953 - INFO -   [OP]: 80%|████████  | 8/10 [01:24<00:20, 10.40s/it]
+2026-03-16 11:59:39,317 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.31s/it]
+2026-03-16 11:59:39,390 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.32s/it]
+2026-03-16 11:59:39,404 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.48s/it]
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 1/10 (Frame 2209)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 2/10 (Frame 2210)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 3/10 (Frame 2211)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 4/10 (Frame 2212)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 5/10 (Frame 2213)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 6/10 (Frame 2214)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 7/10 (Frame 2215)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 8/10 (Frame 2216)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 9/10 (Frame 2217)
+2026-03-16 11:59:39,404 - INFO -   [OP]: Saving sample 10/10 (Frame 2218)
+2026-03-16 11:59:39,405 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 11:59:39,405 - INFO -   [OP]: Total Time taken to generate images: 104.85487151145935
+2026-03-16 11:59:39,405 - INFO -   [OP]: Time per image: 10.485487151145936
+2026-03-16 11:59:39,477 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 11:59:44,482 - INFO - Generating H/P Variation: H=15 P=-60 for baseline Town10HD
+2026-03-16 11:59:44,482 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8002 --save_seg --extract_gbuffer
+2026-03-16 11:59:54,810 - INFO -   [OP]: ________________________________________
+2026-03-16 11:59:54,811 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 11:59:54,811 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 11:59:54,811 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 11:59:54,811 - INFO -   [OP]: Height:        15.0
+2026-03-16 11:59:54,811 - INFO -   [OP]: Pitch:         -60
+2026-03-16 11:59:54,811 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 11:59:54,811 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_60/ClearNoon/Town10HD
+2026-03-16 11:59:54,811 - INFO -   [OP]: ________________________________________
+2026-03-16 11:59:54,811 - INFO -   [OP]: 
+2026-03-16 12:00:05,277 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:00:15,937 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.47s/it]
+2026-03-16 12:00:26,560 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.58s/it]
+2026-03-16 12:00:37,256 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:14, 10.60s/it]
+2026-03-16 12:00:47,684 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.64s/it]
+2026-03-16 12:00:58,039 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.56s/it]
+2026-03-16 12:01:08,269 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:41, 10.49s/it]
+2026-03-16 12:01:18,490 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.41s/it]
+2026-03-16 12:01:28,730 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.35s/it]
+2026-03-16 12:01:39,108 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.31s/it]
+2026-03-16 12:01:39,189 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.33s/it]
+2026-03-16 12:01:39,203 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.44s/it]
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 1/10 (Frame 2227)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 2/10 (Frame 2228)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 3/10 (Frame 2229)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 4/10 (Frame 2230)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 5/10 (Frame 2231)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 6/10 (Frame 2232)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 7/10 (Frame 2233)
+2026-03-16 12:01:39,203 - INFO -   [OP]: Saving sample 8/10 (Frame 2234)
+2026-03-16 12:01:39,204 - INFO -   [OP]: Saving sample 9/10 (Frame 2235)
+2026-03-16 12:01:39,204 - INFO -   [OP]: Saving sample 10/10 (Frame 2236)
+2026-03-16 12:01:39,204 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:01:39,204 - INFO -   [OP]: Total Time taken to generate images: 104.40418553352356
+2026-03-16 12:01:39,204 - INFO -   [OP]: Time per image: 10.440418553352355
+2026-03-16 12:01:39,274 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:01:44,278 - INFO - Generating H/P Variation: H=15 P=-90 for baseline Town10HD
+2026-03-16 12:01:44,278 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8003 --save_seg --extract_gbuffer
+2026-03-16 12:01:54,475 - INFO -   [OP]: ________________________________________
+2026-03-16 12:01:54,476 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:01:54,476 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:01:54,476 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:01:54,476 - INFO -   [OP]: Height:        15.0
+2026-03-16 12:01:54,476 - INFO -   [OP]: Pitch:         -90
+2026-03-16 12:01:54,476 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:01:54,476 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_90/ClearNoon/Town10HD
+2026-03-16 12:01:54,476 - INFO -   [OP]: ________________________________________
+2026-03-16 12:01:54,476 - INFO -   [OP]: 
+2026-03-16 12:02:04,734 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:02:15,560 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:32, 10.26s/it]
+2026-03-16 12:02:26,080 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.59s/it]
+2026-03-16 12:02:36,483 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.56s/it]
+2026-03-16 12:02:47,026 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:02, 10.50s/it]
+2026-03-16 12:02:57,398 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.51s/it]
+2026-03-16 12:03:08,115 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.47s/it]
+2026-03-16 12:03:18,694 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.55s/it]
+2026-03-16 12:03:28,958 - INFO -   [OP]: 80%|████████  | 8/10 [01:24<00:21, 10.56s/it]
+2026-03-16 12:03:39,206 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.47s/it]
+2026-03-16 12:03:39,285 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.40s/it]
+2026-03-16 12:03:39,308 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.48s/it]
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 1/10 (Frame 2245)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 2/10 (Frame 2246)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 3/10 (Frame 2247)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 4/10 (Frame 2248)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 5/10 (Frame 2249)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 6/10 (Frame 2250)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 7/10 (Frame 2251)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 8/10 (Frame 2252)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 9/10 (Frame 2253)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Saving sample 10/10 (Frame 2254)
+2026-03-16 12:03:39,309 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:03:39,309 - INFO -   [OP]: Total Time taken to generate images: 104.84499907493591
+2026-03-16 12:03:39,309 - INFO -   [OP]: Time per image: 10.484499907493591
+2026-03-16 12:03:39,401 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:03:44,406 - INFO - Generating H/P Variation: H=35 P=-45 for baseline Town10HD
+2026-03-16 12:03:44,407 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8004 --save_seg --extract_gbuffer
+2026-03-16 12:03:54,757 - INFO -   [OP]: ________________________________________
+2026-03-16 12:03:54,758 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:03:54,758 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:03:54,758 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:03:54,758 - INFO -   [OP]: Height:        35.0
+2026-03-16 12:03:54,758 - INFO -   [OP]: Pitch:         -45
+2026-03-16 12:03:54,758 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:03:54,758 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_45/ClearNoon/Town10HD
+2026-03-16 12:03:54,758 - INFO -   [OP]: ________________________________________
+2026-03-16 12:03:54,758 - INFO -   [OP]: 
+2026-03-16 12:04:05,162 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:04:15,615 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.40s/it]
+2026-03-16 12:04:26,065 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:23, 10.43s/it]
+2026-03-16 12:04:36,497 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.44s/it]
+2026-03-16 12:04:46,835 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.44s/it]
+2026-03-16 12:04:57,069 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.40s/it]
+2026-03-16 12:05:07,307 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.34s/it]
+2026-03-16 12:05:17,617 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:30, 10.31s/it]
+2026-03-16 12:05:27,756 - INFO -   [OP]: 80%|████████  | 8/10 [01:22<00:20, 10.31s/it]
+2026-03-16 12:05:38,000 - INFO -   [OP]: 90%|█████████ | 9/10 [01:32<00:10, 10.26s/it]
+2026-03-16 12:05:38,084 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.25s/it]
+2026-03-16 12:05:38,098 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.33s/it]
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 1/10 (Frame 2263)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 2/10 (Frame 2264)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 3/10 (Frame 2265)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 4/10 (Frame 2266)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 5/10 (Frame 2267)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 6/10 (Frame 2268)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 7/10 (Frame 2269)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 8/10 (Frame 2270)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 9/10 (Frame 2271)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Saving sample 10/10 (Frame 2272)
+2026-03-16 12:05:38,098 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:05:38,098 - INFO -   [OP]: Total Time taken to generate images: 103.35166954994202
+2026-03-16 12:05:38,098 - INFO -   [OP]: Time per image: 10.335166954994202
+2026-03-16 12:05:38,169 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:05:43,174 - INFO - Generating H/P Variation: H=35 P=-60 for baseline Town10HD
+2026-03-16 12:05:43,175 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8005 --save_seg --extract_gbuffer
+2026-03-16 12:05:53,356 - INFO -   [OP]: ________________________________________
+2026-03-16 12:05:53,356 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:05:53,356 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:05:53,356 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:05:53,356 - INFO -   [OP]: Height:        35.0
+2026-03-16 12:05:53,356 - INFO -   [OP]: Pitch:         -60
+2026-03-16 12:05:53,356 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:05:53,356 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_60/ClearNoon/Town10HD
+2026-03-16 12:05:53,356 - INFO -   [OP]: ________________________________________
+2026-03-16 12:05:53,356 - INFO -   [OP]: 
+2026-03-16 12:06:03,751 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:06:14,412 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.40s/it]
+2026-03-16 12:06:24,926 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.55s/it]
+2026-03-16 12:06:35,445 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.53s/it]
+2026-03-16 12:06:45,852 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.53s/it]
+2026-03-16 12:06:56,383 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.48s/it]
+2026-03-16 12:07:06,626 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:42, 10.50s/it]
+2026-03-16 12:07:16,947 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.42s/it]
+2026-03-16 12:07:27,252 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.39s/it]
+2026-03-16 12:07:37,398 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.36s/it]
+2026-03-16 12:07:37,473 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.29s/it]
+2026-03-16 12:07:37,486 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 12:07:37,486 - INFO -   [OP]: Saving sample 1/10 (Frame 2281)
+2026-03-16 12:07:37,486 - INFO -   [OP]: Saving sample 2/10 (Frame 2282)
+2026-03-16 12:07:37,486 - INFO -   [OP]: Saving sample 3/10 (Frame 2283)
+2026-03-16 12:07:37,486 - INFO -   [OP]: Saving sample 4/10 (Frame 2284)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Saving sample 5/10 (Frame 2285)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Saving sample 6/10 (Frame 2286)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Saving sample 7/10 (Frame 2287)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Saving sample 8/10 (Frame 2288)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Saving sample 9/10 (Frame 2289)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Saving sample 10/10 (Frame 2290)
+2026-03-16 12:07:37,487 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:07:37,487 - INFO -   [OP]: Total Time taken to generate images: 104.14241147041321
+2026-03-16 12:07:37,487 - INFO -   [OP]: Time per image: 10.41424114704132
+2026-03-16 12:07:37,548 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:07:42,553 - INFO - Generating H/P Variation: H=35 P=-90 for baseline Town10HD
+2026-03-16 12:07:42,553 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8006 --save_seg --extract_gbuffer
+2026-03-16 12:07:52,481 - INFO -   [OP]: ________________________________________
+2026-03-16 12:07:52,481 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:07:52,481 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:07:52,481 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:07:52,481 - INFO -   [OP]: Height:        35.0
+2026-03-16 12:07:52,481 - INFO -   [OP]: Pitch:         -90
+2026-03-16 12:07:52,481 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:07:52,481 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_90/ClearNoon/Town10HD
+2026-03-16 12:07:52,481 - INFO -   [OP]: ________________________________________
+2026-03-16 12:07:52,481 - INFO -   [OP]: 
+2026-03-16 12:08:03,370 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:08:14,256 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:38, 10.89s/it]
+2026-03-16 12:08:24,818 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:27, 10.89s/it]
+2026-03-16 12:08:35,511 - INFO -   [OP]: 30%|███       | 3/10 [00:32<01:15, 10.74s/it]
+2026-03-16 12:08:45,996 - INFO -   [OP]: 40%|████      | 4/10 [00:43<01:04, 10.72s/it]
+2026-03-16 12:08:56,504 - INFO -   [OP]: 50%|█████     | 5/10 [00:53<00:53, 10.64s/it]
+2026-03-16 12:09:07,073 - INFO -   [OP]: 60%|██████    | 6/10 [01:04<00:42, 10.59s/it]
+2026-03-16 12:09:17,774 - INFO -   [OP]: 70%|███████   | 7/10 [01:14<00:31, 10.58s/it]
+2026-03-16 12:09:28,229 - INFO -   [OP]: 80%|████████  | 8/10 [01:25<00:21, 10.62s/it]
+2026-03-16 12:09:38,501 - INFO -   [OP]: 90%|█████████ | 9/10 [01:35<00:10, 10.57s/it]
+2026-03-16 12:09:38,584 - INFO -   [OP]: 100%|██████████| 10/10 [01:46<00:00, 10.48s/it]
+2026-03-16 12:09:38,597 - INFO -   [OP]: 100%|██████████| 10/10 [01:46<00:00, 10.61s/it]
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 1/10 (Frame 2299)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 2/10 (Frame 2300)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 3/10 (Frame 2301)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 4/10 (Frame 2302)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 5/10 (Frame 2303)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 6/10 (Frame 2304)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 7/10 (Frame 2305)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 8/10 (Frame 2306)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 9/10 (Frame 2307)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Saving sample 10/10 (Frame 2308)
+2026-03-16 12:09:38,598 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:09:38,598 - INFO -   [OP]: Total Time taken to generate images: 106.12880778312683
+2026-03-16 12:09:38,598 - INFO -   [OP]: Time per image: 10.612880778312682
+2026-03-16 12:09:38,665 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:09:43,670 - INFO - Generating H/P Variation: H=60 P=-45 for baseline Town10HD
+2026-03-16 12:09:43,671 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8007 --save_seg --extract_gbuffer
+2026-03-16 12:09:53,624 - INFO -   [OP]: ________________________________________
+2026-03-16 12:09:53,625 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:09:53,625 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:09:53,625 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:09:53,625 - INFO -   [OP]: Height:        60.0
+2026-03-16 12:09:53,625 - INFO -   [OP]: Pitch:         -45
+2026-03-16 12:09:53,625 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:09:53,625 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_45/ClearNoon/Town10HD
+2026-03-16 12:09:53,625 - INFO -   [OP]: ________________________________________
+2026-03-16 12:09:53,625 - INFO -   [OP]: 
+2026-03-16 12:10:04,085 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:10:14,631 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.46s/it]
+2026-03-16 12:10:25,067 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.51s/it]
+2026-03-16 12:10:35,592 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.48s/it]
+2026-03-16 12:10:46,100 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.50s/it]
+2026-03-16 12:10:56,518 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.50s/it]
+2026-03-16 12:11:06,955 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.47s/it]
+2026-03-16 12:11:17,451 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.46s/it]
+2026-03-16 12:11:27,899 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.47s/it]
+2026-03-16 12:11:38,193 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.46s/it]
+2026-03-16 12:11:38,275 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 12:11:38,288 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.47s/it]
+2026-03-16 12:11:38,288 - INFO -   [OP]: Saving sample 1/10 (Frame 2317)
+2026-03-16 12:11:38,288 - INFO -   [OP]: Saving sample 2/10 (Frame 2318)
+2026-03-16 12:11:38,288 - INFO -   [OP]: Saving sample 3/10 (Frame 2319)
+2026-03-16 12:11:38,288 - INFO -   [OP]: Saving sample 4/10 (Frame 2320)
+2026-03-16 12:11:38,288 - INFO -   [OP]: Saving sample 5/10 (Frame 2321)
+2026-03-16 12:11:38,289 - INFO -   [OP]: Saving sample 6/10 (Frame 2322)
+2026-03-16 12:11:38,289 - INFO -   [OP]: Saving sample 7/10 (Frame 2323)
+2026-03-16 12:11:38,289 - INFO -   [OP]: Saving sample 8/10 (Frame 2324)
+2026-03-16 12:11:38,289 - INFO -   [OP]: Saving sample 9/10 (Frame 2325)
+2026-03-16 12:11:38,289 - INFO -   [OP]: Saving sample 10/10 (Frame 2326)
+2026-03-16 12:11:38,289 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:11:38,289 - INFO -   [OP]: Total Time taken to generate images: 104.67481398582458
+2026-03-16 12:11:38,289 - INFO -   [OP]: Time per image: 10.467481398582459
+2026-03-16 12:11:38,361 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:11:43,362 - INFO - Generating H/P Variation: H=60 P=-60 for baseline Town10HD
+2026-03-16 12:11:43,362 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8008 --save_seg --extract_gbuffer
+2026-03-16 12:11:53,579 - INFO -   [OP]: ________________________________________
+2026-03-16 12:11:53,579 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:11:53,580 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:11:53,580 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:11:53,580 - INFO -   [OP]: Height:        60.0
+2026-03-16 12:11:53,580 - INFO -   [OP]: Pitch:         -60
+2026-03-16 12:11:53,580 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:11:53,580 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_60/ClearNoon/Town10HD
+2026-03-16 12:11:53,580 - INFO -   [OP]: ________________________________________
+2026-03-16 12:11:53,580 - INFO -   [OP]: 
+2026-03-16 12:12:03,952 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:12:14,500 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.37s/it]
+2026-03-16 12:12:25,062 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:23, 10.48s/it]
+2026-03-16 12:12:35,548 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.52s/it]
+2026-03-16 12:12:46,055 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:03, 10.50s/it]
+2026-03-16 12:12:56,603 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.50s/it]
+2026-03-16 12:13:07,062 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:42, 10.52s/it]
+2026-03-16 12:13:17,669 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.50s/it]
+2026-03-16 12:13:28,192 - INFO -   [OP]: 80%|████████  | 8/10 [01:24<00:21, 10.53s/it]
+2026-03-16 12:13:38,552 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.53s/it]
+2026-03-16 12:13:38,637 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.48s/it]
+2026-03-16 12:13:38,654 - INFO -   [OP]: 100%|██████████| 10/10 [01:45<00:00, 10.51s/it]
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 1/10 (Frame 2335)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 2/10 (Frame 2336)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 3/10 (Frame 2337)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 4/10 (Frame 2338)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 5/10 (Frame 2339)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 6/10 (Frame 2340)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 7/10 (Frame 2341)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 8/10 (Frame 2342)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 9/10 (Frame 2343)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Saving sample 10/10 (Frame 2344)
+2026-03-16 12:13:38,654 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:13:38,654 - INFO -   [OP]: Total Time taken to generate images: 105.08618879318237
+2026-03-16 12:13:38,655 - INFO -   [OP]: Time per image: 10.508618879318238
+2026-03-16 12:13:38,733 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:13:43,738 - INFO - Generating H/P Variation: H=60 P=-90 for baseline Town10HD
+2026-03-16 12:13:43,738 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8009 --save_seg --extract_gbuffer
+2026-03-16 12:13:53,693 - INFO -   [OP]: ________________________________________
+2026-03-16 12:13:53,693 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 12:13:53,694 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 12:13:53,694 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 12:13:53,694 - INFO -   [OP]: Height:        60.0
+2026-03-16 12:13:53,694 - INFO -   [OP]: Pitch:         -90
+2026-03-16 12:13:53,694 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 12:13:53,694 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_90/ClearNoon/Town10HD
+2026-03-16 12:13:53,694 - INFO -   [OP]: ________________________________________
+2026-03-16 12:13:53,694 - INFO -   [OP]: 
+2026-03-16 12:14:04,044 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 12:14:14,733 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.35s/it]
+2026-03-16 12:14:25,023 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.55s/it]
+2026-03-16 12:14:35,390 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.43s/it]
+2026-03-16 12:14:45,760 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.41s/it]
+2026-03-16 12:14:56,201 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:51, 10.39s/it]
+2026-03-16 12:15:06,696 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.41s/it]
+2026-03-16 12:15:17,229 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.44s/it]
+2026-03-16 12:15:27,627 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.47s/it]
+2026-03-16 12:15:37,917 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.45s/it]
+2026-03-16 12:15:37,996 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.40s/it]
+2026-03-16 12:15:38,008 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.43s/it]
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 1/10 (Frame 2353)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 2/10 (Frame 2354)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 3/10 (Frame 2355)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 4/10 (Frame 2356)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 5/10 (Frame 2357)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 6/10 (Frame 2358)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 7/10 (Frame 2359)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 8/10 (Frame 2360)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 9/10 (Frame 2361)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Saving sample 10/10 (Frame 2362)
+2026-03-16 12:15:38,008 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 12:15:38,008 - INFO -   [OP]: Total Time taken to generate images: 104.32646012306213
+2026-03-16 12:15:38,009 - INFO -   [OP]: Time per image: 10.432646012306213
+2026-03-16 12:15:38,072 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 12:15:43,077 - INFO - Pipeline Execution Complete
+2026-03-16 13:03:53,892 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-16 13:03:53,922 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-16 13:03:53,933 - INFO - Baseline for Town10HD H=2.5 P=0 already exists. Skipping.
+2026-03-16 13:03:53,933 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-16 13:03:53,933 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg --extract_gbuffer
+2026-03-16 13:07:22,743 - INFO - Starting SkyScenes Data Generation Pipeline
+2026-03-16 13:07:22,743 - INFO - Root Directory: /home/df/data/datasets/SkyScenes/proof_of_concept
+2026-03-16 13:07:22,743 - INFO - Force enabled. Cleaning up baseline directory: /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD
+2026-03-16 13:07:22,860 - INFO - Generating Baseline: Town10HD, H=2.5, P=0
+2026-03-16 13:07:22,860 - INFO - Executing: uv run --python 3.8 python manualSpawning.py --town Town10HD --weather ClearNoon --height 2.5 --pitch 0 --num 10 --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8001 --save_seg --extract_gbuffer
+2026-03-16 13:07:36,317 - INFO -   [OP]: ________________________________________
+2026-03-16 13:07:36,317 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:07:36,317 - INFO -   [OP]: Town:           Town10HD
+2026-03-16 13:07:36,317 - INFO -   [OP]: Weather:        ClearNoon
+2026-03-16 13:07:36,317 - INFO -   [OP]: Height:         2.5
+2026-03-16 13:07:36,317 - INFO -   [OP]: Pitch:          0
+2026-03-16 13:07:36,317 - INFO -   [OP]: Num of images:  10
+2026-03-16 13:07:36,317 - INFO -   [OP]: Saving DIR:     /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD
+2026-03-16 13:07:36,317 - INFO -   [OP]: ________________________________________
+2026-03-16 13:07:36,317 - INFO -   [OP]: Number of vehicles spawned: 102 in time: 0.3500404357910156
+2026-03-16 13:07:36,317 - INFO -   [OP]: Number of peopleSpawnedSidewalk: 173 in time: 0.2101595401763916
+2026-03-16 13:07:36,318 - INFO -   [OP]: ________________________________________
+2026-03-16 13:07:36,318 - INFO -   [OP]: 
+2026-03-16 13:07:46,002 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:07:58,916 - INFO -   [OP]: 10%|█         | 1/10 [00:09<01:27,  9.69s/it]
+2026-03-16 13:08:10,859 - INFO -   [OP]: 20%|██        | 2/10 [00:22<01:32, 11.58s/it]
+2026-03-16 13:08:23,047 - INFO -   [OP]: 30%|███       | 3/10 [00:34<01:22, 11.75s/it]
+2026-03-16 13:08:35,182 - INFO -   [OP]: 40%|████      | 4/10 [00:46<01:11, 11.92s/it]
+2026-03-16 13:08:47,014 - INFO -   [OP]: 50%|█████     | 5/10 [00:58<00:59, 12.00s/it]
+2026-03-16 13:08:58,790 - INFO -   [OP]: 60%|██████    | 6/10 [01:10<00:47, 11.94s/it]
+2026-03-16 13:09:10,504 - INFO -   [OP]: 70%|███████   | 7/10 [01:22<00:35, 11.89s/it]
+2026-03-16 13:09:22,360 - INFO -   [OP]: 80%|████████  | 8/10 [01:34<00:23, 11.83s/it]
+2026-03-16 13:09:34,333 - INFO -   [OP]: 90%|█████████ | 9/10 [01:46<00:11, 11.84s/it]
+2026-03-16 13:09:34,345 - INFO -   [OP]: 100%|██████████| 10/10 [01:58<00:00, 11.88s/it]
+2026-03-16 13:09:34,430 - INFO -   [OP]: 100%|██████████| 10/10 [01:58<00:00, 11.80s/it]
+2026-03-16 13:09:34,430 - INFO -   [OP]: Saving sample 1/10 (Frame 17752)
+2026-03-16 13:09:34,430 - INFO -   [OP]: Saving sample 2/10 (Frame 17762)
+2026-03-16 13:09:34,430 - INFO -   [OP]: Saving sample 3/10 (Frame 17772)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 4/10 (Frame 17782)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 5/10 (Frame 17792)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 6/10 (Frame 17802)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 7/10 (Frame 17812)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 8/10 (Frame 17822)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 9/10 (Frame 17832)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Saving sample 10/10 (Frame 17842)
+2026-03-16 13:09:34,431 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:09:34,431 - INFO -   [OP]: 
+2026-03-16 13:09:34,431 - INFO -   [OP]: Total Time taken to generate images:  118.78455758094788
+2026-03-16 13:09:34,431 - INFO -   [OP]: Time taken per image:                 11.878455758094788
+2026-03-16 13:09:35,236 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:09:40,241 - INFO - Generating H/P Variation: H=15 P=-45 for baseline Town10HD
+2026-03-16 13:09:40,311 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8002 --save_seg --extract_gbuffer
+2026-03-16 13:09:51,743 - INFO -   [OP]: ________________________________________
+2026-03-16 13:09:51,744 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:09:51,744 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:09:51,744 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:09:51,744 - INFO -   [OP]: Height:        15.0
+2026-03-16 13:09:51,744 - INFO -   [OP]: Pitch:         -45
+2026-03-16 13:09:51,744 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:09:51,744 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_45/ClearNoon/Town10HD
+2026-03-16 13:09:51,744 - INFO -   [OP]: ________________________________________
+2026-03-16 13:09:51,744 - INFO -   [OP]: 
+2026-03-16 13:10:02,456 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:10:12,857 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:36, 10.71s/it]
+2026-03-16 13:10:23,246 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.53s/it]
+2026-03-16 13:10:33,625 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.47s/it]
+2026-03-16 13:10:43,994 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.43s/it]
+2026-03-16 13:10:54,310 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.41s/it]
+2026-03-16 13:11:04,756 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.38s/it]
+2026-03-16 13:11:15,353 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.40s/it]
+2026-03-16 13:11:26,103 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.46s/it]
+2026-03-16 13:11:36,617 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.55s/it]
+2026-03-16 13:11:36,695 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.54s/it]
+2026-03-16 13:11:36,709 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.50s/it]
+2026-03-16 13:11:36,709 - INFO -   [OP]: Saving sample 1/10 (Frame 17851)
+2026-03-16 13:11:36,709 - INFO -   [OP]: Saving sample 2/10 (Frame 17852)
+2026-03-16 13:11:36,709 - INFO -   [OP]: Saving sample 3/10 (Frame 17853)
+2026-03-16 13:11:36,709 - INFO -   [OP]: Saving sample 4/10 (Frame 17854)
+2026-03-16 13:11:36,709 - INFO -   [OP]: Saving sample 5/10 (Frame 17855)
+2026-03-16 13:11:36,710 - INFO -   [OP]: Saving sample 6/10 (Frame 17856)
+2026-03-16 13:11:36,710 - INFO -   [OP]: Saving sample 7/10 (Frame 17857)
+2026-03-16 13:11:36,710 - INFO -   [OP]: Saving sample 8/10 (Frame 17858)
+2026-03-16 13:11:36,710 - INFO -   [OP]: Saving sample 9/10 (Frame 17859)
+2026-03-16 13:11:36,710 - INFO -   [OP]: Saving sample 10/10 (Frame 17860)
+2026-03-16 13:11:36,710 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:11:36,710 - INFO -   [OP]: Total Time taken to generate images: 105.03016757965088
+2026-03-16 13:11:36,710 - INFO -   [OP]: Time per image: 10.503016757965089
+2026-03-16 13:11:36,779 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:11:41,782 - INFO - Generating H/P Variation: H=15 P=-60 for baseline Town10HD
+2026-03-16 13:11:41,783 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8003 --save_seg --extract_gbuffer
+2026-03-16 13:11:51,809 - INFO -   [OP]: ________________________________________
+2026-03-16 13:11:51,810 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:11:51,810 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:11:51,810 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:11:51,810 - INFO -   [OP]: Height:        15.0
+2026-03-16 13:11:51,810 - INFO -   [OP]: Pitch:         -60
+2026-03-16 13:11:51,810 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:11:51,810 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_60/ClearNoon/Town10HD
+2026-03-16 13:11:51,810 - INFO -   [OP]: ________________________________________
+2026-03-16 13:11:51,810 - INFO -   [OP]: 
+2026-03-16 13:12:02,265 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:12:12,854 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.46s/it]
+2026-03-16 13:12:23,328 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.53s/it]
+2026-03-16 13:12:33,697 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.51s/it]
+2026-03-16 13:12:44,086 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.45s/it]
+2026-03-16 13:12:54,420 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.43s/it]
+2026-03-16 13:13:04,862 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.40s/it]
+2026-03-16 13:13:15,338 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.41s/it]
+2026-03-16 13:13:25,900 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.43s/it]
+2026-03-16 13:13:36,455 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.47s/it]
+2026-03-16 13:13:36,540 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.50s/it]
+2026-03-16 13:13:36,554 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.47s/it]
+2026-03-16 13:13:36,554 - INFO -   [OP]: Saving sample 1/10 (Frame 17869)
+2026-03-16 13:13:36,554 - INFO -   [OP]: Saving sample 2/10 (Frame 17870)
+2026-03-16 13:13:36,554 - INFO -   [OP]: Saving sample 3/10 (Frame 17871)
+2026-03-16 13:13:36,554 - INFO -   [OP]: Saving sample 4/10 (Frame 17872)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Saving sample 5/10 (Frame 17873)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Saving sample 6/10 (Frame 17874)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Saving sample 7/10 (Frame 17875)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Saving sample 8/10 (Frame 17876)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Saving sample 9/10 (Frame 17877)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Saving sample 10/10 (Frame 17878)
+2026-03-16 13:13:36,555 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:13:36,555 - INFO -   [OP]: Total Time taken to generate images: 104.76471161842346
+2026-03-16 13:13:36,555 - INFO -   [OP]: Time per image: 10.476471161842346
+2026-03-16 13:13:36,623 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:13:41,628 - INFO - Generating H/P Variation: H=15 P=-90 for baseline Town10HD
+2026-03-16 13:13:41,628 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 15 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8004 --save_seg --extract_gbuffer
+2026-03-16 13:13:51,619 - INFO -   [OP]: ________________________________________
+2026-03-16 13:13:51,620 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:13:51,620 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:13:51,620 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:13:51,620 - INFO -   [OP]: Height:        15.0
+2026-03-16 13:13:51,620 - INFO -   [OP]: Pitch:         -90
+2026-03-16 13:13:51,620 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:13:51,620 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_15.0_P_90/ClearNoon/Town10HD
+2026-03-16 13:13:51,620 - INFO -   [OP]: ________________________________________
+2026-03-16 13:13:51,620 - INFO -   [OP]: 
+2026-03-16 13:14:02,149 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:14:12,459 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.53s/it]
+2026-03-16 13:14:22,918 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:23, 10.40s/it]
+2026-03-16 13:14:33,459 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:12, 10.43s/it]
+2026-03-16 13:14:43,678 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.47s/it]
+2026-03-16 13:14:53,982 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:51, 10.38s/it]
+2026-03-16 13:15:04,358 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.35s/it]
+2026-03-16 13:15:14,813 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:31, 10.36s/it]
+2026-03-16 13:15:25,222 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.39s/it]
+2026-03-16 13:15:35,656 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.40s/it]
+2026-03-16 13:15:35,738 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 13:15:35,752 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 1/10 (Frame 17887)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 2/10 (Frame 17888)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 3/10 (Frame 17889)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 4/10 (Frame 17890)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 5/10 (Frame 17891)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 6/10 (Frame 17892)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 7/10 (Frame 17893)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 8/10 (Frame 17894)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 9/10 (Frame 17895)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Saving sample 10/10 (Frame 17896)
+2026-03-16 13:15:35,752 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:15:35,752 - INFO -   [OP]: Total Time taken to generate images: 104.14466738700867
+2026-03-16 13:15:35,752 - INFO -   [OP]: Time per image: 10.414466738700867
+2026-03-16 13:15:35,817 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:15:40,823 - INFO - Generating H/P Variation: H=35 P=-45 for baseline Town10HD
+2026-03-16 13:15:40,823 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8005 --save_seg --extract_gbuffer
+2026-03-16 13:15:51,070 - INFO -   [OP]: ________________________________________
+2026-03-16 13:15:51,070 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:15:51,070 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:15:51,070 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:15:51,070 - INFO -   [OP]: Height:        35.0
+2026-03-16 13:15:51,070 - INFO -   [OP]: Pitch:         -45
+2026-03-16 13:15:51,070 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:15:51,070 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_45/ClearNoon/Town10HD
+2026-03-16 13:15:51,070 - INFO -   [OP]: ________________________________________
+2026-03-16 13:15:51,070 - INFO -   [OP]: 
+2026-03-16 13:16:01,526 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:16:12,068 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.46s/it]
+2026-03-16 13:16:22,528 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:24, 10.51s/it]
+2026-03-16 13:16:32,868 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.49s/it]
+2026-03-16 13:16:43,087 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.43s/it]
+2026-03-16 13:16:53,429 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:51, 10.35s/it]
+2026-03-16 13:17:03,684 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.35s/it]
+2026-03-16 13:17:14,101 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:30, 10.32s/it]
+2026-03-16 13:17:24,481 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.35s/it]
+2026-03-16 13:17:34,909 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.36s/it]
+2026-03-16 13:17:34,991 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.38s/it]
+2026-03-16 13:17:35,006 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.39s/it]
+2026-03-16 13:17:35,006 - INFO -   [OP]: Saving sample 1/10 (Frame 17905)
+2026-03-16 13:17:35,006 - INFO -   [OP]: Saving sample 2/10 (Frame 17906)
+2026-03-16 13:17:35,006 - INFO -   [OP]: Saving sample 3/10 (Frame 17907)
+2026-03-16 13:17:35,006 - INFO -   [OP]: Saving sample 4/10 (Frame 17908)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Saving sample 5/10 (Frame 17909)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Saving sample 6/10 (Frame 17910)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Saving sample 7/10 (Frame 17911)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Saving sample 8/10 (Frame 17912)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Saving sample 9/10 (Frame 17913)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Saving sample 10/10 (Frame 17914)
+2026-03-16 13:17:35,007 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:17:35,007 - INFO -   [OP]: Total Time taken to generate images: 103.94811940193176
+2026-03-16 13:17:35,007 - INFO -   [OP]: Time per image: 10.394811940193176
+2026-03-16 13:17:35,074 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:17:40,080 - INFO - Generating H/P Variation: H=35 P=-60 for baseline Town10HD
+2026-03-16 13:17:40,080 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8006 --save_seg --extract_gbuffer
+2026-03-16 13:17:50,111 - INFO -   [OP]: ________________________________________
+2026-03-16 13:17:50,111 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:17:50,111 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:17:50,111 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:17:50,111 - INFO -   [OP]: Height:        35.0
+2026-03-16 13:17:50,111 - INFO -   [OP]: Pitch:         -60
+2026-03-16 13:17:50,112 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:17:50,112 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_60/ClearNoon/Town10HD
+2026-03-16 13:17:50,112 - INFO -   [OP]: ________________________________________
+2026-03-16 13:17:50,112 - INFO -   [OP]: 
+2026-03-16 13:18:00,628 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:18:11,180 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:34, 10.52s/it]
+2026-03-16 13:18:21,686 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.54s/it]
+2026-03-16 13:18:32,156 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.52s/it]
+2026-03-16 13:18:42,594 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.50s/it]
+2026-03-16 13:18:52,859 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.48s/it]
+2026-03-16 13:19:03,194 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.41s/it]
+2026-03-16 13:19:13,611 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.38s/it]
+2026-03-16 13:19:24,101 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.39s/it]
+2026-03-16 13:19:34,490 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.42s/it]
+2026-03-16 13:19:34,571 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 13:19:34,584 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.45s/it]
+2026-03-16 13:19:34,584 - INFO -   [OP]: Saving sample 1/10 (Frame 17923)
+2026-03-16 13:19:34,584 - INFO -   [OP]: Saving sample 2/10 (Frame 17924)
+2026-03-16 13:19:34,584 - INFO -   [OP]: Saving sample 3/10 (Frame 17925)
+2026-03-16 13:19:34,584 - INFO -   [OP]: Saving sample 4/10 (Frame 17926)
+2026-03-16 13:19:34,584 - INFO -   [OP]: Saving sample 5/10 (Frame 17927)
+2026-03-16 13:19:34,585 - INFO -   [OP]: Saving sample 6/10 (Frame 17928)
+2026-03-16 13:19:34,585 - INFO -   [OP]: Saving sample 7/10 (Frame 17929)
+2026-03-16 13:19:34,585 - INFO -   [OP]: Saving sample 8/10 (Frame 17930)
+2026-03-16 13:19:34,585 - INFO -   [OP]: Saving sample 9/10 (Frame 17931)
+2026-03-16 13:19:34,585 - INFO -   [OP]: Saving sample 10/10 (Frame 17932)
+2026-03-16 13:19:34,585 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:19:34,585 - INFO -   [OP]: Total Time taken to generate images: 104.48110842704773
+2026-03-16 13:19:34,585 - INFO -   [OP]: Time per image: 10.448110842704773
+2026-03-16 13:19:34,648 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:19:39,654 - INFO - Generating H/P Variation: H=35 P=-90 for baseline Town10HD
+2026-03-16 13:19:39,654 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 35 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8007 --save_seg --extract_gbuffer
+2026-03-16 13:19:49,884 - INFO -   [OP]: ________________________________________
+2026-03-16 13:19:49,885 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:19:49,885 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:19:49,885 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:19:49,885 - INFO -   [OP]: Height:        35.0
+2026-03-16 13:19:49,885 - INFO -   [OP]: Pitch:         -90
+2026-03-16 13:19:49,885 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:19:49,885 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_35.0_P_90/ClearNoon/Town10HD
+2026-03-16 13:19:49,885 - INFO -   [OP]: ________________________________________
+2026-03-16 13:19:49,885 - INFO -   [OP]: 
+2026-03-16 13:20:00,555 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:20:11,090 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:36, 10.67s/it]
+2026-03-16 13:20:21,696 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.59s/it]
+2026-03-16 13:20:32,248 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:14, 10.60s/it]
+2026-03-16 13:20:42,654 - INFO -   [OP]: 40%|████      | 4/10 [00:42<01:03, 10.58s/it]
+2026-03-16 13:20:53,038 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.52s/it]
+2026-03-16 13:21:03,405 - INFO -   [OP]: 60%|██████    | 6/10 [01:03<00:41, 10.47s/it]
+2026-03-16 13:21:13,819 - INFO -   [OP]: 70%|███████   | 7/10 [01:13<00:31, 10.44s/it]
+2026-03-16 13:21:24,242 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.43s/it]
+2026-03-16 13:21:34,733 - INFO -   [OP]: 90%|█████████ | 9/10 [01:34<00:10, 10.43s/it]
+2026-03-16 13:21:34,817 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.45s/it]
+2026-03-16 13:21:34,832 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.49s/it]
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 1/10 (Frame 17941)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 2/10 (Frame 17942)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 3/10 (Frame 17943)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 4/10 (Frame 17944)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 5/10 (Frame 17945)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 6/10 (Frame 17946)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 7/10 (Frame 17947)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 8/10 (Frame 17948)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 9/10 (Frame 17949)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Saving sample 10/10 (Frame 17950)
+2026-03-16 13:21:34,832 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:21:34,832 - INFO -   [OP]: Total Time taken to generate images: 104.95907855033875
+2026-03-16 13:21:34,832 - INFO -   [OP]: Time per image: 10.495907855033874
+2026-03-16 13:21:34,936 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:21:39,941 - INFO - Generating H/P Variation: H=60 P=-45 for baseline Town10HD
+2026-03-16 13:21:39,941 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -45 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8008 --save_seg --extract_gbuffer
+2026-03-16 13:21:50,779 - INFO -   [OP]: ________________________________________
+2026-03-16 13:21:50,779 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:21:50,779 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:21:50,779 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:21:50,779 - INFO -   [OP]: Height:        60.0
+2026-03-16 13:21:50,779 - INFO -   [OP]: Pitch:         -45
+2026-03-16 13:21:50,780 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:21:50,780 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_45/ClearNoon/Town10HD
+2026-03-16 13:21:50,780 - INFO -   [OP]: ________________________________________
+2026-03-16 13:21:50,780 - INFO -   [OP]: 
+2026-03-16 13:22:01,132 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:22:11,490 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:33, 10.35s/it]
+2026-03-16 13:22:21,927 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:22, 10.36s/it]
+2026-03-16 13:22:32,350 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:12, 10.39s/it]
+2026-03-16 13:22:42,758 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.40s/it]
+2026-03-16 13:22:53,122 - INFO -   [OP]: 50%|█████     | 5/10 [00:51<00:52, 10.41s/it]
+2026-03-16 13:23:03,468 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.39s/it]
+2026-03-16 13:23:13,917 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:31, 10.38s/it]
+2026-03-16 13:23:24,337 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.40s/it]
+2026-03-16 13:23:34,758 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.41s/it]
+2026-03-16 13:23:34,845 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.41s/it]
+2026-03-16 13:23:34,860 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.41s/it]
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 1/10 (Frame 17959)
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 2/10 (Frame 17960)
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 3/10 (Frame 17961)
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 4/10 (Frame 17962)
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 5/10 (Frame 17963)
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 6/10 (Frame 17964)
+2026-03-16 13:23:34,860 - INFO -   [OP]: Saving sample 7/10 (Frame 17965)
+2026-03-16 13:23:34,861 - INFO -   [OP]: Saving sample 8/10 (Frame 17966)
+2026-03-16 13:23:34,861 - INFO -   [OP]: Saving sample 9/10 (Frame 17967)
+2026-03-16 13:23:34,861 - INFO -   [OP]: Saving sample 10/10 (Frame 17968)
+2026-03-16 13:23:34,861 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:23:34,861 - INFO -   [OP]: Total Time taken to generate images: 104.09285998344421
+2026-03-16 13:23:34,861 - INFO -   [OP]: Time per image: 10.409285998344421
+2026-03-16 13:23:34,937 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:23:39,942 - INFO - Generating H/P Variation: H=60 P=-60 for baseline Town10HD
+2026-03-16 13:23:39,942 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -60 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8009 --save_seg --extract_gbuffer
+2026-03-16 13:23:50,107 - INFO -   [OP]: ________________________________________
+2026-03-16 13:23:50,108 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:23:50,108 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:23:50,108 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:23:50,108 - INFO -   [OP]: Height:        60.0
+2026-03-16 13:23:50,108 - INFO -   [OP]: Pitch:         -60
+2026-03-16 13:23:50,108 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:23:50,108 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_60/ClearNoon/Town10HD
+2026-03-16 13:23:50,108 - INFO -   [OP]: ________________________________________
+2026-03-16 13:23:50,108 - INFO -   [OP]: 
+2026-03-16 13:24:00,434 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:24:10,799 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:32, 10.33s/it]
+2026-03-16 13:24:21,213 - INFO -   [OP]: 20%|██        | 2/10 [00:20<01:22, 10.35s/it]
+2026-03-16 13:24:31,742 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:12, 10.38s/it]
+2026-03-16 13:24:42,124 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.44s/it]
+2026-03-16 13:24:52,498 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:52, 10.42s/it]
+2026-03-16 13:25:02,925 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.40s/it]
+2026-03-16 13:25:13,354 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:31, 10.41s/it]
+2026-03-16 13:25:23,784 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.42s/it]
+2026-03-16 13:25:34,224 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.42s/it]
+2026-03-16 13:25:34,308 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.43s/it]
+2026-03-16 13:25:34,324 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.42s/it]
+2026-03-16 13:25:34,324 - INFO -   [OP]: Saving sample 1/10 (Frame 17977)
+2026-03-16 13:25:34,324 - INFO -   [OP]: Saving sample 2/10 (Frame 17978)
+2026-03-16 13:25:34,324 - INFO -   [OP]: Saving sample 3/10 (Frame 17979)
+2026-03-16 13:25:34,324 - INFO -   [OP]: Saving sample 4/10 (Frame 17980)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Saving sample 5/10 (Frame 17981)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Saving sample 6/10 (Frame 17982)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Saving sample 7/10 (Frame 17983)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Saving sample 8/10 (Frame 17984)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Saving sample 9/10 (Frame 17985)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Saving sample 10/10 (Frame 17986)
+2026-03-16 13:25:34,325 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:25:34,325 - INFO -   [OP]: Total Time taken to generate images: 104.22817516326904
+2026-03-16 13:25:34,325 - INFO -   [OP]: Time per image: 10.422817516326905
+2026-03-16 13:25:34,397 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:25:39,402 - INFO - Generating H/P Variation: H=60 P=-90 for baseline Town10HD
+2026-03-16 13:25:39,402 - INFO - Executing: uv run --python 3.8 python loadingAttributesWeather.py --town Town10HD --weather ClearNoon --height 60 --pitch -90 --metaDataDir /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData --ROOT_DIR /home/df/data/datasets/SkyScenes/proof_of_concept --tm_port 8010 --save_seg --extract_gbuffer
+2026-03-16 13:25:49,598 - INFO -   [OP]: ________________________________________
+2026-03-16 13:25:49,599 - INFO -   [OP]: The arguments for generation are as follows:
+2026-03-16 13:25:49,599 - INFO -   [OP]: Town:          Town10HD
+2026-03-16 13:25:49,599 - INFO -   [OP]: Weather:       ClearNoon
+2026-03-16 13:25:49,599 - INFO -   [OP]: Height:        60.0
+2026-03-16 13:25:49,599 - INFO -   [OP]: Pitch:         -90
+2026-03-16 13:25:49,599 - INFO -   [OP]: metaDataDir:   /home/df/data/datasets/SkyScenes/proof_of_concept/H_2.5_P_0/ClearNoon/Town10HD/metaData
+2026-03-16 13:25:49,599 - INFO -   [OP]: Saving DIR: /home/df/data/datasets/SkyScenes/proof_of_concept/H_60.0_P_90/ClearNoon/Town10HD
+2026-03-16 13:25:49,599 - INFO -   [OP]: ________________________________________
+2026-03-16 13:25:49,599 - INFO -   [OP]: 
+2026-03-16 13:26:00,228 - INFO -   [OP]: 0%|          | 0/10 [00:00<?, ?it/s]
+2026-03-16 13:26:10,664 - INFO -   [OP]: 10%|█         | 1/10 [00:10<01:35, 10.63s/it]
+2026-03-16 13:26:21,002 - INFO -   [OP]: 20%|██        | 2/10 [00:21<01:24, 10.52s/it]
+2026-03-16 13:26:31,352 - INFO -   [OP]: 30%|███       | 3/10 [00:31<01:13, 10.43s/it]
+2026-03-16 13:26:41,687 - INFO -   [OP]: 40%|████      | 4/10 [00:41<01:02, 10.40s/it]
+2026-03-16 13:26:52,060 - INFO -   [OP]: 50%|█████     | 5/10 [00:52<00:51, 10.38s/it]
+2026-03-16 13:27:02,439 - INFO -   [OP]: 60%|██████    | 6/10 [01:02<00:41, 10.38s/it]
+2026-03-16 13:27:12,860 - INFO -   [OP]: 70%|███████   | 7/10 [01:12<00:31, 10.38s/it]
+2026-03-16 13:27:23,247 - INFO -   [OP]: 80%|████████  | 8/10 [01:23<00:20, 10.39s/it]
+2026-03-16 13:27:33,549 - INFO -   [OP]: 90%|█████████ | 9/10 [01:33<00:10, 10.39s/it]
+2026-03-16 13:27:33,631 - INFO -   [OP]: 100%|██████████| 10/10 [01:43<00:00, 10.36s/it]
+2026-03-16 13:27:33,644 - INFO -   [OP]: 100%|██████████| 10/10 [01:44<00:00, 10.40s/it]
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 1/10 (Frame 17995)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 2/10 (Frame 17996)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 3/10 (Frame 17997)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 4/10 (Frame 17998)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 5/10 (Frame 17999)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 6/10 (Frame 18000)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 7/10 (Frame 18001)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 8/10 (Frame 18002)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 9/10 (Frame 18003)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Saving sample 10/10 (Frame 18004)
+2026-03-16 13:27:33,645 - INFO -   [OP]: Destroying actors and sensors...
+2026-03-16 13:27:33,645 - INFO -   [OP]: Total Time taken to generate images: 104.05765199661255
+2026-03-16 13:27:33,645 - INFO -   [OP]: Time per image: 10.405765199661255
+2026-03-16 13:27:33,719 - INFO - Waiting 5 seconds for simulator to stabilize...
+2026-03-16 13:27:38,724 - INFO - Pipeline Execution Complete

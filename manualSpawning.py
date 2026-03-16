@@ -63,9 +63,17 @@ class genImages(object):
         ### External arguments
         self.town = args.town
         self.height = args.height
-        self.heightCamera = np.random.normal(self.height, self.SIGMA_H)
+        # Reduce variance for ground/low altitude capture
+        if self.height <= 5.0:
+            actual_sigma_h = 0.1
+            actual_sigma_p = 0.5
+        else:
+            actual_sigma_h = self.SIGMA_H
+            actual_sigma_p = self.SIGMA_P
+            
+        self.heightCamera = np.random.normal(self.height, actual_sigma_h)
         self.pitch = args.pitch
-        self.pitchCamera = np.random.normal(self.pitch, self.SIGMA_P)
+        self.pitchCamera = np.random.normal(self.pitch, actual_sigma_p)
         self.totalImages = int(args.num)
         self.weather_str = args.weather
         if args.weather == "ClearNoon":
@@ -91,6 +99,7 @@ class genImages(object):
         
         self.vehiclesSpawned = 0 # number of vehicles
         self.walkerSpawned = 0   # number of walkers 
+        self.extract_gbuffer = args.extract_gbuffer
 
         ### Creating Directories
         ## Save Data
@@ -100,6 +109,8 @@ class genImages(object):
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/CarlaSegment"), exist_ok=True)
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
+        if self.extract_gbuffer:
+            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/GBuffer"), exist_ok=True)
         ## Save metaData for everything
         os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
         
@@ -132,8 +143,8 @@ class genImages(object):
         self.waypoint = self.m.get_waypoint(transform.location)
         self.roadId = self.waypoint.road_id
         self.vehicle = self.world.spawn_actor(bp, transform)
-        ## we spawn the vehicle in the air, hence z=self.heightCamera. pitch and roll will always be set to zero
-        vehicle_transform = carla.Transform(carla.Location(x=self.waypoint.transform.location.x, y=self.waypoint.transform.location.y, z=self.heightCamera), 
+        ## we spawn the vehicle relative to the road surface, hence z=waypoint.z + self.heightCamera. pitch and roll will always be set to zero
+        vehicle_transform = carla.Transform(carla.Location(x=self.waypoint.transform.location.x, y=self.waypoint.transform.location.y, z=self.waypoint.transform.location.z + self.heightCamera), 
                                              carla.Rotation(pitch=0, yaw=self.waypoint.transform.rotation.yaw, roll=0))
         self.vehicle.set_transform(vehicle_transform)
         self.actor_list.append(self.vehicle)
@@ -449,6 +460,11 @@ class genImages(object):
         self.camera = self.world.spawn_actor(camera_bp, camera_transform, attach_to=self.vehicle)
         self.image_queue = queue.Queue()
         self.camera.listen(self.image_queue.put)
+        if self.extract_gbuffer:
+            self.gbuffer_queues = {}
+            for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
+                self.gbuffer_queues[gb] = queue.Queue()
+                self.camera.listen_to_gbuffer(getattr(carla.GBufferTextureID, gb), self.gbuffer_queues[gb].put)
         self.actor_list.append(self.camera)
 
         ########################################################################################################################
@@ -520,6 +536,13 @@ class genImages(object):
             try:
                 ##### AERIAL VIEW
                 image = self.image_queue.get(timeout=20.0)
+                if self.extract_gbuffer:
+                    self.current_gbuffers = {}
+                    for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
+                        gb_img = self.gbuffer_queues[gb].get(timeout=20.0)
+                        gb_array = np.frombuffer(gb_img.raw_data, dtype=np.dtype("uint8"))
+                        gb_array = np.reshape(gb_array, (gb_img.height, gb_img.width, 4))[:, :, :3][:,:,::-1]
+                        self.current_gbuffers[gb] = gb_array
                 image_segCarla  = self.image_queue_seg.get(timeout=20.0)
                 image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
                 image_depth = self.image_queue_depth.get(timeout=20.0)
@@ -548,6 +571,9 @@ class genImages(object):
                     # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.Depth)
                     # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"))
                     image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance/{image.frame:06}_instance.png"))
+                if self.extract_gbuffer:
+                    npz_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/GBuffer/{image.frame:06}_gbuffer.npz")
+                    np.savez_compressed(npz_path, **self.current_gbuffers)
                 ########################################################################################################################
                 data = {}
                 data["image_path"] = IMG_PATH
@@ -587,13 +613,20 @@ class genImages(object):
                 self.destroypeople() # manual humans destroyed, that are randomly added to scenes
 
             self.waypoint = random.choice(self.waypoint.next(1.5))
-            self.heightCamera = np.random.normal(self.height, self.SIGMA_H)
-            vehicle_transform = carla.Transform(carla.Location(x=self.waypoint.transform.location.x, y=self.waypoint.transform.location.y, z=self.heightCamera),
+            if self.height <= 5.0:
+                actual_sigma_h = 0.1
+                actual_sigma_p = 0.5
+            else:
+                actual_sigma_h = self.SIGMA_H
+                actual_sigma_p = self.SIGMA_P
+
+            self.heightCamera = np.random.normal(self.height, actual_sigma_h)
+            vehicle_transform = carla.Transform(carla.Location(x=self.waypoint.transform.location.x, y=self.waypoint.transform.location.y, z=self.waypoint.transform.location.z + self.heightCamera),
                                              carla.Rotation(pitch=0, yaw=self.waypoint.transform.rotation.yaw, roll=0))
             self.vehicle.set_transform(vehicle_transform)
             
-            self.pitchCamera = np.random.normal(self.pitch, self.SIGMA_P)
-            cam_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), # Vehicle is in air, so just x is mentioned 
+            self.pitchCamera = np.random.normal(self.pitch, actual_sigma_p)
+            cam_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), # Vehicle is in air, but now height is relative
                                            carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
             self.camera.set_transform(cam_transform)
             self.camera_seg.set_transform(cam_transform)
@@ -651,6 +684,7 @@ if __name__ == "__main__":
     parser.add_argument('--pitch', type=int, default=-45, help="pitch")
     parser.add_argument('--num', type=int, default=10, help="number of images to generate")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
+    parser.add_argument('--extract_gbuffer', action='store_true', default=False, help="Extract G-Buffer layers and save as NPZ")
     parser.add_argument('--tm_port', type=int, default=8000, help="Traffic Manager port")
     args = parser.parse_args()
     # Respect command line arguments
