@@ -605,28 +605,38 @@ class genImages(object):
           
     def destroyActors(self):
         print("Destroying actors and sensors...")
-        if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
-        if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
-        if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
-        if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
+        try:
+            if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
+            if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
+            if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
+            if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
 
-        if hasattr(self, 'client'):
-            if hasattr(self, 'actor_list'):
-                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.actor_list])
-            if hasattr(self, 'vehicles'):
-                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehicles])
-            if hasattr(self, 'peopleSidewalk'):
-                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.peopleSidewalk])
-        
-        self.endTime = time.time()   
+            if hasattr(self, 'client'):
+                if hasattr(self, 'actor_list') and self.actor_list:
+                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.actor_list])
+                if hasattr(self, 'vehicles') and self.vehicles:
+                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.vehicles])
+                if hasattr(self, 'peopleSidewalk') and self.peopleSidewalk:
+                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.peopleSidewalk])
+            if hasattr(self, 'world'):
+                self.world.tick()
+        except Exception as e:
+            print(f"Error during actor destruction: {e}")
+        finally:
+            self.endTime = time.time()
 
     def destroypeople(self):
         """
         Destroys manually added people
         This function is called after every saved image
         """
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.people]) 
-        self.people = []
+        try:
+            if self.people:
+                self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.people]) 
+        except Exception as e:
+            print(f"Error destroying manual people: {e}")
+        finally:
+            self.people = []
 
 
 if __name__ == "__main__":

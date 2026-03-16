@@ -442,6 +442,12 @@ class GenImage:
                 self.camera_seg.set_transform(cam_transform)
                 self.camera_depth.set_transform(cam_transform)
                 self.camera_instance.set_transform(cam_transform)
+            
+            # Freeze physics for all spawned actors just before the first tick for this frame
+            for actor in self.spawned_vehicle + self.spawned_people:
+                if actor.is_alive:
+                    actor.set_simulate_physics(False)
+
             self.world.tick()
             time.sleep(5)
             ########################################################################################################################
@@ -518,28 +524,40 @@ class GenImage:
         '''
         Function call the destroy all the actors spawned in the current iteration
         '''
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.spawned_people])
-        self.client.apply_batch([carla.command.DestroyActor(x) for x in self.spawned_vehicle])
-        self.spawned_vehicle = []
-        self.spawned_people = []
-        self.vehicleDict = {}
-        self.walkerDict = {}
+        try:
+            if self.spawned_people:
+                self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_people])
+            if self.spawned_vehicle:
+                self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_vehicle])
+        except Exception as e:
+            print(f"Error destroying vehicle and people: {e}")
+        finally:
+            self.spawned_vehicle = []
+            self.spawned_people = []
+            self.vehicleDict = {}
+            self.walkerDict = {}
     
     def destroyActors(self):
         print("Destroying actors and sensors...")
-        if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
-        if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
-        if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
-        if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
+        try:
+            if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
+            if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
+            if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
+            if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
 
-        if hasattr(self, 'client'):
-            if hasattr(self, 'actor_list'):
-                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.actor_list])
-            if hasattr(self, 'spawned_vehicle'):
-                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.spawned_vehicle])
-            if hasattr(self, 'spawned_people'):
-                self.client.apply_batch([carla.command.DestroyActor(x) for x in self.spawned_people])
-        self.endTime = time.time()
+            if hasattr(self, 'client'):
+                if hasattr(self, 'actor_list') and self.actor_list:
+                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.actor_list])
+                if hasattr(self, 'spawned_vehicle') and self.spawned_vehicle:
+                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_vehicle])
+                if hasattr(self, 'spawned_people') and self.spawned_people:
+                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_people])
+            if hasattr(self, 'world'):
+                self.world.tick()
+        except Exception as e:
+            print(f"Error during actor destruction: {e}")
+        finally:
+            self.endTime = time.time()
         
 
 if __name__ == "__main__":
