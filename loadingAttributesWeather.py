@@ -375,9 +375,8 @@ class GenImage:
         with open(filename, "r") as json_file:
             self.data = json.load(json_file)
 
-        if self.args.weather == "ClearNoon":
-            if self.data["height"] != self.height or self.data["pitch"] != self.pitch:
-                self.h_and_p = True
+        if self.data["height"] != self.height or self.data["pitch"] != self.pitch:
+            self.h_and_p = True
         vehiclePos = self.data["ego_vehicle"]
         self.vehiclePos, _, _ = self.generateTransform(vehiclePos)
         # Note: heightCamera and pitchCamera will be set per-frame in tickClock
