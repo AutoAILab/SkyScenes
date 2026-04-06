@@ -60,6 +60,7 @@ def main():
     parser.add_argument("--save_seg", action='store_true', default=None, help="Override save_seg from config")
     parser.add_argument("--extract_gbuffer", action='store_true', default=None, help="Override extract_gbuffer from config")
     parser.add_argument("--generate_lidar", action='store_true', default=None, help="Override generate_lidar from config")
+    parser.add_argument("--voxel_size", type=float, default=None, help="Override voxel_size from config (meters)")
     parser.add_argument("--force", action='store_true', help="Force regeneration by cleaning up existing data")
     parser.add_argument("--python", default="3.8", help="Python version to use for uv run")
     parser.add_argument("--dry-run", action='store_true', help="Log commands without executing them")
@@ -72,6 +73,7 @@ def main():
     save_seg = args.save_seg if args.save_seg is not None else config.get("save_seg", False)
     extract_gbuffer = args.extract_gbuffer if args.extract_gbuffer is not None else config.get("extract_gbuffer", False)
     generate_lidar = args.generate_lidar if args.generate_lidar is not None else config.get("generate_lidar", False)
+    voxel_size = args.voxel_size if args.voxel_size is not None else config.get("sensors", {}).get("voxel_size", 0.1)
     python_ver = args.python
     baseline_conf = config.get("baseline", {})
     variation_conf = config.get("variations", {})
@@ -189,7 +191,10 @@ def main():
                         # Add sensor settings
                         sensor_conf = config.get("sensors", {})
                         for key, val in sensor_conf.items():
-                            cmd_var.extend([f"--{key}", str(val)])
+                            val_to_pass = val
+                            if key == "voxel_size" and args.voxel_size is not None:
+                                val_to_pass = args.voxel_size
+                            cmd_var.extend([f"--{key}", str(val_to_pass)])
                         run_pipeline(cmd_var, dry_run=args.dry_run)
 
                     # Cross-variations for height/pitch
@@ -232,7 +237,10 @@ def main():
                             # Add sensor settings
                             sensor_conf = config.get("sensors", {})
                             for key, val in sensor_conf.items():
-                                cmd_hp.extend([f"--{key}", str(val)])
+                                val_to_pass = val
+                                if key == "voxel_size" and args.voxel_size is not None:
+                                    val_to_pass = args.voxel_size
+                                cmd_hp.extend([f"--{key}", str(val_to_pass)])
                             run_pipeline(cmd_hp, dry_run=args.dry_run)
 
     if generate_lidar:
