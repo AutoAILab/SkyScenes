@@ -59,6 +59,7 @@ def main():
     parser.add_argument("--root_dir", help="Override ROOT_DIR from config")
     parser.add_argument("--save_seg", action='store_true', default=None, help="Override save_seg from config")
     parser.add_argument("--extract_gbuffer", action='store_true', default=None, help="Override extract_gbuffer from config")
+    parser.add_argument("--generate_lidar", action='store_true', default=None, help="Override generate_lidar from config")
     parser.add_argument("--force", action='store_true', help="Force regeneration by cleaning up existing data")
     parser.add_argument("--python", default="3.8", help="Python version to use for uv run")
     parser.add_argument("--dry-run", action='store_true', help="Log commands without executing them")
@@ -70,6 +71,7 @@ def main():
     root_dir = args.root_dir or config.get("ROOT_DIR", "/home/df/data/datasets")
     save_seg = args.save_seg if args.save_seg is not None else config.get("save_seg", False)
     extract_gbuffer = args.extract_gbuffer if args.extract_gbuffer is not None else config.get("extract_gbuffer", False)
+    generate_lidar = args.generate_lidar if args.generate_lidar is not None else config.get("generate_lidar", False)
     python_ver = args.python
     baseline_conf = config.get("baseline", {})
     variation_conf = config.get("variations", {})
@@ -131,6 +133,8 @@ def main():
                             cmd.append("--save_seg")
                         if extract_gbuffer:
                             cmd.append("--extract_gbuffer")
+                        if generate_lidar:
+                            cmd.append("--generate_lidar")
                         
                         ret = run_pipeline(cmd, dry_run=args.dry_run)
                         if ret != 0 and exec_conf.get("stop_on_error", False):
@@ -174,6 +178,8 @@ def main():
                             cmd_var.append("--save_seg")
                         if extract_gbuffer:
                             cmd_var.append("--extract_gbuffer")
+                        if generate_lidar:
+                            cmd_var.append("--generate_lidar")
                         run_pipeline(cmd_var, dry_run=args.dry_run)
 
                     # Cross-variations for height/pitch
@@ -210,7 +216,24 @@ def main():
                                 cmd_hp.append("--save_seg")
                             if extract_gbuffer:
                                 cmd_hp.append("--extract_gbuffer")
+                            if generate_lidar:
+                                cmd_hp.append("--generate_lidar")
                             run_pipeline(cmd_hp, dry_run=args.dry_run)
+
+    if generate_lidar:
+        logger.info("\n" + "="*50)
+        logger.info("Starting automatic town merging...")
+        merge_cmd = [
+            "uv", "run", "--python", python_ver, "python", "scripts/build_town_map.py",
+            "--input_dir", root_dir,
+            "--output_dir", os.path.join(root_dir, "merged_towns")
+        ]
+        ret = run_pipeline(merge_cmd, dry_run=args.dry_run)
+        if ret == 0:
+            logger.info(f"Automatic merging complete. Maps saved to: {os.path.join(root_dir, 'merged_towns')}")
+        else:
+            logger.error("Automatic merging failed.")
+        logger.info("="*50 + "\n")
 
     logger.info("Pipeline Execution Complete")
 

@@ -2,6 +2,7 @@
 ROOT_DIR: "/home/df/data/datasets/SkyScenes/simulated"
 save_seg: true  # Enabling GT as per ticket checklist
 extract_gbuffer: true  # Extract G-Buffers for CARLA2Real
+generate_lidar: true  # Build whole-town colorized maps
 
 # Baseline generation settings (manualSpawning.py)
 baseline:
