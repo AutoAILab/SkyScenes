@@ -4,6 +4,15 @@ save_seg: true  # Enabling GT as per ticket checklist
 extract_gbuffer: true  # Extract G-Buffers for CARLA2Real
 generate_lidar: true  # Build whole-town colorized maps
 
+# Global Sensor Settings
+sensors:
+  fov: 110
+  width: 2160
+  height: 1440
+  x_offset: 5.0
+  lidar_range: 150.0
+  voxel_size: 0.1
+
 # Baseline generation settings (manualSpawning.py)
 baseline:
   towns: ["Town10HD"]

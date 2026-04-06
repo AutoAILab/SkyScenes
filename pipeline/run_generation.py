@@ -136,6 +136,11 @@ def main():
                         if generate_lidar:
                             cmd.append("--generate_lidar")
                         
+                        # Add sensor settings
+                        sensor_conf = config.get("sensors", {})
+                        for key, val in sensor_conf.items():
+                            cmd.extend([f"--{key}", str(val)])
+                        
                         ret = run_pipeline(cmd, dry_run=args.dry_run)
                         if ret != 0 and exec_conf.get("stop_on_error", False):
                             logger.error("Stop on error enabled. Aborting.")
@@ -180,6 +185,11 @@ def main():
                             cmd_var.append("--extract_gbuffer")
                         if generate_lidar:
                             cmd_var.append("--generate_lidar")
+                        
+                        # Add sensor settings
+                        sensor_conf = config.get("sensors", {})
+                        for key, val in sensor_conf.items():
+                            cmd_var.extend([f"--{key}", str(val)])
                         run_pipeline(cmd_var, dry_run=args.dry_run)
 
                     # Cross-variations for height/pitch
@@ -218,6 +228,11 @@ def main():
                                 cmd_hp.append("--extract_gbuffer")
                             if generate_lidar:
                                 cmd_hp.append("--generate_lidar")
+                            
+                            # Add sensor settings
+                            sensor_conf = config.get("sensors", {})
+                            for key, val in sensor_conf.items():
+                                cmd_hp.extend([f"--{key}", str(val)])
                             run_pipeline(cmd_hp, dry_run=args.dry_run)
 
     if generate_lidar:

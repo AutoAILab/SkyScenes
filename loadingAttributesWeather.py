@@ -11,6 +11,15 @@ import random
 import time 
 from PIL import Image
 import open3d as o3d
+import logging
+
+# Add src to path for relative imports
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+from skyscenes.generator import BaseGenerator
+
+logger = logging.getLogger(__name__)
+
+np.random.seed(0)
 
 '''Color Dictionary for carla Simulartor 0.9.14, can be used for RGB to int mapping'''
 carla_colordict_14 = {
@@ -40,23 +49,36 @@ carla_colordict_14 = {
                 } 
 
 
-class GenImage:
+class GenImage(BaseGenerator):
     def __init__(self, args, metaDataDir, index):
-        self.args = args
-        self.ROOT_DIR = args.ROOT_DIR
-        print(f"Saving DIR: {os.path.join(self.ROOT_DIR, f'H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{args.town}')}")
-        print("__"*20)
-        ### Internal arguments
-        self.save_bbox = False
-        self.save_seg = args.save_seg # False default, True for ClearNoon
+        super().__init__(args)
+        self.height_arg = args.height
+        self.pitch_arg = args.pitch
+        
+        logger.info(f"Saving DIR: {os.path.join(self.ROOT_DIR, f'H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}')}")
+        logger.info("__"*20)
+        
+        # Paths
+        self.save_dir = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}")
+        os.makedirs(os.path.join(self.save_dir, "Images"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "CarlaSegment"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "Depth"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "Instance"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "metaData"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "Lidar"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "GBuffer"), exist_ok=True)
+        
         self.extract_gbuffer = args.extract_gbuffer
         self.generate_lidar = args.generate_lidar
-        if self.generate_lidar:
-             self.global_pcd = o3d.geometry.PointCloud()
-             self.voxel_size = 0.1
         self.save_metadata = True
-        self.h_and_p = False
         self.noon_json = args.noon_json
+        
+        # Meta data handling
+        self.metaDataDir = metaDataDir
+        self.index = index
+        self.metaDataFiles = os.listdir(self.metaDataDir)
+        self.metaDataFiles.sort()
+        self.totalImages = len(self.metaDataFiles)
 
         self.IMG_WIDTH = 2160
         self.IMG_HEIGHT = 1440
@@ -65,7 +87,6 @@ class GenImage:
         self.FOV = 110      # Does not change
         self.SENSOR_X = 5   # Location of sensor
         self.SENSOR_Z = 2.5 # Location of sensor
-        self.port = 2000
         self.carlaClassNum = 8
         
         ### External arguments
@@ -116,16 +137,12 @@ class GenImage:
             os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Lidar"), exist_ok=True)
         ## Save metaData for everything
         if self.save_metadata:
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
+            os.makedirs(os.path.join(self.save_dir, "metaData"), exist_ok=True)
+            
+        self.vehiclesSpawned = 0
+        self.walkerSpawned = 0
 
-        ### Loading the world
-        self.client = carla.Client('localhost', self.port)
-        self.client.set_timeout(60.0)
-        self.world = self.client.load_world(self.town)
-        self.settings = self.world.get_settings()
-        self.settings.fixed_delta_seconds = 0.05
-        self.settings.synchronous_mode = True 
-        self.world.apply_settings(self.settings)
+        # Finalize setup for variation generation
         self.world.set_weather(self.weather)
 
         self.actor_list = []
@@ -135,11 +152,7 @@ class GenImage:
         self.vehicleDict = {}
         self.walkerDict = {}
         
-        ### Traffic Manager
-        self.tm = self.client.get_trafficmanager(args.tm_port)
-        ## Set up the TM in synchronous mode
-        self.tm.set_synchronous_mode(True)
-        ## Set a seed so behaviour can be repeated if necessary
+        # Use base class TM and finalize state
         self.tm.set_random_device_seed(0)
 
         ### Ego vehicle to attach sensors
@@ -301,15 +314,6 @@ class GenImage:
             lidar_bp.set_attribute('points_per_second', '500000')
             lidar_bp.set_attribute('rotation_frequency', '20.0')
             lidar_bp.set_attribute('upper_fov', '15.0')
-            lidar_bp.set_attribute('lower_fov', '-25.0')
-            
-            camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), 
-                                               carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-            self.lidar = self.world.spawn_actor(lidar_bp, camera_transform, attach_to=self.vehicle)
-            self.lidar_queue = queue.Queue()
-            self.lidar.listen(self.lidar_queue.put)
-            self.actor_list.append(self.lidar)
-
     def setSensors(self):
         self.camera = self.world.spawn_actor(self.camera_bp, self.camera_transform, attach_to=self.vehicle)
         self.camera.listen(lambda image: self.image_queue.put(image))
@@ -436,6 +440,8 @@ class GenImage:
                 self.spawnPeople(idNum, ID, loc, rotation, transform)
 
     def tickClock(self):
+        self.add_sensors(self.vehicle)
+        self.counter = 0
         '''
         Function call to generate images
         Algorithm:
@@ -444,7 +450,6 @@ class GenImage:
             * Tick the world, capture images from all the sensors 
             * Save all the images and the associated metaData
         '''
-        self.counter = 0
         from tqdm import tqdm 
         pbar = tqdm(total=self.totalImages)
         while(self.counter<self.totalImages):
@@ -499,109 +504,57 @@ class GenImage:
             ########################################################################################################################
             ##### AERIAL VIEW
             try:
-                image = self.image_queue.get(timeout=20.0)
-                if self.extract_gbuffer:
-                    self.current_gbuffers = {}
-                    for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
-                        gb_img = self.gbuffer_queues[gb].get(timeout=20.0)
-                        gb_array = np.frombuffer(gb_img.raw_data, dtype=np.dtype("uint8"))
-                        gb_array = np.reshape(gb_array, (gb_img.height, gb_img.width, 4))[:, :, :3][:, :, ::-1]
-                        self.current_gbuffers[gb] = gb_array
+                image = self.sensor_queues['rgb'].get(timeout=20.0)
+                self.current_gbuffers = self.get_gbuffers(timeout=20.0)
+                image_segCarla  = self.sensor_queues['seg'].get(timeout=20.0)
+                image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
+                image_depth = self.sensor_queues['depth'].get(timeout=20.0)
+                image_instance = self.sensor_queues['instance'].get(timeout=20.0)
+                if self.generate_lidar:
+                    point_cloud = self.sensor_queues['lidar'].get(timeout=20.0)
+            except queue.Empty:
+                logger.error("Error: Sensor queue timeout. Simulator might be lagging or sensor failed.")
+                continue
+
+            ########################################################################################################################
+            if True:
+                logger.info(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
+                ## Save the image, carla Dict segmented map, depth image, ground scene and carla dict segmented map for ground map
+                ########################################################################################################################
+                ####### IMAGES
+                ########################################################################################################################
+                ##### AERIAL VIEW
+                imgName = str(self.files[self.counter]).split(".")[0]
+                IMG_PATH = os.path.join(self.save_dir, f"Images/{imgName}.png")
+                image.save_to_disk(IMG_PATH)
                 ########################################################################################################################
                 ####### SEMANTIC SEGMENTATION
                 ########################################################################################################################
                 ##### AERIAL VIEW
                 if self.save_seg:
-                    image_segCarla  = self.image_queue_seg.get(timeout=20.0)
-                    image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
-                    image_depth = self.image_queue_depth.get(timeout=20.0)
-                    image_instance = self.image_queue_instance.get(timeout=20.0)
+                    image_segCarla.save_to_disk(os.path.join(self.save_dir, f"CarlaSegment/{imgName}.png"))
+                    image_depth.save_to_disk(os.path.join(self.save_dir, f"Depth/{imgName}.png"), carla.ColorConverter.LogarithmicDepth)
+                    image_instance.save_to_disk(os.path.join(self.save_dir, f"Instance/{imgName}.png"))
+                if self.extract_gbuffer:
+                    npz_path = os.path.join(self.save_dir, f"GBuffer/{imgName}_gbuffer.npz")
+                    np.savez_compressed(npz_path, **self.current_gbuffers)
+                
                 if self.generate_lidar:
-                    point_cloud = self.lidar_queue.get(timeout=20.0)
-            except queue.Empty:
-                print("Error: Sensor queue timeout. Simulator might be lagging or sensor failed.")
-                continue
-
-            print(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
-            ########################################################################################################################
-            imgName = str(self.files[self.counter]).split(".")[0]
-            IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Images/{imgName}.png")
-            image.save_to_disk(IMG_PATH)
-            if self.save_seg:
-                image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/CarlaSegment/{imgName}_semsegCarla.png"))
-                image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.LogarithmicDepth)
-                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"), carla.ColorConverter.Depth)
-                # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{imgName}_depth.png"))
-                image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance/{imgName}_instance.png"))
-            if self.extract_gbuffer:
-                npz_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/GBuffer/{imgName}_gbuffer.npz")
-                np.savez_compressed(npz_path, **self.current_gbuffers)
-            if self.generate_lidar:
-                data_lidar = np.frombuffer(point_cloud.raw_data, dtype=np.dtype([
-                    ('x', np.float32), ('y', np.float32), ('z', np.float32),
-                    ('CosAngle', np.float32), ('ObjIdx', np.uint32), ('ObjTag', np.uint32)]))
-                points_lidar = np.array([data_lidar['x'], -data_lidar['y'], data_lidar['z']]).T
-                labels_lidar = np.array(data_lidar['ObjTag'])
-
-                # Colorize and Map
-                # 1. Project to image
-                array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
-                array = np.reshape(array, (image.height, image.width, 4))
-                array = array[:, :, :3] # BGR
-                
-                # 2. Intrinsics
-                w = image.width
-                h = image.height
-                fov = self.FOV
-                f = w / (2.0 * np.tan(fov * np.pi / 360.0))
-                cx = w / 2.0
-                cy = h / 2.0
-                
-                # 3. Project points to image
-                z_cam = points_lidar[:, 0]
-                x_cam = points_lidar[:, 1]
-                y_cam = -points_lidar[:, 2]
-                
-                u = (x_cam * f / z_cam) + cx
-                v = (y_cam * f / z_cam) + cy
-                
-                # Filter points within image
-                valid_idx = (u >= 0) & (u < w) & (v >= 0) & (v < h) & (z_cam > 0)
-                u_valid = u[valid_idx].astype(np.int32)
-                v_valid = v[valid_idx].astype(np.int32)
-                
-                # Sample colors
-                colors_lidar = np.zeros((len(points_lidar), 3), dtype=np.uint8)
-                sampled_bgr = array[v_valid, u_valid]
-                colors_lidar[valid_idx] = sampled_bgr[:, ::-1]
-                
-                # 4. Transform to world space
-                trans = self.lidar.get_transform().get_matrix()
-                points_hom = np.c_[points_lidar, np.ones(len(points_lidar))]
-                points_world = np.dot(trans, points_hom.T).T[:, :3]
-                
-                # 5. Add to global PCD
-                frame_pcd = o3d.geometry.PointCloud()
-                frame_pcd.points = o3d.utility.Vector3dVector(points_world)
-                frame_pcd.colors = o3d.utility.Vector3dVector(colors_lidar / 255.0)
-                
-                self.global_pcd += frame_pcd
-                if self.counter % 5 == 0:
-                     self.global_pcd = self.global_pcd.voxel_down_sample(self.voxel_size)
-                
-                ply_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Lidar/{imgName}.ply")
-                with open(ply_path, 'wb') as f_ply:
-                    header = f"ply\nformat binary_little_endian 1.0\nelement vertex {len(points_lidar)}\nproperty float x\nproperty float y\nproperty float z\nproperty uint8 red\nproperty uint8 green\nproperty uint8 blue\nproperty uint ObjTag\nend_header\n"
-                    f_ply.write(header.encode('utf-8'))
-                    ply_data = np.zeros(len(points_lidar), dtype=[('x', 'f4'), ('y', 'f4'), ('z', 'f4'), ('red', 'u1'), ('green', 'u1'), ('blue', 'u1'), ('ObjTag', 'u4')])
-                    ply_data['x'] = points_lidar[:, 0]
-                    ply_data['y'] = points_lidar[:, 1]
-                    ply_data['z'] = points_lidar[:, 2]
-                    ply_data['red'] = colors_lidar[:, 0]
-                    ply_data['green'] = colors_lidar[:, 1]
-                    ply_data['blue'] = colors_lidar[:, 2]
-                    ply_data['ObjTag'] = labels_lidar
-                    f_ply.write(ply_data.tobytes())
+                    points_lidar, colors_lidar, labels_lidar = self.process_lidar(point_cloud, image)
+                    
+                    ply_path = os.path.join(self.save_dir, f"Lidar/{imgName}.ply")
+                    with open(ply_path, 'wb') as f_ply:
+                        header = f"ply\nformat binary_little_endian 1.0\nelement vertex {len(points_lidar)}\nproperty float x\nproperty float y\nproperty float z\nproperty uint8 red\nproperty uint8 green\nproperty uint8 blue\nproperty uint ObjTag\nend_header\n"
+                        f_ply.write(header.encode('utf-8'))
+                        ply_data = np.zeros(len(points_lidar), dtype=[('x', 'f4'), ('y', 'f4'), ('z', 'f4'), ('red', 'u1'), ('green', 'u1'), ('blue', 'u1'), ('ObjTag', 'u4')])
+                        ply_data['x'] = points_lidar[:, 0]
+                        ply_data['y'] = points_lidar[:, 1]
+                        ply_data['z'] = points_lidar[:, 2]
+                        ply_data['red'] = colors_lidar[:, 0]
+                        ply_data['green'] = colors_lidar[:, 1]
+                        ply_data['blue'] = colors_lidar[:, 2]
+                        ply_data['ObjTag'] = labels_lidar
+                        f_ply.write(ply_data.tobytes())
             ########################################################################################################################
             if self.save_metadata:
                 data = {}
@@ -660,27 +613,18 @@ class GenImage:
             self.walkerDict = {}
     
     def destroyActors(self):
-        print("Destroying actors and sensors...")
+        super().cleanup()
+        if hasattr(self, 'vehiclesList') and self.vehiclesList:
+            logger.info(f"Destroying {len(self.vehiclesList)} vehicles...")
+            self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehiclesList])
+        
+        if hasattr(self, 'walkersList') and self.walkersList:
+            logger.info(f"Destroying {len(self.walkersList)} walkers...")
+            for i in range(0, len(self.all_id), 2):
+                self.all_actors[i].stop()
+            self.client.apply_batch([carla.command.DestroyActor(x) for x in self.all_id])
+        self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_people])
         try:
-            if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
-            if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
-            if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
-            if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
-            if hasattr(self, 'lidar') and self.lidar.is_listening: self.lidar.stop()
-            
-            if self.generate_lidar and hasattr(self, 'global_pcd'):
-                print(f"Saving global town map with {len(self.global_pcd.points)} points...")
-                global_ply_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/town_accumulated.ply")
-                o3d.io.write_point_cloud(global_ply_path, self.global_pcd)
-                print(f"Global map saved to {global_ply_path}")
-
-            if hasattr(self, 'client'):
-                if hasattr(self, 'actor_list') and self.actor_list:
-                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.actor_list])
-                if hasattr(self, 'spawned_vehicle') and self.spawned_vehicle:
-                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_vehicle])
-                if hasattr(self, 'spawned_people') and self.spawned_people:
-                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.spawned_people])
             if hasattr(self, 'world'):
                 self.world.tick()
         except Exception as e:
@@ -692,6 +636,8 @@ class GenImage:
 if __name__ == "__main__":
     ###########################################################################################################################################################################################
     parser = argparse.ArgumentParser()
+    parser.add_argument('--host', type=str, default="127.0.0.1", help="host location")
+    parser.add_argument('--port', type=int, default=2000, help="port number")
     parser.add_argument('--town', type=str, default="Town10HD", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
     parser.add_argument('--weather', type=str, default="ClearNoon", help="ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight")
     parser.add_argument('--height', type=float, default=35, help="height")
@@ -703,7 +649,16 @@ if __name__ == "__main__":
     parser.add_argument('--noon_json', type=bool, default=False, help="Fixing missing")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
     parser.add_argument('--extract_gbuffer', action='store_true', default=False, help="Extract G-Buffer layers and save as NPZ")
-    parser.add_argument('--generate_lidar', action='store_true', default=False, help="Generate Semantic LiDAR point clouds and save as PLY")
+    parser.add_argument('--generate_lidar', action='store_true', default=False, help='Build whole-town colorized maps')
+    
+    # Sensor settings
+    parser.add_argument('--fov', type=float, default=110.0, help='Camera FOV')
+    parser.add_argument('--width', type=int, default=2160, help='Image width')
+    parser.add_argument('--height_img', type=int, default=1440, help='Image height')
+    parser.add_argument('--sensor_x', type=float, default=5.0, help='Sensor X offset')
+    parser.add_argument('--lidar_range', type=float, default=150.0, help='LiDAR range')
+    parser.add_argument('--voxel_size', type=float, default=0.1, help='Voxel size for mapping')
+
     parser.add_argument('--tm_port', type=int, default=8000, help="Traffic Manager port")
 
     args = parser.parse_args()

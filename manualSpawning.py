@@ -11,6 +11,13 @@ import random
 import time 
 from PIL import Image
 import open3d as o3d
+import logging
+
+# Add src to path for relative imports
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+from skyscenes.generator import BaseGenerator
+
+logger = logging.getLogger(__name__)
 
 np.random.seed(0)
 random.seed(0)
@@ -43,49 +50,21 @@ carla_colordict_14 = {
                 } 
 
 
-class genImages(object):
+class genImages(BaseGenerator):
     def __init__(self, args):
-        self.args = args
-        self.ROOT_DIR = args.ROOT_DIR
-        print(f"Saving DIR:     {os.path.join(self.ROOT_DIR, f'H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{args.town}')}")
-        print("__"*20)
-        ### Internal arguments
-        self.IMG_WIDTH = 2160
-        self.IMG_HEIGHT = 1440
-        self.SIGMA_H = 2.5
-        self.SIGMA_P = 5
-        
-        self.FOV = 110      # Does not change
-        self.SENSOR_X = 5   # Location of sensor
-        self.SENSOR_Z = 2.5 # Location of sensor
-        self.port = 2000
-        self.carlaClassNum = 8 
-        
-        ### External arguments
-        self.town = args.town
         self.height = args.height
-        # Reduce variance for ground/low altitude capture
-        if self.height <= 5.0:
-            actual_sigma_h = 0.1
-            actual_sigma_p = 0.5
-        else:
-            actual_sigma_h = self.SIGMA_H
-            actual_sigma_p = self.SIGMA_P
-            
-        self.heightCamera = np.random.normal(self.height, actual_sigma_h)
         self.pitch = args.pitch
-        self.pitchCamera = np.random.normal(self.pitch, actual_sigma_p)
-        self.totalImages = int(args.num)
         self.weather_str = args.weather
-        if args.weather == "ClearNoon":
+        
+        if self.weather_str == "ClearNoon":
             self.weather = carla.WeatherParameters.ClearNoon
-        elif args.weather == "CloudyNoon":
+        elif self.weather_str == "CloudyNoon":
             self.weather = carla.WeatherParameters.CloudyNoon
-        elif args.weather == "MidRainyNoon":
+        elif self.weather_str == "MidRainyNoon":
             self.weather = carla.WeatherParameters.MidRainyNoon
-        elif args.weather == "ClearSunset":
+        elif self.weather_str == "ClearSunset":
             self.weather = carla.WeatherParameters.ClearSunset
-        elif args.weather == "ClearNight":
+        elif self.weather_str == "ClearNight":
             self.weather = carla.WeatherParameters(
                                                     cloudiness = 0.0,
                                                     precipitation = 0.0,
@@ -98,63 +77,61 @@ class genImages(object):
                                                     wetness = 0.0
                                                     )
         
-        self.vehiclesSpawned = 0 # number of vehicles
+        super().__init__(args)
+        
+        logger.info(f"Saving DIR:     {os.path.join(self.ROOT_DIR, f'H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}')}")
+        
+        self.totalImages = args.num
+        self.tm_port = args.tm_port
+        
+        # Paths
+        self.save_dir = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}")
+        os.makedirs(os.path.join(self.save_dir, "Images"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "CarlaSegment"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "Depth"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "Instance"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "metaData"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "Lidar"), exist_ok=True)
+        os.makedirs(os.path.join(self.save_dir, "GBuffer"), exist_ok=True)
+        
         self.walkerSpawned = 0   # number of walkers 
         self.extract_gbuffer = args.extract_gbuffer
         self.generate_lidar = args.generate_lidar
-        if self.generate_lidar:
-            self.global_pcd = o3d.geometry.PointCloud()
-            self.voxel_size = 0.1
 
         ### Creating Directories
         ## Save Data
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/Images"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/CarlaSegment"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth"), exist_ok=True)
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance"), exist_ok=True)
-        if self.extract_gbuffer:
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/GBuffer"), exist_ok=True)
         if self.generate_lidar:
-            os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{args.weather}/{self.town}/Lidar"), exist_ok=True)
+            os.makedirs(os.path.join(self.save_dir, "Lidar"), exist_ok=True)
+        
+        self.vehiclesSpawned = 0
+        self.walkerSpawned = 0
         ## Save metaData for everything
-        os.makedirs(os.path.join(self.ROOT_DIR, f"H_{args.height}_P_{abs(args.pitch)}/{self.weather_str}/{self.town}/metaData"), exist_ok=True)
+        # Cleanup redundant attributes handled by BaseGenerator
+        # ... and finalize setup for manual spawning
+        self.SIGMA_H = 1.0 # 2.5 was originally
+        self.SIGMA_P = 2.0 # 5.0 was originally
         
-        ### Loading the world
-        self.client = carla.Client('localhost', self.port)
-        self.client.set_timeout(60.0)
+        # Variance for aerial capture
+        actual_sigma_h = self.SIGMA_H if self.height > 5.0 else 0.1
+        actual_sigma_p = self.SIGMA_P if self.height > 5.0 else 0.5
         
-        ### Town information
-        self.world = self.client.load_world(args.town)
-        self.world.wait_for_tick()
-        self.settings = self.world.get_settings()
-        self.settings.fixed_delta_seconds = 0.05
-        self.settings.synchronous_mode = True
-        self.world.apply_settings(self.settings)
+        self.heightCamera = np.random.normal(self.height, actual_sigma_h)
+        self.pitchCamera = np.random.normal(self.pitch, actual_sigma_p)
+        
+        # Vehicle to attach all the sensors to
+        bp = self.blueprint_library.filter('crossbike')[0]
+        spawn_points = self.map.get_spawn_points()
+        transform = random.choice(spawn_points)
         self.world.set_weather(self.weather)
-        self.actor_list = []
-
-        ### Traffic Manager
-        self.tm = self.client.get_trafficmanager(args.tm_port)
-        ## Set up the TM in synchronous mode
-        self.tm.set_synchronous_mode(True)
-        ## Set a seed so behaviour can be repeated if necessary
-        self.tm.set_random_device_seed(0)
-
-        ### Vehicle to attach all the sensors to
-        self.blueprint_library = self.world.get_blueprint_library()
-        bp = self.blueprint_library.filter('crossbike')[0] # crossbike is used because it does not cast a shadow
-        transform = random.choice(self.world.get_map().get_spawn_points()) # 200 spawn points are available
+        self.vehicle = self.world.spawn_actor(bp, transform)
+        self.actor_list.append(self.vehicle)
         self.m = self.world.get_map()
         self.waypoint = self.m.get_waypoint(transform.location)
         self.roadId = self.waypoint.road_id
-        self.vehicle = self.world.spawn_actor(bp, transform)
         ## we spawn the vehicle relative to the road surface, hence z=waypoint.z + self.heightCamera. pitch and roll will always be set to zero
         vehicle_transform = carla.Transform(carla.Location(x=self.waypoint.transform.location.x, y=self.waypoint.transform.location.y, z=self.waypoint.transform.location.z + self.heightCamera), 
                                              carla.Rotation(pitch=0, yaw=self.waypoint.transform.rotation.yaw, roll=0))
         self.vehicle.set_transform(vehicle_transform)
-        self.actor_list.append(self.vehicle)
         self.vehicle.set_autopilot(True, self.tm.get_port())
         self.vehicle.set_enable_gravity(False) # disables gravity
         
@@ -449,100 +426,11 @@ class genImages(object):
         
         Pitch, roll, yaw: 0
         '''
-        ########################################################################################################################
-        ####### IMAGES
-        ########################################################################################################################
-        ##### AERIAL VIEW
-        camera_bp = self.blueprint_library.find('sensor.camera.rgb')
-        camera_bp.set_attribute('fov', f'{str(self.FOV)}')
-        camera_bp.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
-        camera_bp.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
-        camera_bp.set_attribute('motion_blur_intensity', '0')
-        camera_bp.set_attribute('motion_blur_max_distortion', '0')
-        camera_bp.set_attribute('motion_blur_min_object_screen_size', '0')
-        camera_bp.set_attribute('blur_amount', '0')
-        camera_bp.set_attribute('enable_postprocess_effects', 'True')
-        camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), # Vehicle is in air, so just x is mentioned
-                                           carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-        self.camera = self.world.spawn_actor(camera_bp, camera_transform, attach_to=self.vehicle)
-        self.image_queue = queue.Queue()
-        self.camera.listen(self.image_queue.put)
-        if self.extract_gbuffer:
-            self.gbuffer_queues = {}
-            for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
-                self.gbuffer_queues[gb] = queue.Queue()
-                self.camera.listen_to_gbuffer(getattr(carla.GBufferTextureID, gb), self.gbuffer_queues[gb].put)
-        self.actor_list.append(self.camera)
-
-        ########################################################################################################################
-        ####### SEMANTIC SEGMENTATION
-        ########################################################################################################################
-        ##### AERIAL VIEW
-        camera_semseg = self.blueprint_library.find('sensor.camera.semantic_segmentation')
-        camera_semseg.set_attribute('fov', f'{str(self.FOV)}')
-        camera_semseg.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
-        camera_semseg.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
-        camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), # Vehicle is in air, so just x is mentioned 
-                                           carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-        self.camera_seg = self.world.spawn_actor(camera_semseg, camera_transform, attach_to=self.vehicle)
-        self.image_queue_seg = queue.Queue()
-        self.camera_seg.listen(self.image_queue_seg.put)
-        self.actor_list.append(self.camera_seg)
-        ########################################################################################################################
-        ########################################################################################################################
-        ####### DEPTH
-        ########################################################################################################################
-        ##### AERIAL VIEW
-        camera_depth = self.blueprint_library.find('sensor.camera.depth')
-        camera_depth.set_attribute('fov', f'{str(self.FOV)}')
-        camera_depth.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
-        camera_depth.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
-        camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), 
-                                            carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-        self.camera_depth = self.world.spawn_actor(camera_depth, camera_transform, attach_to=self.vehicle)
-        self.image_queue_depth = queue.Queue()
-        self.camera_depth.listen(self.image_queue_depth.put)
-        self.actor_list.append(self.camera_depth)
-
-        ########################################################################################################################
-        ####### INSTANCE 
-        ########################################################################################################################
-        ##### AERIAL VIEW
-        camera_instance = self.blueprint_library.find('sensor.camera.instance_segmentation')
-        camera_instance.set_attribute('fov', f'{str(self.FOV)}')
-        camera_instance.set_attribute('image_size_x', f'{self.IMG_WIDTH}')
-        camera_instance.set_attribute('image_size_y', f'{self.IMG_HEIGHT}')
-        camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), 
-                                            carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-        self.camera_instance = self.world.spawn_actor(camera_instance, camera_transform, attach_to=self.vehicle)
-        self.image_queue_instance = queue.Queue()
-        self.camera_instance.listen(self.image_queue_instance.put)
-        self.actor_list.append(self.camera_instance)
-
-        ########################################################################################################################
-        ####### SEMANTIC LIDAR
-        ########################################################################################################################
-        if self.generate_lidar:
-            lidar_bp = self.blueprint_library.find('sensor.lidar.ray_cast_semantic')
-            lidar_bp.set_attribute('channels', '64')
-            lidar_bp.set_attribute('range', '150.0')
-            lidar_bp.set_attribute('points_per_second', '500000')
-            lidar_bp.set_attribute('rotation_frequency', '20.0')
-            lidar_bp.set_attribute('upper_fov', '15.0')
-            lidar_bp.set_attribute('lower_fov', '-25.0')
-            
-            camera_transform = carla.Transform(carla.Location(x=self.SENSOR_X,), 
-                                               carla.Rotation(pitch=self.pitchCamera, yaw=0, roll=0))
-            self.lidar = self.world.spawn_actor(lidar_bp, camera_transform, attach_to=self.vehicle)
-            self.lidar_queue = queue.Queue()
-            self.lidar.listen(self.lidar_queue.put)
-            self.actor_list.append(self.lidar)
-   
     def tickClock(self):
         '''
         Function call to spawn humans randomly in the scene 
         '''
-        self.addSensors()
+        self.add_sensors(self.vehicle)
         self.counter = 0
         i = 0
         from tqdm import tqdm 
@@ -561,110 +449,44 @@ class genImages(object):
             ##### AERIAL VIEW
             try:
                 ##### AERIAL VIEW
-                image = self.image_queue.get(timeout=20.0)
-                if self.extract_gbuffer:
-                    self.current_gbuffers = {}
-                    for gb in ["SceneDepth", "SceneStencil", "GBufferA", "GBufferB", "GBufferC"]:
-                        gb_img = self.gbuffer_queues[gb].get(timeout=20.0)
-                        gb_array = np.frombuffer(gb_img.raw_data, dtype=np.dtype("uint8"))
-                        gb_array = np.reshape(gb_array, (gb_img.height, gb_img.width, 4))[:, :, :3][:,:,::-1]
-                        self.current_gbuffers[gb] = gb_array
-                image_segCarla  = self.image_queue_seg.get(timeout=20.0)
+                image = self.sensor_queues['rgb'].get(timeout=20.0)
+                self.current_gbuffers = self.get_gbuffers(timeout=20.0)
+                image_segCarla  = self.sensor_queues['seg'].get(timeout=20.0)
                 image_segCarla.convert(carla.ColorConverter.CityScapesPalette)
-                image_depth = self.image_queue_depth.get(timeout=20.0)
-                image_instance = self.image_queue_instance.get(timeout=20.0)
+                image_depth = self.sensor_queues['depth'].get(timeout=20.0)
+                image_instance = self.sensor_queues['instance'].get(timeout=20.0)
                 if self.generate_lidar:
-                    point_cloud = self.lidar_queue.get(timeout=20.0)
+                    point_cloud = self.sensor_queues['lidar'].get(timeout=20.0)
             except queue.Empty:
-                print("Error: Sensor queue timeout. Simulator might be lagging or sensor failed.")
+                logger.error("Error: Sensor queue timeout. Simulator might be lagging or sensor failed.")
                 continue
 
             ########################################################################################################################
             if i%10 == 0:
-                print(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
+                logger.info(f"Saving sample {self.counter + 1}/{self.totalImages} (Frame {image.frame})")
                 ## Save the image, carla Dict segmented map, depth image, ground scene and carla dict segmented map for ground map
                 ########################################################################################################################
                 ####### IMAGES
                 ########################################################################################################################
                 ##### AERIAL VIEW
-                IMG_PATH = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Images/{image.frame:06}.png")
+                IMG_PATH = os.path.join(self.save_dir, f"Images/{image.frame:06}.png")
                 image.save_to_disk(IMG_PATH)
                 ########################################################################################################################
                 ####### SEMANTIC SEGMENTATION
                 ########################################################################################################################
                 ##### AERIAL VIEW
                 if self.args.save_seg:
-                    image_segCarla.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/CarlaSegment/{image.frame:06}_semsegCarla.png"))
-                    image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.LogarithmicDepth)
-                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"), carla.ColorConverter.Depth)
-                    # image_depth.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Depth/{image.frame:06}_depth.png"))
-                    image_instance.save_to_disk(os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Instance/{image.frame:06}_instance.png"))
+                    image_segCarla.save_to_disk(os.path.join(self.save_dir, f"CarlaSegment/{image.frame:06}_semsegCarla.png"))
+                    image_depth.save_to_disk(os.path.join(self.save_dir, f"Depth/{image.frame:06}_depth.png"), carla.ColorConverter.LogarithmicDepth)
+                    image_instance.save_to_disk(os.path.join(self.save_dir, f"Instance/{image.frame:06}_instance.png"))
                 if self.extract_gbuffer:
-                    npz_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/GBuffer/{image.frame:06}_gbuffer.npz")
+                    npz_path = os.path.join(self.save_dir, f"GBuffer/{image.frame:06}_gbuffer.npz")
                     np.savez_compressed(npz_path, **self.current_gbuffers)
+                
                 if self.generate_lidar:
-                    data_lidar = np.frombuffer(point_cloud.raw_data, dtype=np.dtype([
-                        ('x', np.float32), ('y', np.float32), ('z', np.float32),
-                        ('CosAngle', np.float32), ('ObjIdx', np.uint32), ('ObjTag', np.uint32)]))
-                    points_lidar = np.array([data_lidar['x'], -data_lidar['y'], data_lidar['z']]).T
-                    labels_lidar = np.array(data_lidar['ObjTag'])
-
-                    # Colorize and Map
-                    # 1. Project to image
-                    array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
-                    array = np.reshape(array, (image.height, image.width, 4))
-                    array = array[:, :, :3] # BGR
+                    points_lidar, colors_lidar, labels_lidar = self.process_lidar(point_cloud, image)
                     
-                    # 2. Intrinsics
-                    w = image.width
-                    h = image.height
-                    fov = self.FOV
-                    f = w / (2.0 * np.tan(fov * np.pi / 360.0))
-                    cx = w / 2.0
-                    cy = h / 2.0
-                    
-                    # 3. Project points to image
-                    # LiDAR points: x=forward, y=right, z=up
-                    # Camera points for projection: x=right, y=down, z=forward
-                    # x_cam = y_lidar, y_cam = -z_lidar, z_cam = x_lidar
-                    z_cam = points_lidar[:, 0]
-                    x_cam = points_lidar[:, 1]
-                    y_cam = -points_lidar[:, 2]
-                    
-                    u = (x_cam * f / z_cam) + cx
-                    v = (y_cam * f / z_cam) + cy
-                    
-                    # Filter points within image
-                    valid_idx = (u >= 0) & (u < w) & (v >= 0) & (v < h) & (z_cam > 0)
-                    u_valid = u[valid_idx].astype(np.int32)
-                    v_valid = v[valid_idx].astype(np.int32)
-                    
-                    # Sample colors (BGR -> RGB)
-                    colors_lidar = np.zeros((len(points_lidar), 3), dtype=np.uint8)
-                    sampled_bgr = array[v_valid, u_valid]
-                    colors_lidar[valid_idx] = sampled_bgr[:, ::-1]
-                    
-                    # 4. Transform to world space
-                    trans = self.lidar.get_transform().get_matrix()
-                    # points_lidar is N x 3
-                    # Add ones for homogeneous coordinates
-                    points_hom = np.c_[points_lidar, np.ones(len(points_lidar))]
-                    points_world = np.dot(trans, points_hom.T).T[:, :3]
-                    
-                    # 5. Add to global PCD
-                    frame_pcd = o3d.geometry.PointCloud()
-                    frame_pcd.points = o3d.utility.Vector3dVector(points_world)
-                    frame_pcd.colors = o3d.utility.Vector3dVector(colors_lidar / 255.0)
-                    
-                    # Voxel downsample current frame to keep it clean
-                    # frame_pcd = frame_pcd.voxel_down_sample(self.voxel_size)
-                    
-                    self.global_pcd += frame_pcd
-                    # Periodically downsample global map to save memory
-                    if self.counter % 5 == 0:
-                         self.global_pcd = self.global_pcd.voxel_down_sample(self.voxel_size)
-                    
-                    ply_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/Lidar/{image.frame:06}.ply")
+                    ply_path = os.path.join(self.save_dir, f"Lidar/{image.frame:06}.ply")
                     with open(ply_path, 'wb') as f_ply:
                         header = f"ply\nformat binary_little_endian 1.0\nelement vertex {len(points_lidar)}\nproperty float x\nproperty float y\nproperty float z\nproperty uint8 red\nproperty uint8 green\nproperty uint8 blue\nproperty uint ObjTag\nend_header\n"
                         f_ply.write(header.encode('utf-8'))
@@ -742,27 +564,19 @@ class genImages(object):
         self.destroypeople()
           
     def destroyActors(self):
-        print("Destroying actors and sensors...")
+        super().cleanup()
+        if hasattr(self, 'vehiclesList') and self.vehiclesList:
+            logger.info(f"Destroying {len(self.vehiclesList)} vehicles...")
+            self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehiclesList])
+        
+        if hasattr(self, 'walkersList') and self.walkersList:
+            logger.info(f"Destroying {len(self.walkersList)} walkers...")
+            for i in range(0, len(self.all_id), 2):
+                self.all_actors[i].stop()
+            self.client.apply_batch([carla.command.DestroyActor(x) for x in self.all_id])
         try:
-            if hasattr(self, 'camera') and self.camera.is_listening: self.camera.stop()
-            if hasattr(self, 'camera_seg') and self.camera_seg.is_listening: self.camera_seg.stop()
-            if hasattr(self, 'camera_depth') and self.camera_depth.is_listening: self.camera_depth.stop()
-            if hasattr(self, 'camera_instance') and self.camera_instance.is_listening: self.camera_instance.stop()
-            if hasattr(self, 'lidar') and self.lidar.is_listening: self.lidar.stop()
-            
-            if self.generate_lidar and hasattr(self, 'global_pcd'):
-                print(f"Saving global town map with {len(self.global_pcd.points)} points...")
-                global_ply_path = os.path.join(self.ROOT_DIR, f"H_{self.height}_P_{abs(self.pitch)}/{self.weather_str}/{self.town}/town_accumulated.ply")
-                o3d.io.write_point_cloud(global_ply_path, self.global_pcd)
-                print(f"Global map saved to {global_ply_path}")
-
-            if hasattr(self, 'client'):
-                if hasattr(self, 'actor_list') and self.actor_list:
-                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.actor_list])
-                if hasattr(self, 'vehicles') and self.vehicles:
-                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.vehicles])
-                if hasattr(self, 'peopleSidewalk') and self.peopleSidewalk:
-                    self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.peopleSidewalk])
+            if hasattr(self, 'peopleSidewalk') and self.peopleSidewalk:
+                self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in self.peopleSidewalk])
             if hasattr(self, 'world'):
                 self.world.tick()
         except Exception as e:
@@ -789,6 +603,8 @@ if __name__ == "__main__":
     ### CMD LINE ARGUMENTS
     ########################################################################################################################
     parser = argparse.ArgumentParser()
+    parser.add_argument('--host', type=str, default="127.0.0.1", help="host location")
+    parser.add_argument('--port', type=int, default=2000, help="port number")
     parser.add_argument('--weather', type=str, default="ClearNoon", help="ClearNoon CloudyNoon MidRainyNoon ClearSunset ClearNight")
     parser.add_argument('--town', type=str, default="Town10HD", help="Town01 Town02 Town03 Town04 Town05 Town06 Town07 Town10HD")
     parser.add_argument('--ROOT_DIR', type=str, default="/home/df/data/datasets/SkyScenes/proof_of_concept", help="Dir to save")
@@ -797,7 +613,16 @@ if __name__ == "__main__":
     parser.add_argument('--num', type=int, default=10, help="number of images to generate")
     parser.add_argument('--save_seg', action='store_true', default=False, help="Save segmentation, depth and instance maps")
     parser.add_argument('--extract_gbuffer', action='store_true', default=False, help="Extract G-Buffer layers and save as NPZ")
-    parser.add_argument('--generate_lidar', action='store_true', default=False, help="Generate Semantic LiDAR point clouds and save as PLY")
+    parser.add_argument('--generate_lidar', action='store_true', default=False, help='Build whole-town colorized maps')
+    
+    # Sensor settings
+    parser.add_argument('--fov', type=float, default=110.0, help='Camera FOV')
+    parser.add_argument('--width', type=int, default=2160, help='Image width')
+    parser.add_argument('--height_img', type=int, default=1440, help='Image height')
+    parser.add_argument('--sensor_x', type=float, default=5.0, help='Sensor X offset')
+    parser.add_argument('--lidar_range', type=float, default=150.0, help='LiDAR range')
+    parser.add_argument('--voxel_size', type=float, default=0.1, help='Voxel size for mapping')
+
     parser.add_argument('--tm_port', type=int, default=8000, help="Traffic Manager port")
     args = parser.parse_args()
     # Respect command line arguments
